@@ -1,0 +1,44 @@
+@import '../../../mixins.scss';
+.paragraph {
+    padding-top: 36px;
+    padding-bottom: 15px;
+    margin-bottom: 85px;
+    &_light {
+        background: #dfe8ff;
+    }
+    &__title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h1 {
+            @include adaptiv-font(32, 20);
+            // font-weight: 500;
+            font-size: 32px;
+            line-height: 40px;
+            color: #000000;
+            max-width: 546px;
+            text-align: center;
+        }
+
+        svg {
+            &:first-child {
+                margin-right: 8px;
+            }
+            &:last-child {
+                margin-left: 8px;
+            }
+        }
+    }
+
+    &__content {
+        @include adaptiv-font(24, 20);
+        margin-top: 55px;
+        font-weight: 400;
+        line-height: 40px;
+        a {
+            text-decoration: underline;
+            color: #ff592c;
+        }
+    }
+}

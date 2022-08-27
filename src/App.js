@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import Allposts from './pages/Allposts/Allposts';
+import Article from './pages/Article/Article';
+import Slider from './components/Slider/Slider';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className='App'>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/articles' element={<Allposts />} />
+                <Route path='/authors' element={<Allposts type='authors' />} />
+                <Route path='/insights' element={<Allposts />} />
+                <Route path='/success%20stories' element={<Allposts />} />
+                <Route path='/announcements' element={<Allposts />} />
+                <Route path='/media' element={<Allposts />} />
+                <Route path='/round-up' element={<Allposts type='slider' />} />
+                <Route path='/articles/:id' element={<Article />} />
+                <Route path='/authors/:id' element={<Article />} />
+                <Route path='/insights/:id' element={<Article />} />
+                <Route path='/success%20stories/:id' element={<Article />} />
+                <Route path='/announcements/:id' element={<Article />} />
+                <Route path='/media/:id' element={<Article />} />
+                <Route path='/round-up/:id' element={<Allposts />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;

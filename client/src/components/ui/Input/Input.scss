@@ -1,0 +1,35 @@
+.input {
+    background: transparent;
+    padding-bottom: 15px;
+    width: 100%;
+    position: relative;
+    input {
+        border: none;
+        border-bottom: 1px solid #ffffff;
+        background: transparent;
+        width: calc(100% - 28px);
+        height: 45px;
+        color: #ffffff;
+        font-size: 18px;
+        outline: none;
+
+        &::placeholder {
+            font-weight: 400;
+            font-size: 18px;
+            color: rgba(#ffffff, 0.4);
+        }
+
+        &:active {
+            border: none;
+            border-bottom: 1px solid #ffffff;
+        }
+    }
+    svg {
+        fill: #ffffff;
+        width: 28px;
+        height: 28px;
+        right: 0;
+        position: absolute;
+        top: 30.5px;
+    }
+}

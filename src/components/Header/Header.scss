@@ -1,0 +1,99 @@
+@import '../../mixins.scss';
+.header {
+    background: url(../../img/bgline.svg) no-repeat,
+        url(../../img/Vector.svg) no-repeat, url(../../img/bg.png) no-repeat;
+    background-size: 770px, 1070px, cover;
+    background-position: 500px 0, left -50px bottom -128px, center;
+
+    height: 720px;
+    padding-bottom: 85px;
+
+    &-top {
+        padding-top: 9px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 374px;
+
+        &__logo {
+            line-height: 52px;
+            font-size: 29px;
+            color: #fff;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        &__menu {
+            display: flex;
+            align-items: center;
+            ul {
+                display: flex;
+
+                li {
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 18px;
+                    margin-right: 46px;
+
+                    a {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        &__button {
+            color: #fff;
+            padding: 8px 17.35px;
+            background: #5835ff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+    }
+
+    &-content {
+        &__title {
+            @include adaptiv-font(90, 40);
+            font-weight: 400;
+            // font-size: 90px;
+            // line-height: 90px;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        &__subtitle {
+            font-weight: 400;
+            @include adaptiv-font(30, 22);
+            // font-size: 30px;
+            line-height: 40px;
+            color: #000;
+        }
+    }
+}
+
+@media (min-width: 1441px) {
+    .header-content {
+        &__title {
+            font-size: 90px;
+        }
+        &__subtitle {
+            font-size: 30px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        // background-image: url(../../img/bgmini.png);
+        padding-bottom: 20px;
+
+        height: 680px;
+        &-top {
+            display: none;
+        }
+        &-content {
+            padding-top: 425px;
+        }
+    }
+}

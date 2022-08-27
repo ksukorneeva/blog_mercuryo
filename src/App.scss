@@ -1,0 +1,122 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+body {
+    max-width: 1440px;
+    min-width: 375px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1330px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.wrap {
+    max-width: 956px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+// @media (max-width: 540px) {
+//     .main__text {
+//         padding: 0;
+//         padding-left: 5%;
+//         // text-align: center;
+
+//         * {
+//             width: 100%;
+//         }
+
+//         h1 {
+//             line-height: 50px;
+//             margin: 20px 0;
+//         }
+
+//         h2 {
+//             color: #43d9ad;
+//         }
+
+//         p {
+//             &.paragraph-1,
+//             &.paragraph-2 {
+//                 display: none;
+//             }
+
+//             &.paragraph-3 {
+//                 display: block;
+//             }
+//         }
+//     }
+// }
+// @media (max-width: 1000px) {
+//     .header {
+//         justify-content: space-between;
+
+//         p {
+//             width: inherit;
+//             border-right: none;
+//         }
+
+//         &__navbar {
+//             position: absolute;
+//             top: 56px;
+//             width: 100%;
+//             // height: 100%;
+//             height: calc(100% - 107px);
+//             flex-direction: column;
+//             background: #011627;
+//             z-index: -1;
+//             opacity: 0;
+//             transition: 0.25s;
+
+//             &.active {
+//                 opacity: 1;
+//                 z-index: 2;
+//             }
+
+//             li {
+//                 width: 100%;
+
+//                 &:last-child {
+//                     margin-left: 0;
+
+//                     a {
+//                         border-left: none;
+//                     }
+//                 }
+//             }
+
+//             a {
+//                 width: initial;
+//                 padding: 0;
+//                 display: block;
+//                 border-bottom: 1px solid #1e2d3d;
+//                 padding: 17px 18px;
+//                 border-right: none;
+//                 border-left: none;
+
+//                 &.active,
+//                 &:hover {
+//                     border-bottom: 1px solid #1e2d3d;
+//                 }
+//             }
+//         }
+
+//         &__icon {
+//             margin: 17.6px 22px;
+//             display: block;
+//         }
+//     }
+// }

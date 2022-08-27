@@ -1,0 +1,39 @@
+.round {
+    &__block {
+        padding-top: 70px;
+        padding-bottom: 40px;
+    }
+    &__content {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__img {
+        height: 400.3052062988281px;
+        width: 802px;
+        border: 1px solid #000;
+    }
+
+    &__list {
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 34px;
+        margin-left: 30px;
+
+        ul {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.25s;
+
+            li {
+                margin-bottom: 43px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
