@@ -13,14 +13,24 @@ const Desctop = () => {
         <>
             <Header />
             <NavBar />
-            <Section size='small' type='post' />
+            <Section title='Articles' size='small' type='post' />
             <Authors />
             {/* <Subscribe /> */}
-            <Section size='large' type='post' />
-            <Section size='medium' type='post' bg='light' />
-            <Section size='medium' type='anons' bg='dark' />
+            <Section title='Insights' size='large' type='post' />
+            <Section
+                title='Success stories'
+                size='medium'
+                type='post'
+                bg='light'
+            />
+            <Section
+                title='Announcements'
+                size='medium'
+                type='anons'
+                bg='dark'
+            />
             <Slider />
-            <Section size='small' type='post' />
+            <Section title='Media' size='small' type='post' />
             <Contacts />
             <Footer />
         </>

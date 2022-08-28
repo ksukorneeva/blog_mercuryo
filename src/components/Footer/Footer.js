@@ -38,7 +38,7 @@ const Footer = () => {
                                 <div className='list__items'>
                                     <ul>
                                         {item.items.map((li, index) => (
-                                            <li key={index + 5}>
+                                            <li key={10000 + index}>
                                                 <a href='#'>{li}</a>
                                             </li>
                                         ))}

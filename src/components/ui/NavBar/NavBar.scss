@@ -2,7 +2,7 @@
     background-color: #000;
     position: sticky;
     top: 0;
-
+    z-index: 3;
     &__list {
         opacity: 1;
         z-index: 1;
@@ -90,6 +90,7 @@
         display: block;
         z-index: 5;
         fill: #000;
+        cursor: pointer;
     }
     .navbar {
         position: fixed;
@@ -99,6 +100,7 @@
         background: transparent;
         color: #000;
         // transition: 0.3s;
+        z-index: 2;
 
         &_black {
             background: #000;
@@ -111,11 +113,13 @@
             // opacity: 0;
             transition: 0.3s;
             display: none;
+            z-index: 2;
 
             &_show {
                 // z-index: 1;
                 // opacity: 1;
                 display: block;
+                z-index: 2;
             }
             ul {
                 position: absolute;
@@ -128,10 +132,12 @@
                 height: calc(100vh - 40px);
                 padding-left: 15px;
                 padding-top: 42px;
+                z-index: 2;
 
                 li {
                     padding-bottom: 34px;
                     font-size: 24px;
+                    z-index: 2;
 
                     &:last-child {
                         order: -1;
@@ -141,6 +147,7 @@
         }
         svg {
             margin-right: 17px;
+            z-index: 2;
         }
 
         &__wrap {
@@ -150,10 +157,12 @@
             margin-bottom: 4px;
             height: 40px;
             // transition: 0.3s;
+            z-index: 2;
 
             &_black {
                 background: #000;
                 color: #fff;
+                z-index: 2;
                 svg {
                     fill: #fff;
                 }
@@ -165,11 +174,13 @@
             color: #000;
             font-size: 27px;
             padding: 0;
+            z-index: 2;
 
             a {
                 color: #000;
                 &.black {
                     color: #fff;
+                    z-index: 2;
                 }
             }
         }
@@ -177,6 +188,7 @@
             position: absolute;
             top: 100px;
             width: 100%;
+            z-index: 2;
         }
     }
 }

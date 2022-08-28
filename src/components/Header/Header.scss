@@ -2,17 +2,21 @@
 .header {
     background: url(../../img/bgline.svg) no-repeat,
         url(../../img/Vector.svg) no-repeat, url(../../img/bg.png) no-repeat;
-    background-size: 770px, 1070px, cover;
-    background-position: 500px 0, left -58px bottom -55px, center;
-
-    padding-bottom: 85px;
+    background-size: 800px, 1122px, cover;
+    background-position: 600px 0, left -58px bottom -68px, center;
+    // padding-bottom: 85px;
+    // background: url(../../img/bgline.svg) no-repeat,
+    //     url(../../img/bg.png) no-repeat;
+    // background-size: 900px, cover;
+    // background-position: 500px 0, center;
+    height: 720px;
 
     &-top {
         padding-top: 9px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 374px;
+        margin-bottom: 289px;
 
         &__logo {
             line-height: 52px;
@@ -53,6 +57,9 @@
     }
 
     &-content {
+        // background: url(../../img/Vector.svg) no-repeat;
+        // background-position: left -50px bottom 0;
+        padding-bottom: 85px;
         &__title {
             @include adaptiv-font(90, 40);
             font-weight: 400;
@@ -70,6 +77,25 @@
             line-height: 40px;
             color: #000;
         }
+    }
+}
+@media (min-width: 1814px) {
+    .header {
+        background-size: 800px, 75vw, cover;
+        background-position: 455px 0, left -58px top 0, center;
+    }
+}
+
+@media (max-width: 1813px) {
+    .header {
+        background-size: 800px, 75vw, cover;
+        background-position: 455px 0, left -58px top 2vh, center;
+    }
+}
+@media (max-width: 1540px) {
+    .header {
+        background-size: 800px, 1122px, cover;
+        background-position: 455px 0, left -58px bottom -68px, center;
     }
 }
 

@@ -4,7 +4,7 @@ import './Title.scss';
 
 const Title = ({ children }) => {
     return (
-        <Link to={`/${children.toLowerCase()}`} className='title'>
+        <Link to={`/${children?.toLowerCase()}`} className='title'>
             {children}
         </Link>
     );

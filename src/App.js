@@ -10,12 +10,27 @@ function App() {
         <div className='App'>
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/articles' element={<Allposts />} />
-                <Route path='/authors' element={<Allposts type='authors' />} />
-                <Route path='/insights' element={<Allposts />} />
-                <Route path='/success%20stories' element={<Allposts />} />
-                <Route path='/announcements' element={<Allposts />} />
-                <Route path='/media' element={<Allposts />} />
+                <Route
+                    path='/articles'
+                    element={<Allposts title='Articles' view='page' />}
+                />
+                <Route
+                    path='/authors'
+                    element={<Allposts type='authors' view='page' />}
+                />
+                <Route
+                    path='/insights'
+                    element={<Allposts title='Insights' view='page' />}
+                />
+                <Route
+                    path='/success%20stories'
+                    element={<Allposts title='Success stories' view='page' />}
+                />
+                <Route
+                    path='/announcements'
+                    element={<Allposts title='Announcements' view='page' />}
+                />
+                <Route path='/media' element={<Allposts title='Media' />} />
                 <Route path='/round-up' element={<Allposts type='slider' />} />
                 <Route path='/articles/:id' element={<Article />} />
                 <Route path='/authors/:id' element={<Article />} />

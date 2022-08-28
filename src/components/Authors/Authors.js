@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Authors.scss';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
@@ -6,23 +6,55 @@ import { ReactComponent as LeftArrow } from '../../img/icons/leftArrow.svg';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import twit from '../../img/icons/twit.png';
 import facebook from '../../img/icons/facebook.png';
+import { arrAuthors } from '../../api/users';
+import CarouselRatio from '../ui/Carousel/Carousel';
+import { arrPosts } from '../../api/post';
+import { slice, concat } from 'lodash';
 
 const Autors = () => {
+    const [user, setUser] = useState(arrAuthors[0]);
+    const [allPosts] = useState(arrPosts);
+    const handleClick = (user) => {
+        setUser(user);
+    };
+
+    let LENGTH = 10;
+    let LIMIT = 6;
+    arrPosts.length = LENGTH;
+    const DATA = arrPosts;
+
+    const [showMore, setShowMore] = useState(true);
+    const [list, setList] = useState(slice(DATA, 0, LIMIT));
+    const [index, setIndex] = useState(LIMIT);
+
+    const loadMore = () => {
+        const newIndex = index + LIMIT;
+        const newShowMore = newIndex < LENGTH - 1;
+        const newList = concat(list, slice(DATA, index, newIndex));
+        setIndex(newIndex);
+        setList(newList);
+        setShowMore(newShowMore);
+    };
+
     return (
         <section className='authors'>
             <div className='container'>
                 <div className='authors__header'>
                     <Title>Authors</Title>
                     <div className='authors__list'>
-                        <ul>
-                            <li className='item_active'>Alisa Tkach</li>
-                            <li>Adam Berker</li>
-                            <li>Alisa Tkach</li>
-                            <li>Adam Berker</li>
-                            <li>Alisa Tkach</li>
-                            <li>Adam Berker</li>
-                            <li>Alisa Tkach</li>
-                        </ul>
+                        {/* <ul>
+                            {arrAuthors.map((author) => (
+                                <li key={author.ID} className='item_active'>
+                                    {author.display_name}
+                                </li>
+                            ))}
+                        </ul> */}
+                        <CarouselRatio
+                            arrAuthors={arrAuthors}
+                            onClick={handleClick}
+                            active={user.ID}
+                        />
+
                         <div className='authors__button'>
                             <LeftArrow />
                         </div>
@@ -33,7 +65,9 @@ const Autors = () => {
                         <div className='authors__info info'>
                             <div className='info__img'></div>
                             <div className='info__text'>
-                                <div className='info__title'>Alisa Tkach</div>
+                                <div className='info__title'>
+                                    {user?.display_name}
+                                </div>
                                 <div className='info__subtitle'>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit. Pellentesque sodales at
