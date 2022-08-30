@@ -4,6 +4,7 @@ import './NavBar.scss';
 import { ReactComponent as Search } from '../../../img/icons/search.svg';
 import { ReactComponent as Menu } from '../../../img/icons/menu.svg';
 import Input from '../Input/Input';
+import { listNav } from '../../../data';
 
 const NavBar = () => {
     const [search, setSearch] = useState(false);
@@ -11,8 +12,6 @@ const NavBar = () => {
 
     const handelSearch = () => {
         setSearch(!search);
-        // setOpen(!open);
-        // console.log('blur');
     };
 
     const handelKey = (e) => {
@@ -56,23 +55,11 @@ const NavBar = () => {
                                     : 'navbar__list navbar__list_hide'
                             }
                         >
-                            <li>
-                                <Link to='/articles'>Articles</Link>
-                            </li>
-                            <li>
-                                <Link to='/insights'>Insights</Link>
-                            </li>
-                            <li>
-                                <Link to='/success%20stories'>
-                                    Success stories
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to='/announcements'>Announcements</Link>
-                            </li>
-                            <li>
-                                <Link to='/round-up'>Round-up</Link>
-                            </li>
+                            {listNav.map((item, index) => (
+                                <li key={index}>
+                                    <Link to={item.href}>{item.title}</Link>
+                                </li>
+                            ))}
                             <li>
                                 {!search && <Search onClick={handelSearch} />}
                             </li>

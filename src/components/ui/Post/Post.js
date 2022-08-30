@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Post.scss';
 
 const Post = ({ classname, type, postInfo }) => {
@@ -8,12 +8,13 @@ const Post = ({ classname, type, postInfo }) => {
     const handelClick = () => {
         navigate(`/articles/id${postInfo.id}`);
     };
-    console.log(post);
+    const data = new Date(post.date).toDateString().slice(4, 10);
+
     return (
         post && (
             <div className={classname} onClick={handelClick}>
                 <div className={type === 'anons' ? 'post__data' : 'close'}>
-                    {post?.date || '20 Apr'}
+                    {data}
                 </div>
                 <div className='post__title'>{post.title.rendered}</div>
                 <div className={type === 'post' ? 'post__img' : 'close'}>

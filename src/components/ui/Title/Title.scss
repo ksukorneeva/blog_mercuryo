@@ -4,5 +4,12 @@
     line-height: 38px;
     cursor: pointer;
     color: #000;
-    
+
+    &_white {
+        color: #fff;
+        font-weight: 400;
+        font-size: 38px;
+        line-height: 38px;
+        cursor: pointer;
+    }
 }

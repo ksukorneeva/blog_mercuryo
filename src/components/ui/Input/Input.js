@@ -2,7 +2,7 @@ import React from 'react';
 import './Input.scss';
 import { ReactComponent as Blot } from '../../../img/icons/blot.svg';
 
-const Input = ({ label, handlerKey, onBlur, onFocus }) => {
+const Input = ({ label, handlerKey, onBlur }) => {
     return (
         <div className='input'>
             <input

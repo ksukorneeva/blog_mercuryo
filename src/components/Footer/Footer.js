@@ -2,43 +2,21 @@ import React from 'react';
 import './Footer.scss';
 import { ReactComponent as IconVisa } from '../../img/icons/iconvisa.svg';
 import { ReactComponent as Visa } from '../../img/icons/visa.svg';
-import { ReactComponent as Apple } from '../../img/icons/apple.svg';
-import { ReactComponent as Google } from '../../img/icons/google.svg';
+import { listFooter } from '../../data';
 
 const Footer = () => {
-    const arrList = [
-        {
-            title: 'Products',
-            items: [
-                'On- and off-ramps',
-                'Banking-as-a-Service',
-                'Crypto Pay in & Pay out',
-                'Fiat Pay in & Pay out',
-                'Wallet',
-            ],
-        },
-        {
-            title: 'Company',
-            items: ['About', 'Blog', 'Help', 'Design'],
-        },
-        {
-            title: 'Follow us',
-            items: ['LinkedIn', 'Twitter', 'Facebook'],
-        },
-    ];
-
     return (
         <footer className='footer'>
             <div className='container'>
                 <div className='footer__lists'>
-                    {arrList.map((item, index) => (
+                    {listFooter.map((item, index) => (
                         <div key={index} className='footer__list list'>
                             <div className='list__title'>{item.title}</div>
                             <div className='list__items'>
                                 <ul>
                                     {item.items.map((li, index) => (
                                         <li key={10000 + index}>
-                                            <a href='#'>{li}</a>
+                                            <a href='/'>{li}</a>
                                         </li>
                                     ))}
                                 </ul>
@@ -76,16 +54,16 @@ const Footer = () => {
                     <div className='footer__menu'>
                         <ul>
                             <li>
-                                <a href='#'>Cookies policy</a>
+                                <a href='/'>Cookies policy</a>
                             </li>
                             <li>
-                                <a href='#'>Terms of Service</a>
+                                <a href='/'>Terms of Service</a>
                             </li>
                             <li>
-                                <a href='#'>Privacy Policy</a>
+                                <a href='/'>Privacy Policy</a>
                             </li>
                             <li>
-                                <a href='#'>Referral Program TOS</a>
+                                <a href='/'>Referral Program TOS</a>
                             </li>
                         </ul>
                     </div>

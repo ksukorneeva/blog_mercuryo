@@ -6,9 +6,7 @@ import { ReactComponent as LeftArrow } from '../../img/icons/leftArrow.svg';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import twit from '../../img/icons/twit.png';
 import facebook from '../../img/icons/facebook.png';
-import { arrAuthors } from '../../api/users';
 import CarouselRatio from '../ui/Carousel/Carousel';
-import { arrPosts } from '../../api/post';
 import { slice, concat } from 'lodash';
 
 import axios from 'axios';
@@ -21,9 +19,8 @@ const Autors = ({ view }) => {
     const [authorPosts, setAuthorPosts] = useState([]);
     const [allPosts, setAllPosts] = useState([]);
 
-    let LENGTH = 10;
-    let LIMIT = 6;
-    arrPosts.length = LENGTH;
+    const LENGTH = 10;
+    const LIMIT = 6;
 
     const [showMore, setShowMore] = useState(true);
     const [DATA, setDATA] = useState();
@@ -52,12 +49,11 @@ const Autors = ({ view }) => {
             'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
         );
         setAllPosts(arrPost.data);
-        setAuthorPosts(
-            arrPost.data.filter((post) => post.author === arrUsers.data[0].id)
+        const userPosts = arrPost.data.filter(
+            (post) => post.author === arrUsers.data[0].id
         );
-        setDATA(
-            arrPost.data.filter((post) => post.author === arrUsers.data[0].id)
-        );
+        setAuthorPosts(userPosts);
+        setDATA(userPosts);
         setList(
             slice(
                 arrPost.data.filter(
@@ -96,7 +92,6 @@ const Autors = ({ view }) => {
                                 onClick={handleClick}
                                 active={user.id}
                             />
-
                             <div className='authors__button'>
                                 <LeftArrow />
                             </div>
@@ -124,17 +119,9 @@ const Autors = ({ view }) => {
                                     </div>
                                 </div>
                             </div>
-
                             <div className='authors__posts'>
                                 {authorPosts?.map((post, index) =>
-                                    index === 1 ? (
-                                        <Post
-                                            key={index}
-                                            classname='post post_small'
-                                            type='post'
-                                            postInfo={post}
-                                        />
-                                    ) : index === 0 ? (
+                                    index === 1 || index === 0 ? (
                                         <Post
                                             key={index}
                                             classname='post post_small'
@@ -162,21 +149,18 @@ const Autors = ({ view }) => {
                             )}
                         </div>
                     </div>
-
                     {view !== 'page' && (
                         <div className='authors__bottom bottom'>
                             <div className='bottom__button'>
-                                {showMore ? (
-                                    <button onClick={loadMore}>
-                                        Read more
-                                    </button>
-                                ) : (
-                                    <button onClick={navigate(`/authors`)}>
-                                        {/* <Link to={`/${.toLowerCase()}`}> */}
-                                        Read more
-                                        {/* </Link> */}
-                                    </button>
-                                )}
+                                <button
+                                    onClick={
+                                        showMore
+                                            ? loadMore
+                                            : navigate(`/authors`)
+                                    }
+                                >
+                                    Read more
+                                </button>
                                 <IconRead />
                             </div>
                         </div>

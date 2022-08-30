@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './Article.scss';
 import Paragraph from '../../components/ui/Paragraph/Paragraph';
-// import Subscribe from '../../components/ui/Subscribe/Subscribe';
-import Authors from '../../components/Authors/Authors';
 import NavBar from '../../components/ui/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer';
-// import { post } from '../../api/post1';
-import Section from '../../components/Section/Section';
 import twit from '../../img/icons/twit.png';
 import facebook from '../../img/icons/facebook.png';
 import { useParams } from 'react-router';
 import axios from 'axios';
-import Title from '../../components/ui/Title/Title';
 import Post from '../../components/ui/Post/Post';
 import { Link } from 'react-router-dom';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
@@ -74,8 +69,6 @@ const Article = () => {
                 </header>
                 <div className='content-art'>
                     <Paragraph quote='true' content={post.content.rendered} />
-                    {/* {console.log(post.content)} */}
-                    {/* <Subscribe /> */}
                     <div className='container'>
                         <div className='author-info'>
                             <div className='author-info__img'>
@@ -96,13 +89,12 @@ const Article = () => {
                             <section className='section'>
                                 <div className='container'>
                                     <div className='section__title'>
-                                        <Title>{`More from ${user.name}`}</Title>
+                                        <Link to='/authors'>{`More from ${user.name}`}</Link>
                                     </div>
                                     <div
                                         className={`section__posts section__posts_small`}
                                     >
                                         {userPosts.map((item, index) => {
-                                            console.log(item);
                                             return (
                                                 <Post
                                                     type='post'
@@ -124,11 +116,6 @@ const Article = () => {
                                     </div>
                                 </div>
                             </section>
-
-                            {/* <Section
-                                title={`More from ${user.name}`}
-                                arr={userPosts}
-                            /> */}
                         </div>
                     </div>
                 </div>

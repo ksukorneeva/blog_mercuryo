@@ -3,14 +3,14 @@ import './Section.scss';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
-
 import { slice, concat } from 'lodash';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
     const [posts, setPosts] = useState();
     const [showMore, setShowMore] = useState(true);
+    const navigate = useNavigate();
 
     const cls = ['post'];
     const bgc = ['section'];
@@ -58,79 +58,49 @@ const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
     return (
         posts && (
             <section className={bgc.join(' ')}>
-                {view === 'page' ? (
-                    <div className='container'>
-                        <div className='section__title'>
-                            <Title>{title}</Title>
-                        </div>
-                        <div
-                            className={`section__posts section__posts_${size}`}
-                        >
-                            {posts.map((item, index) => {
-                                return (
-                                    <Post
-                                        classname={classname}
-                                        type={type}
-                                        key={index}
-                                        postInfo={item}
-                                    />
-                                );
-                            })}
-                        </div>
+                <div className='container'>
+                    <div
+                        className={
+                            bg === 'dark'
+                                ? 'section__title_dark'
+                                : 'section__title'
+                        }
+                    >
+                        <Title bg={bg}>{title}</Title>
                     </div>
-                ) : (
-                    <div className='container'>
-                        <div className='section__title'>
-                            <Title>{title}</Title>
-                        </div>
-                        <div
-                            className={`section__posts section__posts_${size}`}
-                        >
-                            {list.map((item, index) => {
-                                return (
-                                    <Post
-                                        classname={classname}
-                                        type={type}
-                                        key={index}
-                                        postInfo={item}
-                                    />
-                                );
-                            })}
-                        </div>
-                        {bg === 'dark' ? (
-                            <div className='section__button section__button_dark'>
-                                {showMore ? (
-                                    <button onClick={loadMore}>
-                                        Read more
-                                    </button>
-                                ) : (
-                                    <button>
-                                        <Link to={`/${title.toLowerCase()}`}>
-                                            Read more
-                                        </Link>
-                                    </button>
-                                )}
-
-                                <IconRead />
-                            </div>
-                        ) : (
-                            <div className='section__button section__button'>
-                                {showMore ? (
-                                    <button onClick={loadMore}>
-                                        Read more
-                                    </button>
-                                ) : (
-                                    <button>
-                                        <Link to={`/${title.toLowerCase()}`}>
-                                            Read more
-                                        </Link>
-                                    </button>
-                                )}
-                                <IconRead />
-                            </div>
-                        )}
+                    <div className={`section__posts section__posts_${size}`}>
+                        {list.map((item, index) => {
+                            return (
+                                <Post
+                                    classname={classname}
+                                    type={type}
+                                    key={index}
+                                    postInfo={item}
+                                />
+                            );
+                        })}
                     </div>
-                )}
+                    {view !== 'page' && (
+                        <div
+                            className={
+                                bg === 'dark'
+                                    ? 'section__button section__button_dark'
+                                    : 'section__button'
+                            }
+                        >
+                            <button
+                                onClick={
+                                    showMore
+                                        ? loadMore
+                                        : navigate(`/${title.toLowerCase()}`)
+                                }
+                            >
+                                Read more
+                            </button>
+                            <IconRead />
+                        </div>
+                    )}
+                </div>
             </section>
         )
     );

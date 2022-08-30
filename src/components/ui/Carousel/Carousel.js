@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Card from '@mui/joy/Card';
@@ -25,8 +24,6 @@ export default function CarouselRatio({ arrAuthors, onClick, active }) {
             {arrAuthors.map((item) =>
                 item.id === active ? (
                     <Card
-                        // style='border: none'
-
                         row
                         key={item.id}
                         variant='outlined'
@@ -57,8 +54,6 @@ export default function CarouselRatio({ arrAuthors, onClick, active }) {
                     </Card>
                 ) : (
                     <Card
-                        // style='border: none'
-
                         row
                         key={item.id}
                         variant='outlined'
