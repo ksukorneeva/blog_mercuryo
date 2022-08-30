@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Section.scss';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
-import { arrPosts } from '../../api/post';
+
 import { slice, concat } from 'lodash';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
+    const [posts, setPosts] = useState();
+    const [showMore, setShowMore] = useState(true);
+
     const cls = ['post'];
     const bgc = ['section'];
     size && cls.push(`post_${size}`);
@@ -26,13 +30,22 @@ const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
         LENGTH = 4;
         LIMIT = 2;
     }
-    arrPosts.length = LENGTH;
-    const DATA = arrPosts;
-
-    const [showMore, setShowMore] = useState(true);
-    const [list, setList] = useState(slice(DATA, 0, LIMIT));
+    const [DATA, setDATA] = useState();
+    const [list, setList] = useState([]);
     const [index, setIndex] = useState(LIMIT);
-    const [allPosts] = useState(arrPosts);
+
+    const gettingPosts = async () => {
+        const data = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
+        );
+        setPosts(data.data);
+        setDATA(data.data);
+        setList(slice(data.data, 0, LIMIT));
+    };
+
+    useEffect(() => {
+        gettingPosts();
+    }, []);
 
     const loadMore = () => {
         const newIndex = index + LIMIT;
@@ -43,73 +56,83 @@ const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
         setShowMore(newShowMore);
     };
     return (
-        <section className={bgc.join(' ')}>
-            {view === 'page' ? (
-                <div className='container'>
-                    <div className='section__title'>
-                        <Title>{title}</Title>
+        posts && (
+            <section className={bgc.join(' ')}>
+                {view === 'page' ? (
+                    <div className='container'>
+                        <div className='section__title'>
+                            <Title>{title}</Title>
+                        </div>
+                        <div
+                            className={`section__posts section__posts_${size}`}
+                        >
+                            {posts.map((item, index) => {
+                                return (
+                                    <Post
+                                        classname={classname}
+                                        type={type}
+                                        key={index}
+                                        postInfo={item}
+                                    />
+                                );
+                            })}
+                        </div>
                     </div>
-                    <div className={`section__posts section__posts_${size}`}>
-                        {allPosts.map((item, index) => {
-                            return (
-                                <Post
-                                    classname={classname}
-                                    type={type}
-                                    key={index}
-                                    postInfo={item}
-                                />
-                            );
-                        })}
-                    </div>
-                </div>
-            ) : (
-                <div className='container'>
-                    <div className='section__title'>
-                        <Title>{title}</Title>
-                    </div>
-                    <div className={`section__posts section__posts_${size}`}>
-                        {list.map((item, index) => {
-                            return (
-                                <Post
-                                    classname={classname}
-                                    type={type}
-                                    key={index}
-                                    postInfo={item}
-                                />
-                            );
-                        })}
-                    </div>
-                    {bg === 'dark' ? (
-                        <div className='section__button section__button_dark'>
-                            {showMore ? (
-                                <button onClick={loadMore}>Read more</button>
-                            ) : (
-                                <button>
-                                    <Link to={`/${title.toLowerCase()}`}>
+                ) : (
+                    <div className='container'>
+                        <div className='section__title'>
+                            <Title>{title}</Title>
+                        </div>
+                        <div
+                            className={`section__posts section__posts_${size}`}
+                        >
+                            {list.map((item, index) => {
+                                return (
+                                    <Post
+                                        classname={classname}
+                                        type={type}
+                                        key={index}
+                                        postInfo={item}
+                                    />
+                                );
+                            })}
+                        </div>
+                        {bg === 'dark' ? (
+                            <div className='section__button section__button_dark'>
+                                {showMore ? (
+                                    <button onClick={loadMore}>
                                         Read more
-                                    </Link>
-                                </button>
-                            )}
+                                    </button>
+                                ) : (
+                                    <button>
+                                        <Link to={`/${title.toLowerCase()}`}>
+                                            Read more
+                                        </Link>
+                                    </button>
+                                )}
 
-                            <IconRead />
-                        </div>
-                    ) : (
-                        <div className='section__button section__button'>
-                            {showMore ? (
-                                <button onClick={loadMore}>Read more</button>
-                            ) : (
-                                <button>
-                                    <Link to={`/${title.toLowerCase()}`}>
+                                <IconRead />
+                            </div>
+                        ) : (
+                            <div className='section__button section__button'>
+                                {showMore ? (
+                                    <button onClick={loadMore}>
                                         Read more
-                                    </Link>
-                                </button>
-                            )}
-                            <IconRead />
-                        </div>
-                    )}
-                </div>
-            )}
-        </section>
+                                    </button>
+                                ) : (
+                                    <button>
+                                        <Link to={`/${title.toLowerCase()}`}>
+                                            Read more
+                                        </Link>
+                                    </button>
+                                )}
+                                <IconRead />
+                            </div>
+                        )}
+                    </div>
+                )}
+            </section>
+        )
     );
 };
 

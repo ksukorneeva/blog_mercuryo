@@ -13,10 +13,10 @@ const Desctop = () => {
         <>
             <Header />
             <NavBar />
-            <Section title='Articles' size='small' type='post' />
+            <Section key={1} title='Articles' size='small' type='post' />
             <Authors />
             {/* <Subscribe /> */}
-            <Section title='Insights' size='large' type='post' />
+            <Section key={2} title='Insights' size='large' type='post' />
             <Section
                 title='Success stories'
                 size='medium'
@@ -24,13 +24,14 @@ const Desctop = () => {
                 bg='light'
             />
             <Section
+                key={3}
                 title='Announcements'
                 size='medium'
                 type='anons'
                 bg='dark'
             />
             <Slider />
-            <Section title='Media' size='small' type='post' />
+            <Section key={4} title='Media' size='small' type='post' />
             <Contacts />
             <Footer />
         </>

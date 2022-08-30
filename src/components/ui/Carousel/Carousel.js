@@ -23,12 +23,12 @@ export default function CarouselRatio({ arrAuthors, onClick, active }) {
             }}
         >
             {arrAuthors.map((item) =>
-                item.ID === active ? (
+                item.id === active ? (
                     <Card
                         // style='border: none'
 
                         row
-                        key={item.ID}
+                        key={item.id}
                         variant='outlined'
                         sx={{
                             gap: 1,
@@ -51,7 +51,7 @@ export default function CarouselRatio({ arrAuthors, onClick, active }) {
                                     fontWeight: 'md',
                                 }}
                             >
-                                {item.display_name}
+                                {item.name}
                             </Typography>
                         </Box>
                     </Card>
@@ -60,7 +60,7 @@ export default function CarouselRatio({ arrAuthors, onClick, active }) {
                         // style='border: none'
 
                         row
-                        key={item.ID}
+                        key={item.id}
                         variant='outlined'
                         sx={{
                             gap: 1,
@@ -81,7 +81,7 @@ export default function CarouselRatio({ arrAuthors, onClick, active }) {
                                     fontWeight: 'md',
                                 }}
                             >
-                                {item.display_name}
+                                {item.name}
                             </Typography>
                         </Box>
                     </Card>

@@ -32,20 +32,18 @@ const Footer = () => {
             <div className='container'>
                 <div className='footer__lists'>
                     {arrList.map((item, index) => (
-                        <>
-                            <div key={index} className='footer__list list'>
-                                <div className='list__title'>{item.title}</div>
-                                <div className='list__items'>
-                                    <ul>
-                                        {item.items.map((li, index) => (
-                                            <li key={10000 + index}>
-                                                <a href='#'>{li}</a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                        <div key={index} className='footer__list list'>
+                            <div className='list__title'>{item.title}</div>
+                            <div className='list__items'>
+                                <ul>
+                                    {item.items.map((li, index) => (
+                                        <li key={10000 + index}>
+                                            <a href='#'>{li}</a>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                        </>
+                        </div>
                     ))}
                 </div>
                 <div className='footer__bottom'>

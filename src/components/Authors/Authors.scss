@@ -1,12 +1,20 @@
 .authors {
     background: #dfe8ff;
 
+    &_view {
+        min-height: 100vh;
+    }
+
     &__header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding-top: 53px;
         margin-bottom: 88px;
+    }
+
+    &__content {
+        padding-bottom: 20px;
     }
 
     &__list {
@@ -52,19 +60,26 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 58px;
+        align-items: end;
     }
 }
 
 .info {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 53px;
 
     &__img {
         width: 187px;
         height: 194px;
-        border: solid 1px #000;
-        border-radius: 50%;
+        margin-right: 30px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
     }
 
     &__title {
@@ -121,6 +136,14 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 58px;
     margin-bottom: 59px;
+    align-items: center;
+}
+.row_posts {
+    display: grid;
+    align-items: end;
+    grid-gap: 58px;
+    margin-bottom: 59px;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 @media (max-width: 1024px) {
