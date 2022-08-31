@@ -43,22 +43,23 @@ const Autors = ({ view }) => {
         const arrUsers = await axios.get(
             'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
         );
-        setUsers(arrUsers.data);
-        setUser(arrUsers.data[0]);
+        const newArrUsers = arrUsers.data
+            .filter((user) => user.id !== 10)
+            .filter((user) => user.id !== 1);
+        setUsers(newArrUsers);
+        setUser(newArrUsers[0]);
         const arrPost = await axios.get(
             'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
         );
         setAllPosts(arrPost.data);
         const userPosts = arrPost.data.filter(
-            (post) => post.author === arrUsers.data[0].id
+            (post) => post.author === newArrUsers.id
         );
         setAuthorPosts(userPosts);
         setDATA(userPosts);
         setList(
             slice(
-                arrPost.data.filter(
-                    (post) => post.author === arrUsers.data[0].id
-                ),
+                arrPost.data.filter((post) => post.author === newArrUsers.id),
                 0,
                 LIMIT
             )

@@ -30,7 +30,10 @@ function App() {
                     path='/announcements'
                     element={<Allposts title='Announcements' view='page' />}
                 />
-                <Route path='/media' element={<Allposts title='Media' />} />
+                <Route
+                    path='/media'
+                    element={<Allposts title='Media' view='page' />}
+                />
                 <Route path='/round-up' element={<Allposts type='slider' />} />
                 <Route path='/articles/:id' element={<Article />} />
                 <Route path='/authors/:id' element={<Article />} />

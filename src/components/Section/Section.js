@@ -4,13 +4,12 @@ import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
 import { slice, concat } from 'lodash';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
     const [posts, setPosts] = useState();
     const [showMore, setShowMore] = useState(true);
-    const navigate = useNavigate();
 
     const cls = ['post'];
     const bgc = ['section'];
@@ -23,6 +22,9 @@ const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
     if (size === 'small') {
         LENGTH = 8;
         LIMIT = 4;
+    } else if (size === 'medium' && type === 'anons') {
+        LENGTH = 12;
+        LIMIT = 6;
     } else if (size === 'medium') {
         LENGTH = 6;
         LIMIT = 3;
@@ -69,16 +71,27 @@ const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
                         <Title bg={bg}>{title}</Title>
                     </div>
                     <div className={`section__posts section__posts_${size}`}>
-                        {list.map((item, index) => {
-                            return (
-                                <Post
-                                    classname={classname}
-                                    type={type}
-                                    key={index}
-                                    postInfo={item}
-                                />
-                            );
-                        })}
+                        {view === 'page'
+                            ? posts.map((item, index) => {
+                                  return (
+                                      <Post
+                                          classname={classname}
+                                          type={type}
+                                          key={index}
+                                          postInfo={item}
+                                      />
+                                  );
+                              })
+                            : list.map((item, index) => {
+                                  return (
+                                      <Post
+                                          classname={classname}
+                                          type={type}
+                                          key={index}
+                                          postInfo={item}
+                                      />
+                                  );
+                              })}
                     </div>
                     {view !== 'page' && (
                         <div
@@ -88,15 +101,16 @@ const Section = ({ title, size = 'small', type = 'post', bg, view }) => {
                                     : 'section__button'
                             }
                         >
-                            <button
-                                onClick={
-                                    showMore
-                                        ? loadMore
-                                        : navigate(`/${title.toLowerCase()}`)
-                                }
-                            >
-                                Read more
-                            </button>
+                            {showMore ? (
+                                <button onClick={loadMore}>Read more</button>
+                            ) : (
+                                <button>
+                                    <Link to={`/${title.toLowerCase()}`}>
+                                        Read more
+                                    </Link>
+                                </button>
+                            )}
+
                             <IconRead />
                         </div>
                     )}
