@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './Authors.scss';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
-import { ReactComponent as LeftArrow } from '../../img/icons/leftArrow.svg';
+// import { ReactComponent as LeftArrow } from '../../img/icons/leftArrow.svg';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import twit from '../../img/icons/twit.png';
 import facebook from '../../img/icons/facebook.png';
-import CarouselRatio from '../ui/Carousel/Carousel';
+import Carousel from '../ui/Carousel/Carousel';
 import { slice, concat } from 'lodash';
 
 import axios from 'axios';
@@ -88,14 +88,14 @@ const Autors = ({ view }) => {
                     <div className='authors__header'>
                         <Title>Authors</Title>
                         <div className='authors__list'>
-                            <CarouselRatio
+                            <Carousel
                                 arrAuthors={users}
                                 onClick={handleClick}
                                 active={user.id}
                             />
-                            <div className='authors__button'>
+                            {/* <div className='authors__button'>
                                 <LeftArrow />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className='authors__content'>

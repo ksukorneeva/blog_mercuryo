@@ -1,87 +1,88 @@
-import * as React from 'react';
-import Box from '@mui/joy/Box';
-import Typography from '@mui/joy/Typography';
-import Card from '@mui/joy/Card';
+import React from 'react';
 import './Carousel.scss';
+import { useState, useRef, useEffect } from 'react';
+import { ReactComponent as LeftArrow } from '../../../img/icons/leftArrow.svg';
+import debounce from 'lodash.debounce';
+import cn from 'classnames';
 
-export default function CarouselRatio({ arrAuthors, onClick, active }) {
-    return (
-        <Box
-            className='box'
-            sx={{
-                display: 'flex',
-                gap: 2,
-                py: 1,
-                overflow: 'auto',
-                width: 874,
-                scrollSnapType: 'x mandatory',
-                '& > *': {
-                    scrollSnapAlign: 'center',
-                },
-                '::-webkit-scrollbar': { display: 'none' },
-            }}
-        >
-            {arrAuthors.map((item) =>
-                item.id === active ? (
-                    <Card
-                        row
-                        key={item.id}
-                        variant='outlined'
-                        sx={{
-                            gap: 1,
-                            '--Card-padding': (theme) => theme.spacing(1),
-                            border: 'none',
-                            background: '#FF592C',
-                            color: 'white',
-                        }}
-                    >
-                        <Box
-                            onClick={() => onClick(item)}
-                            sx={{
-                                whiteSpace: 'nowrap',
-                                border: '0',
-                                cursor: 'pointer',
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    fontWeight: 'md',
-                                }}
-                            >
-                                {item.name}
-                            </Typography>
-                        </Box>
-                    </Card>
-                ) : (
-                    <Card
-                        row
-                        key={item.id}
-                        variant='outlined'
-                        sx={{
-                            gap: 1,
-                            '--Card-padding': (theme) => theme.spacing(1),
-                            border: 'none',
-                        }}
-                    >
-                        <Box
-                            onClick={() => onClick(item)}
-                            sx={{
-                                whiteSpace: 'nowrap',
-                                border: '0',
-                                cursor: 'pointer',
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    fontWeight: 'md',
-                                }}
-                            >
-                                {item.name}
-                            </Typography>
-                        </Box>
-                    </Card>
-                )
-            )}
-        </Box>
+const Carousel = ({ arrAuthors, onClick, active }) => {
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(false);
+
+    const listRef = useRef(null);
+
+    const checkForScrollPosition = () => {
+        const { current } = listRef;
+        if (current) {
+            const { scrollLeft, scrollWidth, clientWidth } = current;
+            setCanScrollLeft(scrollLeft > 0);
+            setCanScrollRight(scrollLeft !== scrollWidth - clientWidth);
+        }
+    };
+
+    const debounceCheckForScrollPosition = debounce(
+        checkForScrollPosition,
+        200
     );
-}
+
+    const scrollContainerBy = (distance) =>
+        listRef.current?.scrollBy({ left: distance, behavior: 'smooth' });
+
+    useEffect(() => {
+        const { current } = listRef;
+        checkForScrollPosition();
+        current?.addEventListener('scroll', debounceCheckForScrollPosition);
+
+        return () => {
+            current?.removeEventListener(
+                'scroll',
+                debounceCheckForScrollPosition
+            );
+            debounceCheckForScrollPosition.cancel();
+        };
+    }, []);
+
+    return (
+        <div className='box'>
+            <div className='scrollableContainer'>
+                <button
+                    type='button'
+                    disabled={!canScrollLeft}
+                    onClick={() => scrollContainerBy(-400)}
+                    className={cn('authors__button', 'buttonLeft', {
+                        'button--hidden': !canScrollLeft,
+                    })}
+                >
+                    <LeftArrow />
+                </button>
+                <ul className='carousel_list' ref={listRef}>
+                    {arrAuthors.map((item, index) => (
+                        <li
+                            key={index}
+                            onClick={() => onClick(item)}
+                            className={
+                                item.id === active ? 'item active' : 'item'
+                            }
+                        >
+                            {console.log(active)}
+                            {console.log(item.id)}
+                            {item.name}
+                        </li>
+                    ))}
+                </ul>
+
+                <button
+                    type='button'
+                    disabled={!canScrollRight}
+                    onClick={() => scrollContainerBy(400)}
+                    className={cn('authors__button', 'buttonRight', {
+                        'button--hidden': !canScrollRight,
+                    })}
+                >
+                    <LeftArrow />
+                </button>
+            </div>
+        </div>
+    );
+};
+export default Carousel;
