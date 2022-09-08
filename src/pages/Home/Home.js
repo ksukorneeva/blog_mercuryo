@@ -17,12 +17,8 @@ const Desctop = () => {
     const [mediaPosts, setMediaPosts] = useState();
 
     const categoryFilter = (arr, category) => {
-        const posts = arr.filter((item) => {
-            if (item.x_categories.includes(category)) {
-                return item;
-            }
-        });
-        return posts;
+        const post = arr.filter((item) => item.x_categories === category);
+        return post;
     };
     const gettingPosts = async () => {
         const data = await axios.get('/posts');
