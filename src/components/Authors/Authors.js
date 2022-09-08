@@ -51,7 +51,6 @@ const Autors = ({ view }) => {
         const userPosts = arrPost.data.filter(
             (post) => post.author === newArrUsers[0].id
         );
-        console.log(userPosts);
         setAuthorPosts(userPosts);
         setDATA(userPosts);
         setList(
