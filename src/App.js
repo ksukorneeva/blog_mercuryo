@@ -29,11 +29,11 @@ function App() {
         const data = await axios.get('/posts');
         const posts = data.data;
         setArticlePosts(categoryFilter(posts, 'Articles'));
-        setInsightsPosts(categoryFilter(data.data, 'Insights'));
-        setSuccessPosts(categoryFilter(data.data, 'Success stories'));
-        setAnnonsPosts(categoryFilter(data.data, 'Announcements'));
-        setRoundPosts(categoryFilter(data.data, 'Round-up'));
-        setMediaPosts(categoryFilter(data.data, 'Media'));
+        setInsightsPosts(categoryFilter(posts, 'Insights'));
+        setSuccessPosts(categoryFilter(posts, 'Success stories'));
+        setAnnonsPosts(categoryFilter(posts, 'Announcements'));
+        setRoundPosts(categoryFilter(posts, 'Round-up'));
+        setMediaPosts(categoryFilter(posts, 'Media'));
     };
     useEffect(() => {
         gettingPosts();
