@@ -17,19 +17,27 @@ function App() {
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
 
-    const categoryFilter = (arr, category) => {
-        const post = arr.filter((item) => item.x_categories === category);
-        return post;
-    };
+    // const categoryFilter = (arr, category) => {
+    //     const post = arr.filter((item) => item.x_categories === category);
+    //     return post;
+    // };
     const gettingPosts = async () => {
         const data = await axios.get('/posts');
         const posts = data.data;
-        setArticlePosts(categoryFilter(posts, 'Articles'));
-        setInsightsPosts(categoryFilter(posts, 'Insights'));
-        setSuccessPosts(categoryFilter(posts, 'Success stories'));
-        setAnnonsPosts(categoryFilter(posts, 'Announcements'));
-        setRoundPosts(categoryFilter(posts, 'Round-up'));
-        setMediaPosts(categoryFilter(posts, 'Media'));
+        setArticlePosts(
+            posts.filter((item) => item.x_categories === 'Articles')
+        );
+        setInsightsPosts(
+            posts.filter((item) => item.x_categories === 'Insights')
+        );
+        setSuccessPosts(
+            posts.filter((item) => item.x_categories === 'Success stories')
+        );
+        setAnnonsPosts(
+            posts.filter((item) => item.x_categories === 'Announcements')
+        );
+        setRoundPosts(posts.filter((item) => item.x_categories === 'Round-up'));
+        setMediaPosts(posts.filter((item) => item.x_categories === 'Media'));
     };
     useEffect(() => {
         gettingPosts();
