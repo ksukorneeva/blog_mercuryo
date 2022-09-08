@@ -2,9 +2,6 @@
 .paragraph {
     margin-bottom: 55px;
 
-    &_light {
-        background: #dfe8ff;
-    }
     &__title {
         padding-top: 63px;
         display: flex;
@@ -40,6 +37,12 @@
                 cursor: pointer;
             }
         }
+        h2.has-background {
+            background: #dfe8ff;
+        }
+        h3.has-background {
+            background: #dfe8ff;
+        }
 
         svg {
             &:first-child {
@@ -60,9 +63,13 @@
                 margin: 55px 0;
             }
         }
+
+        p.has-background {
+            background: #dfe8ff;
+        }
         p {
-            @include adaptiv-font(24, 20);
-            padding-bottom: 36px;
+            // @include adaptiv-font(24, 20);
+            // padding-bottom: 36px;
             font-weight: 400;
             line-height: 40px;
 
@@ -84,6 +91,23 @@
     }
 }
 
+blockquote {
+    width: 100%;
+    border: 2px solid #ff592c;
+    border-radius: 69px;
+    text-align: center;
+    padding: 49px 64.97px 50px 65.83px;
+    margin: 100px 0;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 70px;
+    text-align: left;
+}
+
 .privacy-policy-tutorial {
     display: none;
+}
+
+.section-container_light {
+    background: #dfe8ff;
 }

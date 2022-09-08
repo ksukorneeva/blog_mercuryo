@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import NavBar from '../../components/ui/NavBar/NavBar';
 import Header from '../../components/Header/Header';
 import Section from '../../components/Section/Section';
@@ -8,31 +9,78 @@ import Footer from '../../components/Footer/Footer';
 import Slider from '../../components/Slider/Slider';
 
 const Desctop = () => {
+    const [articlePosts, setArticlePosts] = useState();
+    const [insightsPosts, setInsightsPosts] = useState();
+    const [successPosts, setSuccessPosts] = useState();
+    const [annonsPosts, setAnnonsPosts] = useState();
+    const [roundPosts, setRoundPosts] = useState();
+    const [mediaPosts, setMediaPosts] = useState();
+
+    const categoryFilter = (arr, category) => {
+        const posts = arr.filter((item) => {
+            if (item.x_categories.includes(category)) {
+                return item;
+            }
+        });
+        return posts;
+    };
+    const gettingPosts = async () => {
+        const data = await axios.get('/posts');
+        const posts = data.data;
+        setArticlePosts(categoryFilter(posts, 'Articles'));
+        setInsightsPosts(categoryFilter(data.data, 'Insights'));
+        setSuccessPosts(categoryFilter(data.data, 'Success stories'));
+        setAnnonsPosts(categoryFilter(data.data, 'Announcements'));
+        setRoundPosts(categoryFilter(data.data, 'Round-up'));
+        setMediaPosts(categoryFilter(data.data, 'Media'));
+    };
+    useEffect(() => {
+        gettingPosts();
+    }, []);
+
     return (
-        <>
-            <Header />
-            <NavBar />
-            <Section key={1} title='Articles' size='small' type='post' />
-            <Authors />
-            <Section key={2} title='Insights' size='large' type='post' />
-            <Section
-                title='Success stories'
-                size='medium'
-                type='post'
-                bg='light'
-            />
-            <Section
-                key={3}
-                title='Announcements'
-                size='medium'
-                type='anons'
-                bg='dark'
-            />
-            <Slider />
-            <Section key={4} title='Media' size='small' type='post' />
-            <Contacts />
-            <Footer />
-        </>
+        articlePosts && (
+            <>
+                <Header />
+                <NavBar />
+                <Section
+                    title='Articles'
+                    size='small'
+                    type='post'
+                    arrPosts={articlePosts}
+                />
+                <Authors />
+                <Section
+                    title='Insights'
+                    size='large'
+                    type='post'
+                    arrPosts={insightsPosts}
+                />
+                <Section
+                    title='Success stories'
+                    size='medium'
+                    type='post'
+                    bg='light'
+                    arrPosts={successPosts}
+                />
+                <Section
+                    title='Announcements'
+                    size='medium'
+                    type='anons'
+                    bg='dark'
+                    arrPosts={annonsPosts}
+                />
+                <Slider arrPosts={roundPosts} />
+                <Section
+                    title='Media'
+                    size='small'
+                    type='post'
+                    arrPosts={mediaPosts}
+                />
+                <Contacts />
+                <Footer />
+            </>
+        )
     );
 };
 

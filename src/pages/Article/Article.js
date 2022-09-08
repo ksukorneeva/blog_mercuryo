@@ -17,12 +17,8 @@ const Article = () => {
     const [user, setUser] = useState();
     const [userPosts, setUserPosts] = useState();
     const gettingPosts = async () => {
-        const dataPosts = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
-        );
-        const dataUsers = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
-        );
+        const dataPosts = await axios.get('/posts');
+        const dataUsers = await axios.get('/users');
         const post = dataPosts.data.filter(
             (post) => post.id === +params.id.slice(2)
         );
@@ -68,7 +64,8 @@ const Article = () => {
                     </div>
                 </header>
                 <div className='content-art'>
-                    <Paragraph quote='true' content={post.content.rendered} />
+                    <Paragraph content={post.content.rendered} />
+                    {console.log(post.content.rendered)}
                     <div className='container'>
                         <div className='author-info'>
                             <div className='author-info__img'>

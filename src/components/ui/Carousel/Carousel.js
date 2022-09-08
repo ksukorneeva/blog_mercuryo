@@ -64,8 +64,6 @@ const Carousel = ({ arrAuthors, onClick, active }) => {
                                 item.id === active ? 'item active' : 'item'
                             }
                         >
-                            {console.log(active)}
-                            {console.log(item.id)}
                             {item.name}
                         </li>
                     ))}

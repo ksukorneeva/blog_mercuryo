@@ -2,7 +2,7 @@ import React from 'react';
 import './Input.scss';
 import { ReactComponent as Blot } from '../../../img/icons/blot.svg';
 
-const Input = ({ label, handlerKey, onBlur, refInput }) => {
+const Input = ({ label, handlerKey, onBlur, refInput, onChange }) => {
     return (
         <div className='input'>
             <input
@@ -11,6 +11,7 @@ const Input = ({ label, handlerKey, onBlur, refInput }) => {
                 onKeyDown={handlerKey}
                 onBlur={onBlur}
                 ref={refInput}
+                onChange={onChange}
             />
             <Blot />
         </div>

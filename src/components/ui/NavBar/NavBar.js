@@ -1,12 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.scss';
 import { ReactComponent as Search } from '../../../img/icons/search.svg';
 import { ReactComponent as Menu } from '../../../img/icons/menu.svg';
 import Input from '../Input/Input';
 import { listNav } from '../../../data';
+import { AppContext } from '../../../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
+    const app = useContext(AppContext);
+
+    const navigate = useNavigate();
     const inputElement = useRef(null);
     const [search, setSearch] = useState(false);
     const [open, setOpen] = useState(false);
@@ -19,6 +24,9 @@ const NavBar = () => {
     const handelKey = (e) => {
         e.key === 'Enter' && setSearch(!search);
         e.key === 'Escape' && setSearch(!search);
+        if (e.key === 'Enter') {
+            navigate('/search');
+        }
     };
 
     const openMenuHandler = () => {
@@ -27,8 +35,6 @@ const NavBar = () => {
     const handleBlur = () => {
         setSearch(!search);
     };
-
-    console.log(inputElement.current);
 
     return (
         <nav className={!open ? 'navbar' : 'navbar navbar_black'}>
@@ -82,6 +88,7 @@ const NavBar = () => {
                                 handlerKey={handelKey}
                                 onBlur={handleBlur}
                                 refInput={inputElement}
+                                onChange={(e) => app.setSearch(e.target.value)}
                             />
                         </div>
                     </div>

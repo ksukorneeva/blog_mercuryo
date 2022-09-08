@@ -40,26 +40,25 @@ const Autors = ({ view }) => {
         );
     };
     const gettingUsers = async () => {
-        const arrUsers = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
-        );
+        const arrUsers = await axios.get('/users');
         const newArrUsers = arrUsers.data
             .filter((user) => user.id !== 10)
             .filter((user) => user.id !== 1);
         setUsers(newArrUsers);
         setUser(newArrUsers[0]);
-        const arrPost = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
-        );
+        const arrPost = await axios.get('/posts');
         setAllPosts(arrPost.data);
         const userPosts = arrPost.data.filter(
-            (post) => post.author === newArrUsers.id
+            (post) => post.author === newArrUsers[0].id
         );
+        console.log(userPosts);
         setAuthorPosts(userPosts);
         setDATA(userPosts);
         setList(
             slice(
-                arrPost.data.filter((post) => post.author === newArrUsers.id),
+                arrPost.data.filter(
+                    (post) => post.author === newArrUsers[0].id
+                ),
                 0,
                 LIMIT
             )
@@ -121,7 +120,7 @@ const Autors = ({ view }) => {
                                 </div>
                             </div>
                             <div className='authors__posts'>
-                                {authorPosts?.map((post, index) =>
+                                {list.map((post, index) =>
                                     index === 1 || index === 0 ? (
                                         <Post
                                             key={index}
@@ -136,7 +135,7 @@ const Autors = ({ view }) => {
                             </div>
                         </div>
                         <div className='row_posts'>
-                            {authorPosts?.map((post, index) =>
+                            {list?.map((post, index) =>
                                 index > 1 ? (
                                     <Post
                                         key={index}

@@ -23,7 +23,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 56px;
-        align-items: end;
+        align-items: start;
 
         &_small {
             grid-template-columns: repeat(4, 1fr);

@@ -124,13 +124,14 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 58px;
     margin-bottom: 59px;
-    align-items: center;
+    align-items: start;
 }
 .row_posts {
     display: grid;
-    align-items: end;
+    align-items: start;
     grid-gap: 58px;
     margin-bottom: 59px;
+
     grid-template-columns: repeat(4, 1fr);
 }
 

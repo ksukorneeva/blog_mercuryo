@@ -16,10 +16,11 @@ const Post = ({ classname, type, postInfo }) => {
                 <div className={type === 'anons' ? 'post__data' : 'close'}>
                     {data}
                 </div>
-                <div className='post__title'>{post.title.rendered}</div>
+
                 <div className={type === 'post' ? 'post__img' : 'close'}>
-                    <img src={post.x_featured_media_medium} alt='postImage' />
+                    <img src={post.x_featured_media_large} alt='postImage' />
                 </div>
+                <div className='post__title'>{post.title.rendered}</div>
             </div>
         )
     );

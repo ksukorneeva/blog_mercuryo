@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Paragraph.scss';
 import { ReactComponent as Blot } from '../../../img/icons/blot.svg';
 
-const Paragraph = ({ bg, content }) => {
+const Paragraph = ({ content }) => {
     const [arrElem, setArrElem] = useState();
-    const bgc = ['paragraph'];
-    bg && bgc.push(`paragraph_${bg}`);
     const GreetingComponent = (props) => {
         const innerHtml = { __html: props };
         return <p dangerouslySetInnerHTML={innerHtml}></p>;
@@ -27,16 +25,18 @@ const Paragraph = ({ bg, content }) => {
 
         return newItem;
     };
-
     return (
         arrElem && (
             <>
                 {arrElem.map((item, index) => (
                     <div
-                        key={index}
-                        className={index % 2 ? 'paragraph' : 'paragraph_light'}
+                        className={
+                            item.includes('has-background')
+                                ? 'section-container section-container_light'
+                                : 'section-container'
+                        }
                     >
-                        <div className='wrap'>
+                        <div key={index} className='wrap'>
                             {razdelenie(item).map((elem, index) =>
                                 elem.includes('<h3') || elem.includes('<h2') ? (
                                     <div

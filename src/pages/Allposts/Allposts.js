@@ -4,16 +4,16 @@ import Section from '../../components/Section/Section';
 import Slider from '../../components/Slider/Slider';
 import NavBar from '../../components/ui/NavBar/NavBar';
 
-const Allposts = ({ type, title, view }) => {
+const Allposts = ({ type, title, view, arrPosts }) => {
     return (
         <>
             <NavBar />
             {type === 'authors' ? (
                 <Authors view='page' />
             ) : type === 'slider' ? (
-                <Slider />
+                <Slider arrPosts={arrPosts} />
             ) : (
-                <Section title={title} view={view} />
+                <Section title={title} view={view} arrPosts={arrPosts} />
             )}
         </>
     );
