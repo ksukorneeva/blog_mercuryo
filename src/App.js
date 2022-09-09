@@ -24,6 +24,7 @@ function App() {
     const gettingPosts = async () => {
         const data = await axios.get('/posts');
         const posts = data.data;
+        console.log(typeof posts, posts);
         setArticlePosts(
             posts.filter((item) => item.x_categories === 'Articles')
         );
@@ -114,7 +115,11 @@ function App() {
                     <Route
                         path='/round-up'
                         element={
-                            <Allposts type='slider' arrPosts={roundPosts} />
+                            <Allposts
+                                title='Round-up'
+                                view='page'
+                                arrPosts={roundPosts}
+                            />
                         }
                     />
                     <Route path='/articles/:id' element={<Article />} />
@@ -126,7 +131,7 @@ function App() {
                     />
                     <Route path='/announcements/:id' element={<Article />} />
                     <Route path='/media/:id' element={<Article />} />
-                    <Route path='/round-up/:id' element={<Allposts />} />
+                    <Route path='/round-up/:id' element={<Article />} />
                 </Routes>
             </div>
         </AppContext.Provider>
