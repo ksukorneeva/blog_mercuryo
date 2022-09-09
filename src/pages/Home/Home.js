@@ -16,6 +16,12 @@ const Desctop = () => {
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
 
+    const categoryFilter = (arr, category) => {
+        return arr.length
+            ? arr.filter((item) => item.x_categories === category)
+            : 'Нет постов';
+    };
+
     const gettingPosts = useCallback(async () => {
         const data = await axios.get('/posts');
         const posts = data.data;
@@ -26,10 +32,7 @@ const Desctop = () => {
         setRoundPosts(categoryFilter(posts, 'Round-up'));
         setMediaPosts(categoryFilter(posts, 'Media'));
     }, []);
-    const categoryFilter = (arr, category) => {
-        const post = arr.filter((item) => item.x_categories === category);
-        return post;
-    };
+
     useEffect(() => {
         gettingPosts();
     }, [gettingPosts]);
