@@ -1,5 +1,5 @@
 import './App.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Allposts from './pages/Allposts/Allposts';
@@ -17,32 +17,35 @@ function App() {
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
 
-    // const categoryFilter = (arr, category) => {
-    //     const post = arr.filter((item) => item.x_categories === category);
-    //     return post;
-    // };
-    const gettingPosts = async () => {
+    const categoryFilter = (arr, category) => {
+        const post = arr.filter((item) => {
+            if (item.x_categories.includes(category)) {
+                return item;
+            }
+        });
+        return post;
+    };
+    const gettingPosts = useCallback(async () => {
         const data = await axios.get('/posts');
         const posts = Array.from(data.data);
-        // console.log(typeof posts, posts);
-        setArticlePosts(
-            posts.filter((item) => item.x_categories === 'Articles')
-        );
-        setInsightsPosts(
-            posts.filter((item) => item.x_categories === 'Insights')
-        );
-        setSuccessPosts(
-            posts.filter((item) => item.x_categories === 'Success stories')
-        );
-        setAnnonsPosts(
-            posts.filter((item) => item.x_categories === 'Announcements')
-        );
-        setRoundPosts(posts.filter((item) => item.x_categories === 'Round-up'));
-        setMediaPosts(posts.filter((item) => item.x_categories === 'Media'));
-    };
+
+        setArticlePosts(categoryFilter(posts, 'Articles'));
+        setInsightsPosts(categoryFilter(posts, 'Insights'));
+        setSuccessPosts(categoryFilter(posts, 'Success stories'));
+        setAnnonsPosts(categoryFilter(posts, 'Announcements'));
+        setRoundPosts(categoryFilter(posts, 'Round-up'));
+        setMediaPosts(categoryFilter(posts, 'Media'));
+        // console.log(categoryFilter(posts, 'Articles'));
+        // setInsightsPosts(categoryFilter(posts, 'Insights'));
+        // setSuccessPosts(categoryFilter(posts, 'Success stories'));
+        // setAnnonsPosts(categoryFilter(posts, 'Announcements'));
+        // setRoundPosts(categoryFilter(posts, 'Round-up'));
+        // setMediaPosts(categoryFilter(posts, 'Media'));
+    }, []);
+
     useEffect(() => {
         gettingPosts();
-    }, []);
+    }, [gettingPosts]);
     return (
         <AppContext.Provider value={{ search, setSearch }}>
             <div className='App'>

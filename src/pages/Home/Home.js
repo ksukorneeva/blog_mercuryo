@@ -21,15 +21,24 @@ const Desctop = () => {
     //         item.x_categories.split(',').includes(category) ? item : ''
     //     );
     // };
-
+    const categoryFilter = (arr, category) => {
+        const post = arr.filter((item) => {
+            if (item.x_categories.includes(category)) {
+                return item;
+            }
+        });
+        return post;
+    };
     const gettingPosts = useCallback(async () => {
         const data = await axios.get('/posts');
+        const posts = Array.from(data.data);
 
-        setArticlePosts(
-            data.data.map((item) =>
-                item.x_categories.split(',').includes('Articles') ? item : ''
-            )
-        );
+        setArticlePosts(categoryFilter(posts, 'Articles'));
+        setInsightsPosts(categoryFilter(posts, 'Insights'));
+        setSuccessPosts(categoryFilter(posts, 'Success stories'));
+        setAnnonsPosts(categoryFilter(posts, 'Announcements'));
+        setRoundPosts(categoryFilter(posts, 'Round-up'));
+        setMediaPosts(categoryFilter(posts, 'Media'));
         // console.log(categoryFilter(posts, 'Articles'));
         // setInsightsPosts(categoryFilter(posts, 'Insights'));
         // setSuccessPosts(categoryFilter(posts, 'Success stories'));
