@@ -12,7 +12,7 @@ import { slice, concat } from 'lodash';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 
-const Autors = ({ view }) => {
+const Authors = ({ view }) => {
     const [user, setUser] = useState();
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
@@ -170,4 +170,4 @@ const Autors = ({ view }) => {
     );
 };
 
-export default Autors;
+export default Authors;
