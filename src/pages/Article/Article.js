@@ -17,8 +17,12 @@ const Article = () => {
     const [user, setUser] = useState();
     const [userPosts, setUserPosts] = useState();
     const gettingPosts = async () => {
-        const dataPosts = await axios.get('/posts');
-        const dataUsers = await axios.get('/users');
+        const dataPosts = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
+        );
+        const dataUsers = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
+        );
         const post = dataPosts.data.filter(
             (post) => post.id === +params.id.slice(2)
         );

@@ -26,7 +26,7 @@ function App() {
         return post;
     };
     const gettingPosts = useCallback(async () => {
-        const data = await axios.get('/posts');
+        const data = await axios.get('https://mercuryo.zazhigay.com/wp-json/wp/v2/posts');
         const posts = Array.from(data.data);
 
         setArticlePosts(categoryFilter(posts, 'Articles'));
