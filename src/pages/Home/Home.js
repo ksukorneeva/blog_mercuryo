@@ -17,9 +17,9 @@ const Desctop = () => {
     const [mediaPosts, setMediaPosts] = useState();
 
     const categoryFilter = (arr, category) => {
-        return arr.length
-            ? arr.filter((item) => item.x_categories === category)
-            : 'Нет постов';
+        return arr.map((item) =>
+            item.x_categories.split(',').includes(category)
+        );
     };
 
     const gettingPosts = useCallback(async () => {
