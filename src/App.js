@@ -23,7 +23,7 @@ function App() {
     // };
     const gettingPosts = async () => {
         const data = await axios.get('/posts');
-        const posts = data.data;
+        const posts = Array.from(data.data);
         // console.log(typeof posts, posts);
         setArticlePosts(
             posts.filter((item) => item.x_categories === 'Articles')

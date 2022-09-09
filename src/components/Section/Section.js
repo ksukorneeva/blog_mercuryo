@@ -4,7 +4,7 @@ import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
 import { slice, concat } from 'lodash';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '../../context/AppContext';
 
