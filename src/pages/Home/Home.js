@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import NavBar from '../../components/ui/NavBar/NavBar';
 import Header from '../../components/Header/Header';
@@ -16,7 +16,7 @@ const Desctop = () => {
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
 
-    const gettingPosts = async () => {
+    const gettingPosts = useCallback(async () => {
         const data = await axios.get('/posts');
         const posts = data.data;
         setArticlePosts(categoryFilter(posts, 'Articles'));
@@ -25,14 +25,14 @@ const Desctop = () => {
         setAnnonsPosts(categoryFilter(posts, 'Announcements'));
         setRoundPosts(categoryFilter(posts, 'Round-up'));
         setMediaPosts(categoryFilter(posts, 'Media'));
-    };
+    }, []);
     const categoryFilter = (arr, category) => {
-        const post = arr?.filter((item) => item.x_categories === category);
+        const post = arr.filter((item) => item.x_categories === category);
         return post;
     };
     useEffect(() => {
         gettingPosts();
-    }, []);
+    }, [gettingPosts]);
 
     return (
         articlePosts && (
