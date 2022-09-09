@@ -50,10 +50,10 @@ const Section = ({
         const data = await axios.get('/posts');
 
         const search = Array.from(data.data).filter((post) => {
-            if (post.content.rendered.includes(app.search)) {
+            if (String(post.content.rendered).includes(app.search)) {
                 return post;
             }
-            if (post.title.rendered.includes(app.search)) {
+            if (String(post.content.rendered).includes(app.search)) {
                 return post;
             }
         });

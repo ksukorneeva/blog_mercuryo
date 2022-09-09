@@ -48,14 +48,14 @@ const Autors = ({ view }) => {
         setUser(newArrUsers[0]);
         const arrPost = await axios.get('/posts');
         setAllPosts(arrPost.data);
-        const userPosts = arrPost.data.filter(
+        const userPosts = Array.from(arrPost.data).filter(
             (post) => post.author === newArrUsers[0].id
         );
         setAuthorPosts(userPosts);
         setDATA(userPosts);
         setList(
             slice(
-                arrPost.data.filter(
+                Array.from(arrPost.data).filter(
                     (post) => post.author === newArrUsers[0].id
                 ),
                 0,
