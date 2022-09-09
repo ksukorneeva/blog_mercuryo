@@ -19,7 +19,7 @@ function App() {
 
     const categoryFilter = (arr, category) => {
         const post = arr.filter((item) => {
-            if (item.x_categories.includes(category)) {
+            if (item.x_categories.toString().includes(category)) {
                 return item;
             }
         });
