@@ -16,21 +16,25 @@ const Desctop = () => {
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
 
-    const categoryFilter = (arr, category) => {
-        return arr.map((item) =>
-            item.x_categories.split(',').includes(category)
-        );
-    };
+    // const categoryFilter = (arr, category) => {
+    //     return arr.map((item) =>
+    //         item.x_categories.split(',').includes(category) ? item : ''
+    //     );
+    // };
 
     const gettingPosts = useCallback(async () => {
         const data = await axios.get('/posts');
         const posts = data.data;
-        setArticlePosts(categoryFilter(posts, 'Articles'));
-        setInsightsPosts(categoryFilter(posts, 'Insights'));
-        setSuccessPosts(categoryFilter(posts, 'Success stories'));
-        setAnnonsPosts(categoryFilter(posts, 'Announcements'));
-        setRoundPosts(categoryFilter(posts, 'Round-up'));
-        setMediaPosts(categoryFilter(posts, 'Media'));
+        const articles = posts.map((item) =>
+            item.x_categories.split(',').includes('Articles') ? item : ''
+        );
+        setArticlePosts(articles);
+        // console.log(categoryFilter(posts, 'Articles'));
+        // setInsightsPosts(categoryFilter(posts, 'Insights'));
+        // setSuccessPosts(categoryFilter(posts, 'Success stories'));
+        // setAnnonsPosts(categoryFilter(posts, 'Announcements'));
+        // setRoundPosts(categoryFilter(posts, 'Round-up'));
+        // setMediaPosts(categoryFilter(posts, 'Media'));
     }, []);
 
     useEffect(() => {
