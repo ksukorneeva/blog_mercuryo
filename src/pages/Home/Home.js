@@ -16,6 +16,7 @@ const Desctop = () => {
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
     const [posts, setPosts] = useState();
+    const [users, setUsers] = useState();
 
     const categoryFilter = (arr, category) => {
         const post = arr.filter((item) => {
@@ -29,8 +30,17 @@ const Desctop = () => {
         const data = await axios.get(
             'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
         );
+        const userdata = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
+        );
         const posts = Array.from(data.data);
+        const users = Array.from(userdata.data);
         setPosts(posts);
+
+        const newArrUsers = users
+            .filter((user) => user.id !== 10)
+            .filter((user) => user.id !== 1);
+        setUsers(newArrUsers);
 
         setArticlePosts(categoryFilter(posts, 'Articles'));
         setInsightsPosts(categoryFilter(posts, 'Insights'));
@@ -57,7 +67,8 @@ const Desctop = () => {
         successPosts &&
         annonsPosts &&
         roundPosts &&
-        mediaPosts && (
+        mediaPosts &&
+        users && (
             <>
                 <Header />
                 <NavBar />
@@ -67,7 +78,7 @@ const Desctop = () => {
                     type='post'
                     arrPosts={articlePosts}
                 />
-                <Authors />
+                <Authors authors={users} allallPosts={posts} />
                 <Section
                     title='Insights'
                     size='large'

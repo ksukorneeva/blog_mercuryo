@@ -8,16 +8,16 @@ import twit from '../../img/icons/twit.png';
 import facebook from '../../img/icons/facebook.png';
 import Carousel from '../ui/Carousel/Carousel';
 import { slice, concat } from 'lodash';
-
-import axios from 'axios';
 import { useNavigate } from 'react-router';
 
-const Authors = ({ view }) => {
-    const [user, setUser] = useState();
-    const [users, setUsers] = useState();
+const Authors = ({ view, authors, allallPosts }) => {
+    const [user, setUser] = useState(authors[0]);
+    const [users] = useState(authors);
     const navigate = useNavigate();
-    const [authorPosts, setAuthorPosts] = useState();
-    const [allPosts, setAllPosts] = useState();
+    const [authorPosts, setAuthorPosts] = useState(
+        allallPosts.filter((post) => post.author === authors[0].id)
+    );
+    const [allPosts] = useState(allallPosts);
 
     const LENGTH = 10;
     const LIMIT = 6;
@@ -39,29 +39,11 @@ const Authors = ({ view }) => {
             )
         );
     };
-    const gettingUsers = async () => {
-        const data = await axios.get('/users');
-        const newArrUsers = Array.from(data.data)
-            .filter((user) => user.id !== 10)
-            .filter((user) => user.id !== 1);
-        setUsers(newArrUsers);
-        setUser(newArrUsers[0]);
-        const arrPost = await axios.get('/posts');
-        setAllPosts(arrPost.data);
-        const userPosts = Array.from(arrPost.data).filter(
-            (post) => post.author === newArrUsers[0].id
-        );
-        setAuthorPosts(userPosts);
-        setDATA(userPosts);
-        setList(
-            slice(
-                Array.from(arrPost.data).filter(
-                    (post) => post.author === newArrUsers[0].id
-                ),
-                0,
-                LIMIT
-            )
-        );
+    const gettingUsers = () => {
+        setUser(users[0]);
+        setAuthorPosts(allPosts.filter((post) => post.author === user.id));
+        setDATA(authorPosts);
+        setList(slice(authorPosts, 0, LIMIT));
     };
     useEffect(() => {
         gettingUsers();

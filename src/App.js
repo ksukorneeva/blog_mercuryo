@@ -16,6 +16,8 @@ function App() {
     const [annonsPosts, setAnnonsPosts] = useState();
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
+    const [posts, setPosts] = useState();
+    const [users, setUsers] = useState();
 
     const categoryFilter = (arr, category) => {
         const post = arr.filter((item) => {
@@ -26,8 +28,20 @@ function App() {
         return post;
     };
     const gettingPosts = useCallback(async () => {
-        const data = await axios.get('https://mercuryo.zazhigay.com/wp-json/wp/v2/posts');
+        const data = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
+        );
+        const userdata = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
+        );
         const posts = Array.from(data.data);
+        const users = Array.from(userdata.data);
+        setPosts(posts);
+
+        const newArrUsers = users
+            .filter((user) => user.id !== 10)
+            .filter((user) => user.id !== 1);
+        setUsers(newArrUsers);
 
         setArticlePosts(categoryFilter(posts, 'Articles'));
         setInsightsPosts(categoryFilter(posts, 'Insights'));
@@ -73,7 +87,14 @@ function App() {
                     />
                     <Route
                         path='/authors'
-                        element={<Allposts type='authors' view='page' />}
+                        element={
+                            <Allposts
+                                type='authors'
+                                view='page'
+                                authors={users}
+                                arrPosts={posts}
+                            />
+                        }
                     />
                     <Route
                         path='/insights'
