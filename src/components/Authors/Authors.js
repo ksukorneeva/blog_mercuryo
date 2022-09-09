@@ -101,7 +101,7 @@ const Autors = ({ view }) => {
                             <div className='authors__info info'>
                                 <div className='info__img'>
                                     <img
-                                        src={user.avatar_urls[96]}
+                                        // src={user.avatar_urls[96]}
                                         alt='user_avatar'
                                     />
                                 </div>
