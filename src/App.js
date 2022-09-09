@@ -28,8 +28,12 @@ function App() {
         return post;
     };
     const gettingPosts = useCallback(async () => {
-        const data = await axios.get('/posts');
-        const userdata = await axios.get('/users');
+        const data = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
+        );
+        const userdata = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
+        );
         const posts = Array.from(data.data);
         const users = Array.from(userdata.data);
         setPosts(posts);

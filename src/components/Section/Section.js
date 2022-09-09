@@ -47,7 +47,9 @@ const Section = ({
     const [index, setIndex] = useState(LIMIT);
 
     const gettingPosts = async () => {
-        const data = await axios.get('/posts');
+        const data = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
+        );
 
         const search = Array.from(data.data).filter((post) => {
             if (post.content?.rendered?.includes(app.search)) {

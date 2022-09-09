@@ -43,44 +43,46 @@ const Carousel = ({ arrAuthors, onClick, active }) => {
     }, []);
 
     return (
-        <div className='box'>
-            <div className='scrollableContainer'>
-                <button
-                    type='button'
-                    disabled={!canScrollLeft}
-                    onClick={() => scrollContainerBy(-400)}
-                    className={cn('authors__button', 'buttonLeft', {
-                        'button--hidden': !canScrollLeft,
-                    })}
-                >
-                    <LeftArrow />
-                </button>
-                <ul className='carousel_list' ref={listRef}>
-                    {arrAuthors.map((item, index) => (
-                        <li
-                            key={index}
-                            onClick={() => onClick(item)}
-                            className={
-                                item.id === active ? 'item active' : 'item'
-                            }
-                        >
-                            {item.name}
-                        </li>
-                    ))}
-                </ul>
+        arrAuthors && (
+            <div className='box'>
+                <div className='scrollableContainer'>
+                    <button
+                        type='button'
+                        disabled={!canScrollLeft}
+                        onClick={() => scrollContainerBy(-400)}
+                        className={cn('authors__button', 'buttonLeft', {
+                            'button--hidden': !canScrollLeft,
+                        })}
+                    >
+                        <LeftArrow />
+                    </button>
+                    <ul className='carousel_list' ref={listRef}>
+                        {arrAuthors.map((item, index) => (
+                            <li
+                                key={index}
+                                onClick={() => onClick(item)}
+                                className={
+                                    item.id === active ? 'item active' : 'item'
+                                }
+                            >
+                                {item.name}
+                            </li>
+                        ))}
+                    </ul>
 
-                <button
-                    type='button'
-                    disabled={!canScrollRight}
-                    onClick={() => scrollContainerBy(400)}
-                    className={cn('authors__button', 'buttonRight', {
-                        'button--hidden': !canScrollRight,
-                    })}
-                >
-                    <LeftArrow />
-                </button>
+                    <button
+                        type='button'
+                        disabled={!canScrollRight}
+                        onClick={() => scrollContainerBy(400)}
+                        className={cn('authors__button', 'buttonRight', {
+                            'button--hidden': !canScrollRight,
+                        })}
+                    >
+                        <LeftArrow />
+                    </button>
+                </div>
             </div>
-        </div>
+        )
     );
 };
 export default Carousel;
