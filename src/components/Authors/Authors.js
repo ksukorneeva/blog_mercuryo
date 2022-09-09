@@ -14,10 +14,10 @@ import { useNavigate } from 'react-router';
 
 const Authors = ({ view }) => {
     const [user, setUser] = useState();
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState();
     const navigate = useNavigate();
-    const [authorPosts, setAuthorPosts] = useState([]);
-    const [allPosts, setAllPosts] = useState([]);
+    const [authorPosts, setAuthorPosts] = useState();
+    const [allPosts, setAllPosts] = useState();
 
     const LENGTH = 10;
     const LIMIT = 6;

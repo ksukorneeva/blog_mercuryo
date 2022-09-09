@@ -17,11 +17,6 @@ const Desctop = () => {
     const [mediaPosts, setMediaPosts] = useState();
     const [posts, setPosts] = useState();
 
-    // const categoryFilter = (arr, category) => {
-    //     return arr.map((item) =>
-    //         item.x_categories.split(',').includes(category) ? item : ''
-    //     );
-    // };
     const categoryFilter = (arr, category) => {
         const post = arr.filter((item) => {
             if (String(item.x_categories).includes(category)) {
