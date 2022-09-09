@@ -23,7 +23,7 @@ const Desctop = () => {
     // };
     const categoryFilter = (arr, category) => {
         const post = arr.filter((item) => {
-            if (item.x_categories.toString().includes(category)) {
+            if (String(item.x_categories).includes(category)) {
                 return item;
             }
         });
