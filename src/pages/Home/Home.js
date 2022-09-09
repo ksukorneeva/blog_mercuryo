@@ -24,10 +24,10 @@ const Desctop = () => {
 
     const gettingPosts = useCallback(async () => {
         const data = await axios.get('/posts');
-        const posts = data.data.map((item) =>
-            item.x_categories.split(',').includes('Articles') ? item : ''
-        );
-        setArticlePosts(posts);
+       
+        setArticlePosts( data.data.map((item) =>
+        item.x_categories.split(',').includes('Articles') ? item : ''
+    ););
         // console.log(categoryFilter(posts, 'Articles'));
         // setInsightsPosts(categoryFilter(posts, 'Insights'));
         // setSuccessPosts(categoryFilter(posts, 'Success stories'));
