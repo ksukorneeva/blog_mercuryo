@@ -20,7 +20,7 @@ const Post = ({ classname, type, postInfo }) => {
                 <div className={type === 'post' ? 'post__img' : 'close'}>
                     <img src={post.x_featured_media_large} alt='postImage' />
                 </div>
-                <div className='post__title'>{post.title.rendered}</div>
+                <div className='post__title'>{post.title?.rendered}</div>
             </div>
         )
     );
