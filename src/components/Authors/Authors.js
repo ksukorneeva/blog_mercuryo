@@ -40,8 +40,8 @@ const Autors = ({ view }) => {
         );
     };
     const gettingUsers = async () => {
-        const arrUsers = await axios.get('/users');
-        const newArrUsers = arrUsers.data
+        const data = await axios.get('/users');
+        const newArrUsers = Array.from(data.data)
             .filter((user) => user.id !== 10)
             .filter((user) => user.id !== 1);
         setUsers(newArrUsers);

@@ -49,7 +49,7 @@ const Section = ({
     const gettingPosts = async () => {
         const data = await axios.get('/posts');
 
-        const search = data.data.filter((post) => {
+        const search = Array.from(data.data).filter((post) => {
             if (post.content.rendered.includes(app.search)) {
                 return post;
             }
