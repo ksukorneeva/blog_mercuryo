@@ -32,6 +32,7 @@ const Desctop = () => {
         const posts = Array.from(data.data);
         const users = Array.from(userdata.data);
         setPosts(posts);
+        console.log(data.data);
 
         const newArrUsers = users
             .filter((user) => user.id !== 10)
