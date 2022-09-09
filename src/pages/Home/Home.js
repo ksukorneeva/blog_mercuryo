@@ -49,12 +49,6 @@ const Desctop = () => {
         setAnnonsPosts(categoryFilter(posts, 'Announcements'));
         setRoundPosts(categoryFilter(posts, 'Round-up'));
         setMediaPosts(categoryFilter(posts, 'Media'));
-        // console.log(categoryFilter(posts, 'Articles'));
-        // setInsightsPosts(categoryFilter(posts, 'Insights'));
-        // setSuccessPosts(categoryFilter(posts, 'Success stories'));
-        // setAnnonsPosts(categoryFilter(posts, 'Announcements'));
-        // setRoundPosts(categoryFilter(posts, 'Round-up'));
-        // setMediaPosts(categoryFilter(posts, 'Media'));
     }, []);
 
     useEffect(() => {
