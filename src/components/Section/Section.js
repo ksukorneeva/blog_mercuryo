@@ -17,7 +17,6 @@ const Section = ({
     arrPosts,
 }) => {
     const app = useContext(AppContext);
-    const [postSearch, setPostSearch] = useState();
     const [showMore, setShowMore] = useState(true);
     const [hide, setHide] = useState(true);
     const cls = ['post'];
@@ -46,26 +45,6 @@ const Section = ({
     const [list, setList] = useState(slice(DATA, 0, LIMIT));
     const [index, setIndex] = useState(LIMIT);
 
-    const gettingPosts = async () => {
-        const data = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
-        );
-
-        const search = Array.from(data.data).filter((post) => {
-            if (post.content?.rendered?.includes(app.search)) {
-                return post;
-            }
-            if (post.title?.rendered?.includes(app.search)) {
-                return post;
-            }
-        });
-        setPostSearch(search);
-    };
-
-    useEffect(() => {
-        gettingPosts();
-    }, []);
-
     const loadMore = () => {
         const newIndex = index + LIMIT;
         const newShowMore = newIndex < LENGTH - 1;
@@ -83,7 +62,7 @@ const Section = ({
     };
     if (title === 'Search') {
         return (
-            postSearch && (
+            arrPosts && (
                 <section className={bgc.join(' ')}>
                     <div className='container'>
                         <div>
@@ -92,7 +71,7 @@ const Section = ({
                         <div
                             className={`section__posts section__posts_${size}`}
                         >
-                            {postSearch.map((item, index) => {
+                            {arrPosts.map((item, index) => {
                                 return (
                                     <Post
                                         classname={classname}

@@ -18,6 +18,7 @@ function App() {
     const [mediaPosts, setMediaPosts] = useState();
     const [posts, setPosts] = useState();
     const [users, setUsers] = useState();
+    const [arrSearch, setArrSearch] = useState();
 
     const categoryFilter = (arr, category) => {
         const post = arr.filter((item) => {
@@ -36,12 +37,21 @@ function App() {
         );
         const posts = Array.from(data.data);
         const users = Array.from(userdata.data);
-        setPosts(posts);
 
         const newArrUsers = users
             .filter((user) => user.id !== 10)
             .filter((user) => user.id !== 1);
         setUsers(newArrUsers);
+
+        const arsearch = Array.from(data.data).filter((post) => {
+            if (post.content.rendered.includes(search)) {
+                return post;
+            }
+            if (post.title.rendered.includes(search)) {
+                return post;
+            }
+        });
+        setArrSearch(arsearch);
 
         setArticlePosts(categoryFilter(posts, 'Articles'));
         setInsightsPosts(categoryFilter(posts, 'Insights'));
@@ -82,6 +92,7 @@ function App() {
                                 title='Search'
                                 view='page'
                                 type='search'
+                                arrPosts={arrSearch}
                             />
                         }
                     />
