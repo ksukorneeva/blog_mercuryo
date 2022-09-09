@@ -78,7 +78,9 @@ const Authors = ({ view }) => {
 
     return (
         authorPosts &&
-        user && (
+        user &&
+        users &&
+        allPosts && (
             <section
                 className={view === 'page' ? 'authors authors_view' : 'authors'}
             >

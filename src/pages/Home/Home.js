@@ -15,6 +15,7 @@ const Desctop = () => {
     const [annonsPosts, setAnnonsPosts] = useState();
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
+    const [posts, setPosts] = useState();
 
     // const categoryFilter = (arr, category) => {
     //     return arr.map((item) =>
@@ -30,8 +31,11 @@ const Desctop = () => {
         return post;
     };
     const gettingPosts = useCallback(async () => {
-        const data = await axios.get('https://mercuryo.zazhigay.com/wp-json/wp/v2/posts');
+        const data = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
+        );
         const posts = Array.from(data.data);
+        setPosts(posts);
 
         setArticlePosts(categoryFilter(posts, 'Articles'));
         setInsightsPosts(categoryFilter(posts, 'Insights'));
@@ -52,7 +56,13 @@ const Desctop = () => {
     }, [gettingPosts]);
 
     return (
-        articlePosts && (
+        posts &&
+        articlePosts &&
+        insightsPosts &&
+        successPosts &&
+        annonsPosts &&
+        roundPosts &&
+        mediaPosts && (
             <>
                 <Header />
                 <NavBar />
