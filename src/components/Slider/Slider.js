@@ -4,7 +4,7 @@ import Title from '../ui/Title/Title';
 import Img from '../../img/article.png';
 import { ReactComponent as Dot } from '../../img/icons/dot.svg';
 
-const Slider = () => {
+const Slider = ({ arrPosts }) => {
     const arrSlider = [
         { id: 1, text: 'Mercuryo’s Business Development in the USA', img: Img },
         {
