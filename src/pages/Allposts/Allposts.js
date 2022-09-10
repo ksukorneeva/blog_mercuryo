@@ -15,7 +15,12 @@ const Allposts = ({ type, title, view, arrPosts, authors }) => {
                         authors={authors}
                     />
                 ) : (
-                    <Section title={title} view={view} arrPosts={arrPosts} />
+                    <Section
+                        title={title}
+                        view={view}
+                        arrPosts={arrPosts}
+                        type={type}
+                    />
                 )}
             </>
         )

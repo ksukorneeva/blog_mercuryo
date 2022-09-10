@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import './Section.scss';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import Title from '../ui/Title/Title';
@@ -25,6 +25,7 @@ const Section = ({
     bg && bgc.push(`section_${bg}`);
     const classname = cls.join(' ');
     const navigate = useNavigate();
+    const [arrSearch, setArrSearch] = useState();
 
     let LENGTH = 8;
     let LIMIT = 4;
@@ -60,9 +61,26 @@ const Section = ({
             setShowMore(newShowMore);
         }
     };
+    const gettingPosts = useCallback(() => {
+        const arsearch = arrPosts.filter((post) => {
+            if (post.content.rendered.includes(app.search)) {
+                return post;
+            }
+            if (post.title.rendered.includes(app.search)) {
+                return post;
+            }
+        });
+        setArrSearch(arsearch);
+    }, []);
+
+    useEffect(() => {
+        gettingPosts();
+    }, [app.search]);
+
     if (title === 'Search') {
         return (
-            arrPosts && (
+            arrPosts &&
+            arrSearch && (
                 <section className={bgc.join(' ')}>
                     <div className='container'>
                         <div>
@@ -71,7 +89,7 @@ const Section = ({
                         <div
                             className={`section__posts section__posts_${size}`}
                         >
-                            {arrPosts.map((item, index) => {
+                            {arrSearch.map((item, index) => {
                                 return (
                                     <Post
                                         classname={classname}
