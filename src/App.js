@@ -138,7 +138,7 @@ function App() {
                             <Allposts
                                 title='Round-up'
                                 view='page'
-                                arrPosts={roundPosts}
+                                arrPosts={posts}
                             />
                         }
                     />

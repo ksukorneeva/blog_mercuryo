@@ -93,7 +93,7 @@ const Desctop = () => {
                     bg='dark'
                     arrPosts={annonsPosts}
                 />
-                <Slider arrPosts={roundPosts} />
+                <Slider arrPosts={posts} />
                 <Section
                     title='Media'
                     size='small'
