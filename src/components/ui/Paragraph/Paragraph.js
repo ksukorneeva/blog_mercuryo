@@ -30,13 +30,14 @@ const Paragraph = ({ content }) => {
             <>
                 {arrElem.map((item, index) => (
                     <div
+                        key={index}
                         className={
                             item.includes('has-background')
                                 ? 'section-container section-container_light'
                                 : 'section-container'
                         }
                     >
-                        <div key={index} className='wrap'>
+                        <div className='wrap'>
                             {razdelenie(item).map((elem, index) =>
                                 elem.includes('<h3') || elem.includes('<h2') ? (
                                     <div

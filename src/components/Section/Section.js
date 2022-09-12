@@ -5,7 +5,6 @@ import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
 import { slice, concat } from 'lodash';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { AppContext } from '../../context/AppContext';
 
 const Section = ({
@@ -63,19 +62,20 @@ const Section = ({
     };
     const gettingPosts = useCallback(() => {
         const arsearch = arrPosts.filter((post) => {
-            if (post.content.rendered.includes(app.search)) {
+            if (
+                post.content.rendered.includes(app.search) ||
+                post.title.rendered.includes(app.search)
+            ) {
                 return post;
             }
-            if (post.title.rendered.includes(app.search)) {
-                return post;
-            }
+            return false;
         });
         setArrSearch(arsearch);
-    }, []);
+    }, [app, arrPosts]);
 
     useEffect(() => {
         gettingPosts();
-    }, [app.search]);
+    }, [app, gettingPosts]);
 
     if (title === 'Search') {
         return (
@@ -149,7 +149,7 @@ const Section = ({
                                     : 'section__button'
                             }
                         >
-                            {showMore && hide ? (
+                            {showMore || hide ? (
                                 <button onClick={loadMore}>
                                     Read more <IconRead />
                                 </button>

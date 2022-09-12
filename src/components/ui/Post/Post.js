@@ -8,8 +8,7 @@ const Post = ({ classname, type, postInfo }) => {
     const handelClick = () => {
         navigate(`/articles/id${postInfo.id}`);
     };
-    const data = new Date(post.date).toDateString().slice(4, 10);
-
+    const data = new Date(post?.date).toDateString().slice(4, 10);
     return (
         post && (
             <div className={classname} onClick={handelClick}>

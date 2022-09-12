@@ -10,20 +10,27 @@ import axios from 'axios';
 import Post from '../../components/ui/Post/Post';
 import { Link } from 'react-router-dom';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
+import { useCallback } from 'react';
 
 const Article = () => {
     const params = useParams();
     const [post, setPost] = useState();
     const [user, setUser] = useState();
     const [userPosts, setUserPosts] = useState();
-    const gettingPosts = async () => {
-        const dataPosts = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
+
+    const gettingPosts = useCallback(async () => {
+        const data = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
+        );
+        const data2 = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
         );
         const dataUsers = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
         );
-        const post = dataPosts.data.filter(
+        const dataPosts = [].concat(data.data, data2.data);
+
+        const post = dataPosts.filter(
             (post) => post.id === +params.id.slice(2)
         );
         setPost(post[0]);
@@ -35,7 +42,7 @@ const Article = () => {
         setUserPosts(
             dataPosts.data.filter((post) => post.author === user[0].id)
         );
-    };
+    }, [params]);
 
     const GreetingComponent = (props) => {
         const innerHtml = { __html: props };
@@ -44,7 +51,7 @@ const Article = () => {
 
     useEffect(() => {
         gettingPosts();
-    }, []);
+    }, [gettingPosts]);
 
     return (
         user &&
@@ -69,7 +76,6 @@ const Article = () => {
                 </header>
                 <div className='content-art'>
                     <Paragraph content={post.content.rendered} />
-                    {console.log(post.content.rendered)}
                     <div className='container'>
                         <div className='author-info'>
                             <div className='author-info__img'>
@@ -95,15 +101,18 @@ const Article = () => {
                                     <div
                                         className={`section__posts section__posts_small`}
                                     >
-                                        {userPosts.map((item, index) => {
-                                            return (
-                                                <Post
-                                                    type='post'
-                                                    key={index}
-                                                    postInfo={item}
-                                                />
-                                            );
-                                        })}
+                                        {userPosts
+                                            .slice(0, 8)
+                                            .map((item, index) => {
+                                                return (
+                                                    <Post
+                                                        // onClick={handelClick}
+                                                        type='post'
+                                                        key={index}
+                                                        postInfo={item}
+                                                    />
+                                                );
+                                            })}
                                     </div>
 
                                     <div className='section__button section__button'>

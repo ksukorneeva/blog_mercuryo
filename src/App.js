@@ -1,5 +1,5 @@
 import './App.scss';
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Allposts from './pages/Allposts/Allposts';
@@ -18,24 +18,27 @@ function App() {
     const [mediaPosts, setMediaPosts] = useState();
     const [posts, setPosts] = useState();
     const [users, setUsers] = useState();
-    // const [arrSearch, setArrSearch] = useState();
 
     const categoryFilter = (arr, category) => {
         const post = arr.filter((item) => {
             if (String(item.x_categories).includes(category)) {
                 return item;
             }
+            return false;
         });
         return post;
     };
     const gettingPosts = useCallback(async () => {
         const data = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts'
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
+        );
+        const data2 = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
         );
         const userdata = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users'
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
         );
-        const posts = Array.from(data.data);
+        const posts = [].concat(data.data, data2.data);
         const users = Array.from(userdata.data);
         setPosts(posts);
 
@@ -138,7 +141,7 @@ function App() {
                             <Allposts
                                 title='Round-up'
                                 view='page'
-                                arrPosts={posts}
+                                arrPosts={roundPosts}
                             />
                         }
                     />

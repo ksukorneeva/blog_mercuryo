@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Slider.scss';
 import Title from '../ui/Title/Title';
-import Img from '../../img/article.png';
 import { ReactComponent as Dot } from '../../img/icons/dot.svg';
 
 const Slider = ({ arrPosts }) => {
@@ -19,6 +18,7 @@ const Slider = ({ arrPosts }) => {
         setActiveSlide(index);
         setActivePost(arrPosts.slice(index * 4, (index + 1) * 4));
     };
+
     return (
         arrPosts && (
             <div className='slider'>
@@ -31,7 +31,7 @@ const Slider = ({ arrPosts }) => {
                                     src={
                                         arrPosts[active].x_featured_media_large
                                     }
-                                    alt='image'
+                                    alt='img'
                                 />
                             </div>
                             <div className='slider__list'>

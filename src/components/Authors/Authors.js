@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Authors.scss';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
-// import { ReactComponent as LeftArrow } from '../../img/icons/leftArrow.svg';
+
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import twit from '../../img/icons/twit.png';
 import facebook from '../../img/icons/facebook.png';
@@ -75,9 +75,6 @@ const Authors = ({ view, authors, allallPosts }) => {
                                 onClick={handleClick}
                                 active={user.id}
                             />
-                            {/* <div className='authors__button'>
-                                <LeftArrow />
-                            </div> */}
                         </div>
                     </div>
                     <div className='authors__content'>
@@ -85,16 +82,16 @@ const Authors = ({ view, authors, allallPosts }) => {
                             <div className='authors__info info'>
                                 <div className='info__img'>
                                     <img
-                                        // src={user.avatar_urls[96]}
+                                        src={user?.avatar_urls[96]}
                                         alt='user_avatar'
                                     />
                                 </div>
                                 <div className='info__text'>
                                     <div className='info__title'>
-                                        {user.name}
+                                        {user?.name}
                                     </div>
                                     <div className='info__subtitle'>
-                                        {user.description}
+                                        {user?.description}
                                     </div>
                                     <div className='info__icons'>
                                         <img src={twit} alt='twit' />
@@ -103,33 +100,59 @@ const Authors = ({ view, authors, allallPosts }) => {
                                 </div>
                             </div>
                             <div className='authors__posts'>
-                                {list.map((post, index) =>
-                                    index === 1 || index === 0 ? (
-                                        <Post
-                                            key={index}
-                                            classname='post post_small'
-                                            type='post'
-                                            postInfo={post}
-                                        />
-                                    ) : (
-                                        ''
-                                    )
-                                )}
+                                {view === 'page'
+                                    ? authorPosts?.map((post, index) =>
+                                          index === 1 || index === 0 ? (
+                                              <Post
+                                                  key={index}
+                                                  classname='post post_small'
+                                                  type='post'
+                                                  postInfo={post}
+                                              />
+                                          ) : (
+                                              ''
+                                          )
+                                      )
+                                    : list?.map((post, index) =>
+                                          index === 1 || index === 0 ? (
+                                              <Post
+                                                  key={index}
+                                                  classname='post post_small'
+                                                  type='post'
+                                                  postInfo={post}
+                                              />
+                                          ) : (
+                                              ''
+                                          )
+                                      )}
                             </div>
                         </div>
                         <div className='row_posts'>
-                            {list?.map((post, index) =>
-                                index > 1 ? (
-                                    <Post
-                                        key={index}
-                                        classname='post post_small'
-                                        type='post'
-                                        postInfo={post}
-                                    />
-                                ) : (
-                                    ''
-                                )
-                            )}
+                            {view === 'page'
+                                ? authorPosts?.map((post, index) =>
+                                      index > 1 ? (
+                                          <Post
+                                              key={index}
+                                              classname='post post_small'
+                                              type='post'
+                                              postInfo={post}
+                                          />
+                                      ) : (
+                                          ''
+                                      )
+                                  )
+                                : list?.map((post, index) =>
+                                      index > 1 ? (
+                                          <Post
+                                              key={index}
+                                              classname='post post_small'
+                                              type='post'
+                                              postInfo={post}
+                                          />
+                                      ) : (
+                                          ''
+                                      )
+                                  )}
                         </div>
                     </div>
                     {view !== 'page' && (
