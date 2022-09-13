@@ -9,15 +9,15 @@ import facebook from '../../img/icons/facebook.png';
 import Carousel from '../ui/Carousel/Carousel';
 import { slice, concat } from 'lodash';
 import { useNavigate } from 'react-router';
+import { useCallback } from 'react';
 
 const Authors = ({ view, authors, allallPosts }) => {
-    const [user, setUser] = useState(authors[0]);
-    const [users] = useState(authors);
+    const [user, setUser] = useState();
+    const [users, setUsers] = useState();
     const navigate = useNavigate();
-    const [authorPosts, setAuthorPosts] = useState(
-        allallPosts.filter((post) => post.author === authors[0].id)
-    );
-    const [allPosts] = useState(allallPosts);
+    const [authorPosts, setAuthorPosts] = useState();
+    const [allPosts, setAllPosts] = useState();
+    console.log(authorPosts);
 
     const LENGTH = 10;
     const LIMIT = 6;
@@ -29,25 +29,25 @@ const Authors = ({ view, authors, allallPosts }) => {
 
     const handleClick = (user) => {
         setUser(user);
-        setAuthorPosts(allPosts.filter((post) => post.author === user.id));
-        setDATA(allPosts.filter((post) => post.author === user.id));
-        setList(
-            slice(
-                allPosts.filter((post) => post.author === user.id),
-                0,
-                LIMIT
-            )
+        const userPosts = allPosts.filter((post) => post.author === user.id);
+        setAuthorPosts(userPosts);
+        setDATA(userPosts);
+        setList(slice(userPosts, 0, LIMIT));
+    };
+    const gettingUsers = useCallback(() => {
+        setAllPosts(allallPosts);
+        setUser(authors[0]);
+        const authorAllPosts = allallPosts.filter(
+            (post) => post.author === authors[0].id
         );
-    };
-    const gettingUsers = () => {
-        setUser(users[0]);
-        setAuthorPosts(allPosts.filter((post) => post.author === user.id));
-        setDATA(authorPosts);
-        setList(slice(authorPosts, 0, LIMIT));
-    };
+        setAuthorPosts(authorAllPosts);
+        setDATA(authorAllPosts);
+        setList(slice(authorAllPosts, 0, LIMIT));
+        setUsers(authors);
+    }, [allallPosts, authors]);
     useEffect(() => {
         gettingUsers();
-    }, []);
+    }, [gettingUsers]);
 
     const loadMore = () => {
         const newIndex = index + LIMIT;
@@ -61,8 +61,7 @@ const Authors = ({ view, authors, allallPosts }) => {
     return (
         authorPosts &&
         user &&
-        users &&
-        allPosts && (
+        users && (
             <section
                 className={view === 'page' ? 'authors authors_view' : 'authors'}
             >
@@ -129,7 +128,7 @@ const Authors = ({ view, authors, allallPosts }) => {
                         </div>
                         <div className='row_posts'>
                             {view === 'page'
-                                ? authorPosts?.map((post, index) =>
+                                ? authorPosts.map((post, index) =>
                                       index > 1 ? (
                                           <Post
                                               key={index}
@@ -141,7 +140,7 @@ const Authors = ({ view, authors, allallPosts }) => {
                                           ''
                                       )
                                   )
-                                : list?.map((post, index) =>
+                                : list.map((post, index) =>
                                       index > 1 ? (
                                           <Post
                                               key={index}

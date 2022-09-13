@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Post.scss';
 
 const Post = ({ classname, type, postInfo }) => {
     const navigate = useNavigate();
-    const [post] = useState(postInfo);
+    const [post, setPost] = useState();
     const handelClick = () => {
         navigate(`/articles/id${postInfo.id}`);
     };
     const data = new Date(post?.date).toDateString().slice(4, 10);
+    useEffect(() => {
+        setPost(postInfo);
+    }, [postInfo]);
     return (
         post && (
             <div className={classname} onClick={handelClick}>

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './Slider.scss';
 import Title from '../ui/Title/Title';
 import { ReactComponent as Dot } from '../../img/icons/dot.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Slider = ({ arrPosts }) => {
+    const navigate = useNavigate();
     arrPosts.length = Math.trunc(arrPosts.length / 4) * 4;
     const dots = arrPosts.slice(0, Math.trunc(arrPosts.length / 4));
 
@@ -17,6 +19,9 @@ const Slider = ({ arrPosts }) => {
     const changeSlideClick = (index) => {
         setActiveSlide(index);
         setActivePost(arrPosts.slice(index * 4, (index + 1) * 4));
+    };
+    const handelClick = (slide) => {
+        navigate(`/articles/id${slide.id}`);
     };
 
     return (
@@ -45,6 +50,7 @@ const Slider = ({ arrPosts }) => {
                                             onMouseEnter={() =>
                                                 changeSlideHandler(index)
                                             }
+                                            onClick={() => handelClick(slide)}
                                         >
                                             {slide.title.rendered}
                                         </li>

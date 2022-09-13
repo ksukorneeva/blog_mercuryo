@@ -39,9 +39,7 @@ const Article = () => {
         );
         setUser(user[0]);
 
-        setUserPosts(
-            dataPosts.data.filter((post) => post.author === user[0].id)
-        );
+        setUserPosts(dataPosts.filter((post) => post.author === user[0].id));
     }, [params]);
 
     const GreetingComponent = (props) => {
@@ -55,7 +53,8 @@ const Article = () => {
 
     return (
         user &&
-        post && (
+        post &&
+        params && (
             <>
                 <NavBar />
                 <header className='header-art'>
