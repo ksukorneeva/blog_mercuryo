@@ -112,7 +112,7 @@ const Section = ({
                     <div
                         className={
                             bg === 'dark'
-                                ? 'section__title_dark'
+                                ? 'section__title_dark section__title'
                                 : 'section__title'
                         }
                     >

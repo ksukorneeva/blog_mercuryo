@@ -94,7 +94,7 @@ const Article = () => {
 
                             <section className='section'>
                                 <div className='container'>
-                                    <div className='section__title'>
+                                    <div className='section-title'>
                                         <Link to='/authors'>{`More from ${user.name}`}</Link>
                                     </div>
                                     <div
