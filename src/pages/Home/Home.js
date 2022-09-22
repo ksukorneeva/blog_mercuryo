@@ -7,6 +7,7 @@ import Authors from '../../components/Authors/Authors';
 import Contacts from '../../components/ui/Contacts/Contacts';
 import Footer from '../../components/Footer/Footer';
 import Slider from '../../components/Slider/Slider';
+import Subscribe from '../../components/ui/Subscribe/Subscribe';
 
 const Desctop = () => {
     const [articlePosts, setArticlePosts] = useState();
@@ -15,6 +16,7 @@ const Desctop = () => {
     const [annonsPosts, setAnnonsPosts] = useState();
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
+    const [partnersPosts, setPartnersPosts] = useState();
     const [posts, setPosts] = useState();
     const [users, setUsers] = useState();
 
@@ -29,13 +31,13 @@ const Desctop = () => {
     };
     const gettingPosts = useCallback(async () => {
         const data = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
         );
         const data2 = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
         );
         const userdata = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
         );
         const posts = [].concat(data.data, data2.data);
 
@@ -53,6 +55,7 @@ const Desctop = () => {
         setAnnonsPosts(categoryFilter(posts, 'Announcements'));
         setRoundPosts(categoryFilter(posts, 'Round-up'));
         setMediaPosts(categoryFilter(posts, 'Media'));
+        setPartnersPosts(categoryFilter(posts, 'Part'));
     }, []);
 
     useEffect(() => {
@@ -60,30 +63,30 @@ const Desctop = () => {
     }, [gettingPosts]);
 
     return (
-        posts &&
-        articlePosts &&
-        insightsPosts &&
-        successPosts &&
-        annonsPosts &&
-        roundPosts &&
-        mediaPosts &&
-        users && (
-            <>
-                <Header />
-                <NavBar />
+        <>
+            <Header />
+            <NavBar />
+
+            {articlePosts && (
                 <Section
                     title='Articles'
                     size='small'
                     type='post'
                     arrPosts={articlePosts}
                 />
-                <Authors authors={users} allallPosts={posts} />
+            )}
+            {users && posts && <Authors authors={users} allallPosts={posts} />}
+            <Subscribe />
+            {insightsPosts && (
                 <Section
                     title='Insights'
                     size='large'
                     type='post'
                     arrPosts={insightsPosts}
                 />
+            )}
+
+            {successPosts && (
                 <Section
                     title='Success stories'
                     size='medium'
@@ -91,6 +94,8 @@ const Desctop = () => {
                     bg='light'
                     arrPosts={successPosts}
                 />
+            )}
+            {annonsPosts && (
                 <Section
                     title='Announcements'
                     size='medium'
@@ -98,17 +103,19 @@ const Desctop = () => {
                     bg='dark'
                     arrPosts={annonsPosts}
                 />
-                <Slider arrPosts={roundPosts} />
+            )}
+            {roundPosts && <Slider arrPosts={roundPosts} />}
+            {mediaPosts && (
                 <Section
                     title='Media'
                     size='small'
                     type='post'
                     arrPosts={mediaPosts}
                 />
-                <Contacts />
-                <Footer />
-            </>
-        )
+            )}
+            <Contacts />
+            <Footer />
+        </>
     );
 };
 

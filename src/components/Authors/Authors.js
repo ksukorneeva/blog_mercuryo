@@ -17,7 +17,6 @@ const Authors = ({ view, authors, allallPosts }) => {
     const navigate = useNavigate();
     const [authorPosts, setAuthorPosts] = useState();
     const [allPosts, setAllPosts] = useState();
-    console.log(authorPosts);
 
     const LENGTH = 10;
     const LIMIT = 6;

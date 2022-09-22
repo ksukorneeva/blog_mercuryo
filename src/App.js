@@ -30,13 +30,13 @@ function App() {
     };
     const gettingPosts = useCallback(async () => {
         const data = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
         );
         const data2 = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
         );
         const userdata = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
         );
         const posts = [].concat(data.data, data2.data);
         const users = Array.from(userdata.data);

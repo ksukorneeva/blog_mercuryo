@@ -5,31 +5,44 @@
     position: relative;
     input {
         border: none;
-        border-bottom: 1px solid #ffffff;
+        border-bottom: 1px solid #fff;
         background: transparent;
         width: calc(100% - 28px);
         height: 45px;
-        color: #ffffff;
+        color: #fff;
         font-size: 18px;
         outline: none;
 
         &::placeholder {
             font-weight: 400;
             font-size: 18px;
-            color: rgba(#ffffff, 0.4);
+            color: rgba(#fff, 0.4);
         }
 
         &:active {
             border: none;
-            border-bottom: 1px solid #ffffff;
+            border-bottom: 1px solid #fff;
         }
     }
     svg {
-        fill: #ffffff;
+        fill: #000;
         width: 28px;
         height: 29px;
         right: 0;
         position: absolute;
         top: 30.4px;
+    }
+    .black {
+        border-bottom: 1px solid #000;
+        color: #000;
+        font-size: 32px;
+
+        &::placeholder {
+            color: #000;
+            font-size: 32px;
+        }
+        &:active {
+            border-bottom: 1px solid #000;
+        }
     }
 }

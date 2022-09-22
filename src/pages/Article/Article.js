@@ -20,13 +20,13 @@ const Article = () => {
 
     const gettingPosts = useCallback(async () => {
         const data = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
         );
         const data2 = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
         );
         const dataUsers = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
+            'http://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
         );
         const dataPosts = [].concat(data.data, data2.data);
 
@@ -52,85 +52,86 @@ const Article = () => {
     }, [gettingPosts]);
 
     return (
-        user &&
-        post &&
-        params && (
-            <>
-                <NavBar />
-                <header className='header-art'>
-                    <div className='wrap'>
-                        <div className='header-art__img'>
-                            <img
-                                src={post.x_featured_media_large}
-                                alt='posts_img'
-                            />
-                        </div>
-                        <div className='header-art__title'>
-                            {post.title.rendered}
-                        </div>
-                        <div className='header-art__description'>
-                            {GreetingComponent(post.excerpt.rendered)}
-                        </div>
-                    </div>
-                </header>
-                <div className='content-art'>
-                    <Paragraph content={post.content.rendered} />
-                    <div className='container'>
-                        <div className='author-info'>
-                            <div className='author-info__img'>
+        <>
+            <NavBar />
+            {user && post && params && (
+                <>
+                    <header className='header-art'>
+                        <div className='wrap'>
+                            <div className='header-art__img'>
                                 <img
-                                    src={user.avatar_urls[96]}
-                                    alt='user_avatar'
+                                    src={post.x_featured_media_large}
+                                    alt='posts_img'
                                 />
                             </div>
-                            <div className='author-info__name'>{user.name}</div>
-                            <div className='author-info__icons'>
-                                <img src={twit} alt='twit' />
-                                <img src={facebook} alt='facebook' />
+                            <div className='header-art__title'>
+                                {post.title.rendered}
                             </div>
-                            <div className='author-info__description'>
-                                {user.description}
+                            <div className='header-art__description'>
+                                {GreetingComponent(post.excerpt.rendered)}
                             </div>
-
-                            <section className='section'>
-                                <div className='container'>
-                                    <div className='section-title'>
-                                        <Link to='/authors'>{`More from ${user.name}`}</Link>
-                                    </div>
-                                    <div
-                                        className={`section__posts section__posts_small`}
-                                    >
-                                        {userPosts
-                                            .slice(0, 8)
-                                            .map((item, index) => {
-                                                return (
-                                                    <Post
-                                                        // onClick={handelClick}
-                                                        type='post'
-                                                        key={index}
-                                                        postInfo={item}
-                                                    />
-                                                );
-                                            })}
-                                    </div>
-
-                                    <div className='section__button section__button'>
-                                        <button>
-                                            <Link to={`/authors`}>
-                                                Read more
-                                            </Link>
-                                        </button>
-
-                                        <IconRead />
-                                    </div>
+                        </div>
+                    </header>
+                    <div className='content-art'>
+                        <Paragraph content={post.content.rendered} />
+                        <div className='container'>
+                            <div className='author-info'>
+                                <div className='author-info__img'>
+                                    <img
+                                        src={user.avatar_urls[96]}
+                                        alt='user_avatar'
+                                    />
                                 </div>
-                            </section>
+                                <div className='author-info__name'>
+                                    {user.name}
+                                </div>
+                                <div className='author-info__icons'>
+                                    <img src={twit} alt='twit' />
+                                    <img src={facebook} alt='facebook' />
+                                </div>
+                                <div className='author-info__description'>
+                                    {user.description}
+                                </div>
+
+                                <section className='section'>
+                                    <div className='container'>
+                                        <div className='section-title'>
+                                            <Link to='/authors'>{`More from ${user.name}`}</Link>
+                                        </div>
+                                        <div
+                                            className={`section__posts section__posts_small`}
+                                        >
+                                            {userPosts
+                                                .slice(0, 8)
+                                                .map((item, index) => {
+                                                    return (
+                                                        <Post
+                                                            type='post'
+                                                            key={index}
+                                                            postInfo={item}
+                                                        />
+                                                    );
+                                                })}
+                                        </div>
+
+                                        <div className='section__button section__button'>
+                                            <button>
+                                                <Link to={`/authors`}>
+                                                    Read more
+                                                </Link>
+                                            </button>
+
+                                            <IconRead />
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <Footer />
-            </>
-        )
+                </>
+            )}
+            <Footer />
+        </>
     );
 };
 
