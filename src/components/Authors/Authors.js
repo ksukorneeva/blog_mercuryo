@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Authors.scss';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
-
+import axios from 'axios';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import twit from '../../img/icons/twit.png';
 import facebook from '../../img/icons/facebook.png';
@@ -11,12 +11,11 @@ import { slice, concat } from 'lodash';
 import { useNavigate } from 'react-router';
 import { useCallback } from 'react';
 
-const Authors = ({ view, authors, allallPosts }) => {
+const Authors = ({ view, authors }) => {
     const [user, setUser] = useState();
     const [users, setUsers] = useState();
     const navigate = useNavigate();
     const [authorPosts, setAuthorPosts] = useState();
-    const [allPosts, setAllPosts] = useState();
 
     const LENGTH = 10;
     const LIMIT = 6;
@@ -26,24 +25,27 @@ const Authors = ({ view, authors, allallPosts }) => {
     const [list, setList] = useState(slice(DATA, 0, LIMIT));
     const [index, setIndex] = useState(LIMIT);
 
-    const handleClick = (user) => {
+    const handleClick = async (user) => {
         setUser(user);
-        const userPosts = allPosts.filter((post) => post.author === user.id);
-        setAuthorPosts(userPosts);
-        setDATA(userPosts);
-        setList(slice(userPosts, 0, LIMIT));
-    };
-    const gettingUsers = useCallback(() => {
-        setAllPosts(allallPosts);
-        setUser(authors[0]);
-        const authorAllPosts = allallPosts.filter(
-            (post) => post.author === authors[0].id
+        const userPosts = await axios.get(
+            `https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?author=${user.id}&per_page=10`
         );
-        setAuthorPosts(authorAllPosts);
-        setDATA(authorAllPosts);
-        setList(slice(authorAllPosts, 0, LIMIT));
+        setAuthorPosts(userPosts.data);
+        setDATA(userPosts.data);
+        setList(slice(userPosts.data, 0, LIMIT));
+    };
+    const gettingUsers = useCallback(async () => {
+        const autorsPosts = await axios.get(
+            `https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?author=${
+                authors[0].id
+            }&per_page=${view === 'page' ? 100 : 10}`
+        );
+        setUser(authors[0]);
+        setAuthorPosts(autorsPosts.data);
+        setDATA(autorsPosts.data);
+        setList(slice(autorsPosts.data, 0, LIMIT));
         setUsers(authors);
-    }, [allallPosts, authors]);
+    }, [authors, view]);
     useEffect(() => {
         gettingUsers();
     }, [gettingUsers]);

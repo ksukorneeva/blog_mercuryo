@@ -16,46 +16,45 @@ const Desctop = () => {
     const [annonsPosts, setAnnonsPosts] = useState();
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
-    const [partnersPosts, setPartnersPosts] = useState();
-    const [posts, setPosts] = useState();
+    // const [partnersPosts, setPartnersPosts] = useState();
     const [users, setUsers] = useState();
-
-    const categoryFilter = (arr, category) => {
-        const post = arr.filter((item) => {
-            if (String(item.x_categories).includes(category)) {
-                return item;
-            }
-            return false;
-        });
-        return post;
-    };
     const gettingPosts = useCallback(async () => {
-        const data = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
+        const articles = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=5&per_page=8'
         );
-        const data2 = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
+        const annonsment = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=8&per_page=12'
+        );
+        const insights = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=6&per_page=4'
+        );
+        const media = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=10&per_page=8'
+        );
+        const roundUp = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=9&per_page=16'
+        );
+        const success = await axios.get(
+            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=7&per_page=6'
         );
         const userdata = await axios.get(
             'http://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
         );
-        const posts = [].concat(data.data, data2.data);
 
         const users = Array.from(userdata.data);
-        setPosts(posts);
 
         const newArrUsers = users
             .filter((user) => user.id !== 10)
             .filter((user) => user.id !== 1);
         setUsers(newArrUsers);
 
-        setArticlePosts(categoryFilter(posts, 'Articles'));
-        setInsightsPosts(categoryFilter(posts, 'Insights'));
-        setSuccessPosts(categoryFilter(posts, 'Success stories'));
-        setAnnonsPosts(categoryFilter(posts, 'Announcements'));
-        setRoundPosts(categoryFilter(posts, 'Round-up'));
-        setMediaPosts(categoryFilter(posts, 'Media'));
-        setPartnersPosts(categoryFilter(posts, 'Part'));
+        setArticlePosts(articles.data);
+        setInsightsPosts(insights.data);
+        setSuccessPosts(success.data);
+        setAnnonsPosts(annonsment.data);
+        setRoundPosts(roundUp.data);
+        setMediaPosts(media.data);
+        // setPartnersPosts(categoryFilter(posts, 'Part'));
     }, []);
 
     useEffect(() => {
@@ -75,7 +74,7 @@ const Desctop = () => {
                     arrPosts={articlePosts}
                 />
             )}
-            {users && posts && <Authors authors={users} allallPosts={posts} />}
+            {users && <Authors authors={users} />}
             <Subscribe />
             {insightsPosts && (
                 <Section

@@ -28,25 +28,27 @@ const Subscribe = () => {
                 <div className='subscribe__block'>
                     <div className='subscribe__content'>
                         <div className='subscribe__title'>
-                            Need more?Subscribe!
+                            Need more? Subscribe!
                         </div>
                         <div className='subscribe__subtitle'>
                             Subscribe to our newsletter to keep up with the
                             latest crypto trends
                         </div>
                     </div>
-                    <form onSubmit={submitFormHandler}>
-                        <Input
-                            label='Email'
-                            type='email'
-                            onChange={handleChange}
-                        />
-                        <div className='subscribe__button'>
-                            <button className='subscribe__button'>
-                                Subscribe
-                            </button>
-                        </div>
-                    </form>
+                    <div className='subscribe__form'>
+                        <form onSubmit={submitFormHandler}>
+                            <Input
+                                label='Email'
+                                type='email'
+                                onChange={handleChange}
+                            />
+                            <div className='subscribe__button'>
+                                <button className='subscribe__button'>
+                                    Subscribe
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

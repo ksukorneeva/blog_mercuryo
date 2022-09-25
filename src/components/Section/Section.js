@@ -83,7 +83,7 @@ const Section = ({
             arrSearch && (
                 <section className={bgc.join(' ')}>
                     <div className='container'>
-                        <div>
+                        <div className='section__title'>
                             <Title>{title}</Title>
                         </div>
                         <div
