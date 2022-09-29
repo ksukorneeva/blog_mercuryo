@@ -7,7 +7,12 @@ const Post = ({ classname, type, postInfo }) => {
     const navigate = useNavigate();
     const [post, setPost] = useState();
     const handelClick = () => {
-        navigate(`/articles/id${postInfo.id}`);
+        if (postInfo.categories.includes(10)) {
+            // console.log(postInfo.link);
+            window.location = postInfo.link;
+        } else {
+            navigate(`/articles/id${postInfo.id}`);
+        }
     };
     const data = new Date(post?.date).toDateString().slice(4, 10);
     useEffect(() => {

@@ -13,6 +13,7 @@ const Paragraph = ({ content }) => {
             content
                 .replace(/<h3/g, 'prg<h3')
                 .replace(/<h2/g, 'prg<h2')
+                .replace(/<h1/g, 'prg<h1')
                 .split('prg')
         );
     }, [content]);
@@ -20,6 +21,7 @@ const Paragraph = ({ content }) => {
         const newItem = item
             .replace(/\/h3>/g, '/h3>prg')
             .replace(/\/h2>/g, '/h2>prg')
+            .replace(/\/h1>/g, '/h1>prg')
             .split('prg')
             .filter((index) => index !== '');
 
@@ -39,7 +41,9 @@ const Paragraph = ({ content }) => {
                     >
                         <div className='wrap'>
                             {razdelenie(item).map((elem, index) =>
-                                elem.includes('<h3') || elem.includes('<h2') ? (
+                                elem.includes('<h3') ||
+                                elem.includes('<h2') ||
+                                elem.includes('<h1') ? (
                                     <div
                                         key={index}
                                         className='paragraph__title'

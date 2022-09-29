@@ -131,7 +131,6 @@
     align-items: start;
     grid-gap: 58px;
     margin-bottom: 59px;
-
     grid-template-columns: repeat(4, 1fr);
 }
 
@@ -139,11 +138,17 @@
     .row {
         grid-template-columns: 1fr;
     }
+    .row_posts {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 540px) {
     .authors__posts {
         grid-template-columns: 1fr;
+    }
+    .row_posts {
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .info {

@@ -7,6 +7,7 @@ import Article from './pages/Article/Article';
 import { AppContext } from './context/AppContext';
 import { useApp } from './hooks/app.hook';
 import axios from 'axios';
+import Search from './components/Search/Search';
 
 function App() {
     const { search, setSearch } = useApp();
@@ -16,43 +17,45 @@ function App() {
     const [annonsPosts, setAnnonsPosts] = useState();
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
-    const [posts, setPosts] = useState();
     const [users, setUsers] = useState();
 
-    const categoryFilter = (arr, category) => {
-        const post = arr.filter((item) => {
-            if (String(item.x_categories).includes(category)) {
-                return item;
-            }
-            return false;
-        });
-        return post;
-    };
     const gettingPosts = useCallback(async () => {
-        const data = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
+        const articles = await axios.get(
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=5&per_page=50'
         );
-        const data2 = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
+        const annonsment = await axios.get(
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=8&per_page=50'
+        );
+        const insights = await axios.get(
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=6&per_page=50'
+        );
+        const media = await axios.get(
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=10&per_page=50'
+        );
+        const roundUp = await axios.get(
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=9&per_page=50'
+        );
+        const success = await axios.get(
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=7&per_page=50'
         );
         const userdata = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
+            'https://zazhigay.com/wp-json/wp/v2/users?per_page=100'
         );
-        const posts = [].concat(data.data, data2.data);
+
         const users = Array.from(userdata.data);
-        setPosts(posts);
 
         const newArrUsers = users
             .filter((user) => user.id !== 10)
             .filter((user) => user.id !== 1);
         setUsers(newArrUsers);
 
-        setArticlePosts(categoryFilter(posts, 'Articles'));
-        setInsightsPosts(categoryFilter(posts, 'Insights'));
-        setSuccessPosts(categoryFilter(posts, 'Success stories'));
-        setAnnonsPosts(categoryFilter(posts, 'Announcements'));
-        setRoundPosts(categoryFilter(posts, 'Round-up'));
-        setMediaPosts(categoryFilter(posts, 'Media'));
+        setArticlePosts(articles.data);
+        setInsightsPosts(insights.data);
+        setSuccessPosts(success.data);
+        setAnnonsPosts(annonsment.data);
+        setRoundPosts(roundUp.data);
+        setMediaPosts(media.data);
+        // setPartnersPosts(categoryFilter(posts, 'Part'));
     }, []);
 
     useEffect(() => {
@@ -74,24 +77,14 @@ function App() {
                             />
                         }
                     />
-                    <Route
-                        path='/search'
-                        element={
-                            <Allposts
-                                title='Search'
-                                view='page'
-                                arrPosts={posts}
-                            />
-                        }
-                    />
+                    <Route path='/search' element={<Search />} />
                     <Route
                         path='/authors'
                         element={
                             <Allposts
                                 type='authors'
                                 view='page'
-                                authors={users}
-                                arrPosts={posts}
+                                arrPosts={users}
                             />
                         }
                     />

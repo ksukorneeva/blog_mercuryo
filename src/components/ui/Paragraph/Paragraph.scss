@@ -37,10 +37,27 @@
                 cursor: pointer;
             }
         }
+        h1 {
+            @include adaptiv-font(32, 20);
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 40px;
+            color: #000000;
+            max-width: 546px;
+            text-align: center;
+
+            a {
+                color: #ff592c;
+                cursor: pointer;
+            }
+        }
         h2.has-background {
             background: #dfe8ff;
         }
         h3.has-background {
+            background: #dfe8ff;
+        }
+        h1.has-background {
             background: #dfe8ff;
         }
 
@@ -68,10 +85,11 @@
             background: #dfe8ff;
         }
         p {
-            // @include adaptiv-font(24, 20);
+            @include adaptiv-font(24, 20);
             // padding-bottom: 36px;
             font-weight: 400;
             line-height: 40px;
+            // font-size: 24px;
 
             a {
                 text-decoration: underline;
@@ -110,4 +128,10 @@ blockquote {
 
 .section-container_light {
     background: #dfe8ff;
+}
+@media (max-width: 540px) {
+    .paragraph__title {
+        margin-bottom: 25px;
+        padding-top: 25px;
+    }
 }

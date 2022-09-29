@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState } from 'react';
 import './Section.scss';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
 import { slice, concat } from 'lodash';
 import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../../context/AppContext';
 
 const Section = ({
     title,
@@ -15,7 +14,6 @@ const Section = ({
     view,
     arrPosts,
 }) => {
-    const app = useContext(AppContext);
     const [showMore, setShowMore] = useState(true);
     const [hide, setHide] = useState(true);
     const cls = ['post'];
@@ -24,7 +22,6 @@ const Section = ({
     bg && bgc.push(`section_${bg}`);
     const classname = cls.join(' ');
     const navigate = useNavigate();
-    const [arrSearch, setArrSearch] = useState();
 
     let LENGTH = 8;
     let LIMIT = 4;
@@ -60,51 +57,8 @@ const Section = ({
             setShowMore(newShowMore);
         }
     };
-    const gettingPosts = useCallback(() => {
-        const arsearch = arrPosts.filter((post) => {
-            if (
-                post.content.rendered.includes(app.search) ||
-                post.title.rendered.includes(app.search)
-            ) {
-                return post;
-            }
-            return false;
-        });
-        setArrSearch(arsearch);
-    }, [app, arrPosts]);
+    // const gettingPosts = useCallback(async () => {
 
-    useEffect(() => {
-        gettingPosts();
-    }, [app, gettingPosts]);
-
-    if (title === 'Search') {
-        return (
-            arrPosts &&
-            arrSearch && (
-                <section className={bgc.join(' ')}>
-                    <div className='container'>
-                        <div className='section__title'>
-                            <Title>{title}</Title>
-                        </div>
-                        <div
-                            className={`section__posts section__posts_${size}`}
-                        >
-                            {arrSearch.map((item, index) => {
-                                return (
-                                    <Post
-                                        classname={classname}
-                                        type={type}
-                                        key={index}
-                                        postInfo={item}
-                                    />
-                                );
-                            })}
-                        </div>
-                    </div>
-                </section>
-            )
-        );
-    }
     return (
         arrPosts && (
             <section className={bgc.join(' ')}>
@@ -149,12 +103,14 @@ const Section = ({
                                     : 'section__button'
                             }
                         >
-                            {showMore || hide ? (
+                            {type === 'anons' && arrPosts.length < 18 ? (
+                                <button></button>
+                            ) : showMore || hide ? (
                                 <button onClick={loadMore}>
                                     Read more <IconRead />
                                 </button>
                             ) : (
-                                ''
+                                <button></button>
                             )}
                         </div>
                     )}

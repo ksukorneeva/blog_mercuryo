@@ -20,29 +20,28 @@ const Desctop = () => {
     const [users, setUsers] = useState();
     const gettingPosts = useCallback(async () => {
         const articles = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=5&per_page=8'
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=5&per_page=8'
         );
         const annonsment = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=8&per_page=12'
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=8&per_page=12'
         );
         const insights = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=6&per_page=4'
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=6&per_page=4'
         );
         const media = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=10&per_page=8'
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=10&per_page=8'
         );
         const roundUp = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=9&per_page=16'
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=9&per_page=16'
         );
         const success = await axios.get(
-            'https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?categories=7&per_page=6'
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=7&per_page=6'
         );
         const userdata = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
+            'https://zazhigay.com/wp-json/wp/v2/users?per_page=50'
         );
 
         const users = Array.from(userdata.data);
-
         const newArrUsers = users
             .filter((user) => user.id !== 10)
             .filter((user) => user.id !== 1);

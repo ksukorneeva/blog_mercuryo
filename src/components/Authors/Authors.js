@@ -28,7 +28,7 @@ const Authors = ({ view, authors }) => {
     const handleClick = async (user) => {
         setUser(user);
         const userPosts = await axios.get(
-            `https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?author=${user.id}&per_page=10`
+            `https://zazhigay.com/wp-json/wp/v2/posts?author=${user.id}&per_page=10`
         );
         setAuthorPosts(userPosts.data);
         setDATA(userPosts.data);
@@ -36,7 +36,7 @@ const Authors = ({ view, authors }) => {
     };
     const gettingUsers = useCallback(async () => {
         const autorsPosts = await axios.get(
-            `https://mercuryo.zazhigay.com/wp-json/wp/v2/posts?author=${
+            `https://zazhigay.com/wp-json/wp/v2/posts?author=${
                 authors[0].id
             }&per_page=${view === 'page' ? 100 : 10}`
         );
@@ -46,6 +46,7 @@ const Authors = ({ view, authors }) => {
         setList(slice(autorsPosts.data, 0, LIMIT));
         setUsers(authors);
     }, [authors, view]);
+
     useEffect(() => {
         gettingUsers();
     }, [gettingUsers]);

@@ -20,13 +20,13 @@ const Article = () => {
 
     const gettingPosts = useCallback(async () => {
         const data = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
+            'https://zazhigay.com/wp-json/wp/v2/posts?page=1&per_page=100'
         );
         const data2 = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
+            'https://zazhigay.com/wp-json/wp/v2/posts?page=2&per_page=100'
         );
         const dataUsers = await axios.get(
-            'http://mercuryo.zazhigay.com/wp-json/wp/v2/users?per_page=100'
+            'https://zazhigay.com/wp-json/wp/v2/users?per_page=100'
         );
         const dataPosts = [].concat(data.data, data2.data);
 
