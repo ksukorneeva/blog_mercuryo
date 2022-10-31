@@ -7,8 +7,9 @@ import Input from '../Input/Input';
 import { listNav } from '../../../data';
 import { AppContext } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import { ReactComponent as Logo } from '../../../img/icons/logo_white.svg';
 
-const NavBar = () => {
+const NavBar = ({ classNB }) => {
     const app = useContext(AppContext);
 
     const navigate = useNavigate();
@@ -37,7 +38,15 @@ const NavBar = () => {
     };
 
     return (
-        <nav className={!open ? 'navbar' : 'navbar navbar_black'}>
+        <nav
+            className={
+                classNB === 'white'
+                    ? 'navbar navbar_white'
+                    : !open
+                    ? 'navbar'
+                    : 'navbar navbar_black'
+            }
+        >
             <div className='container'>
                 <div
                     className={
@@ -48,7 +57,7 @@ const NavBar = () => {
                 >
                     <div className='navbar__logo'>
                         <Link to='/' className={open ? 'black' : ' '}>
-                            blog.mercuryo
+                            <Logo />
                         </Link>
                     </div>
 

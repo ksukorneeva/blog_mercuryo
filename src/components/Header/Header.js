@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss';
-import { ReactComponent as Logo } from '../../img/icons/logo.svg';
+import { ReactComponent as Logo } from '../../img/icons/logo_header.svg';
 import { ReactComponent as Dot } from '../../img/icons/dot.svg';
 import { useState } from 'react';
 import Popup from '../ui/Popup/Popup';
@@ -17,12 +17,28 @@ const Header = () => {
     return (
         <>
             <header className={popup ? 'header header__bg' : 'header'}>
-                <img src={BG} alt='bg' className='header__img_left' />
-                <img src={BACK} alt='bg' className='header__img_center' />
+                <img
+                    src={BG}
+                    alt='bg'
+                    className={!popup ? 'header__img_left' : 'header__img_none'}
+                />
+                <img
+                    src={BACK}
+                    alt='bg'
+                    className={
+                        !popup ? 'header__img_center' : 'header__img_none'
+                    }
+                />
                 {/* <img src={LINE} alt='bg' className='header__img_line' /> */}
                 <div className='container'>
                     <div className='header-top'>
-                        <div className='header-top__logo'>
+                        <div
+                            className={
+                                !popup
+                                    ? 'header-top__logo'
+                                    : 'header-top__logo header-top__logo_black'
+                            }
+                        >
                             <Logo />
                         </div>
                         <div className='header-top__menu'>

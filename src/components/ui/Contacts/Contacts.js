@@ -1,6 +1,7 @@
 import React from 'react';
 import './Contacts.scss';
 import Button from '../Button/Button';
+import BACK from '../../../img/line.png';
 
 const Contacts = () => {
     return (
@@ -15,6 +16,7 @@ const Contacts = () => {
                             grow together.
                         </div>
                         <Button>Contact us</Button>
+                        <img src={BACK} alt='bg' />
                     </div>
                 </div>
             </div>

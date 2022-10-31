@@ -25,7 +25,7 @@
         }
     }
     svg {
-        fill: #000;
+        fill: #fff;
         width: 28px;
         height: 29px;
         right: 0;
@@ -43,6 +43,10 @@
         }
         &:active {
             border-bottom: 1px solid #000;
+        }
+
+        .input svg {
+            fill: #000;
         }
     }
 }

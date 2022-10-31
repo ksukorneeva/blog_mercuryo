@@ -2,6 +2,7 @@ import React from 'react';
 import './Footer.scss';
 import { ReactComponent as IconVisa } from '../../img/icons/iconvisa.svg';
 import { ReactComponent as Visa } from '../../img/icons/visa.svg';
+
 import { listFooter } from '../../data';
 
 const Footer = () => {

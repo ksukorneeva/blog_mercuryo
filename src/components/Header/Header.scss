@@ -12,6 +12,10 @@
     height: 720px;
     position: relative;
 
+    &__img_none {
+        display: none;
+    }
+
     &__img_left {
         z-index: -2;
         position: absolute;
@@ -55,6 +59,15 @@
 
         &__logo {
             width: 120px;
+
+            svg {
+                fill: #000;
+            }
+            &_black {
+                svg {
+                    fill: #fff;
+                }
+            }
         }
 
         &__menu {

@@ -17,6 +17,7 @@ const Article = () => {
     const [post, setPost] = useState();
     const [user, setUser] = useState();
     const [userPosts, setUserPosts] = useState();
+    const [classNB, setClassNB] = useState('white');
 
     const gettingPosts = useCallback(async () => {
         const data = await axios.get(
@@ -47,13 +48,29 @@ const Article = () => {
         return <div dangerouslySetInnerHTML={innerHtml}></div>;
     };
 
+    window.scrollTo({
+        top: 1000,
+        behavior: 'smooth',
+    });
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                setClassNB('black');
+            }
+            if (window.scrollY < 50) {
+                setClassNB('white');
+            }
+        });
         gettingPosts();
     }, [gettingPosts]);
 
     return (
         <>
-            <NavBar />
+            <NavBar classNB={classNB} />
             {user && post && params && (
                 <>
                     <header className='header-art'>

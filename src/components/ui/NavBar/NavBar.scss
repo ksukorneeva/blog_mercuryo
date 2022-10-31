@@ -16,6 +16,34 @@
         }
     }
 
+    &_white {
+        background: #fff;
+
+        .navbar {
+            &__wrap {
+                color: #000;
+            }
+            &__logo {
+                svg {
+                    fill: #000;
+                }
+            }
+            &__menu {
+                ul {
+                    li {
+                        a {
+                            color: #000;
+                        }
+
+                        svg {
+                            fill: #000;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     &__wrap {
         display: flex;
         align-items: center;
@@ -28,9 +56,12 @@
         font-weight: 400;
         font-size: 29px;
         line-height: 52px;
-        padding-top: 9px;
+        padding-top: 20px;
         padding-bottom: 20px;
         font-family: 'KarloffNeutralPro', sans-serif;
+        svg {
+            fill: white;
+        }
     }
 
     &__search {
@@ -66,6 +97,9 @@
                 margin-right: 51px;
                 a {
                     color: #fff;
+                }
+                svg {
+                    fill: #fff;
                 }
             }
         }
@@ -127,7 +161,7 @@
                 display: flex;
                 flex-direction: column;
                 left: 0;
-                top: 40px;
+                top: 50px;
                 width: 100%;
                 background-color: #000;
                 height: calc(100vh - 40px);
@@ -156,9 +190,13 @@
             background: #fff;
             border-radius: 8px;
             margin-bottom: 4px;
-            height: 40px;
+            height: 50px;
             // transition: 0.3s;
             z-index: 2;
+
+            svg {
+                fill: #000;
+            }
 
             &_black {
                 background: #000;
@@ -176,12 +214,16 @@
             font-size: 27px;
             padding: 0;
             z-index: 2;
+            line-height: 50%;
 
             a {
                 color: #000;
                 &.black {
                     color: #fff;
                     z-index: 2;
+                    svg {
+                        fill: #fff;
+                    }
                 }
             }
         }

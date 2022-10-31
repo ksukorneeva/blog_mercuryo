@@ -17,6 +17,7 @@ function App() {
     const [annonsPosts, setAnnonsPosts] = useState();
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
+    const [partnersPosts, setPartnersPosts] = useState();
     const [users, setUsers] = useState();
 
     const gettingPosts = useCallback(async () => {
@@ -38,8 +39,11 @@ function App() {
         const success = await axios.get(
             'https://zazhigay.com/wp-json/wp/v2/posts?categories=7&per_page=50'
         );
+        const partners = await axios.get(
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=148&per_page=50'
+        );
         const userdata = await axios.get(
-            'https://zazhigay.com/wp-json/wp/v2/users?per_page=100'
+            'https://zazhigay.com/wp-json/wp/v2/users'
         );
 
         const users = Array.from(userdata.data);
@@ -47,7 +51,14 @@ function App() {
         const newArrUsers = users
             .filter((user) => user.id !== 10)
             .filter((user) => user.id !== 1);
-        setUsers(newArrUsers);
+
+        const usersSort = newArrUsers.sort(function (a, b) {
+            return (
+                Number(a.yoast_head_json.schema['@graph'][3].sameAs) -
+                Number(b.yoast_head_json.schema['@graph'][3].sameAs)
+            );
+        });
+        setUsers(usersSort);
 
         setArticlePosts(articles.data);
         setInsightsPosts(insights.data);
@@ -55,6 +66,7 @@ function App() {
         setAnnonsPosts(annonsment.data);
         setRoundPosts(roundUp.data);
         setMediaPosts(media.data);
+        setPartnersPosts(partners.data);
         // setPartnersPosts(categoryFilter(posts, 'Part'));
     }, []);
 
@@ -135,6 +147,16 @@ function App() {
                                 title='Round-up'
                                 view='page'
                                 arrPosts={roundPosts}
+                            />
+                        }
+                    />
+                    <Route
+                        path='/partners'
+                        element={
+                            <Allposts
+                                title='Partners'
+                                view='page'
+                                arrPosts={partnersPosts}
                             />
                         }
                     />

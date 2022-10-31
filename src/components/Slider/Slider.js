@@ -34,7 +34,7 @@ const Slider = ({ arrPosts }) => {
                             <div className='slider__img'>
                                 <img
                                     src={
-                                        arrPosts[active].x_featured_media_large
+                                        arrPosts[active]?.x_featured_media_large
                                     }
                                     alt='img'
                                 />

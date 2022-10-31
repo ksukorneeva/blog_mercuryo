@@ -60,63 +60,61 @@ const Section = ({
     // const gettingPosts = useCallback(async () => {
 
     return (
-        arrPosts && (
-            <section className={bgc.join(' ')}>
-                <div className='container'>
+        <section className={bgc.join(' ')}>
+            <div className='container'>
+                <div
+                    className={
+                        bg === 'dark'
+                            ? 'section__title_dark section__title'
+                            : 'section__title'
+                    }
+                >
+                    <Title bg={bg}>{title}</Title>
+                </div>
+                <div className={`section__posts section__posts_${size}`}>
+                    {view === 'page'
+                        ? arrPosts.map((item, index) => {
+                              return (
+                                  <Post
+                                      classname={classname}
+                                      type={type}
+                                      key={index}
+                                      postInfo={item}
+                                  />
+                              );
+                          })
+                        : list.map((item, index) => {
+                              return (
+                                  <Post
+                                      classname={classname}
+                                      type={type}
+                                      key={index}
+                                      postInfo={item}
+                                  />
+                              );
+                          })}
+                </div>
+                {view !== 'page' && (
                     <div
                         className={
                             bg === 'dark'
-                                ? 'section__title_dark section__title'
-                                : 'section__title'
+                                ? 'section__button section__button_dark'
+                                : 'section__button'
                         }
                     >
-                        <Title bg={bg}>{title}</Title>
+                        {type === 'anons' && arrPosts.length < 18 ? (
+                            <button></button>
+                        ) : showMore || hide ? (
+                            <button onClick={loadMore}>
+                                Read more <IconRead />
+                            </button>
+                        ) : (
+                            <button></button>
+                        )}
                     </div>
-                    <div className={`section__posts section__posts_${size}`}>
-                        {view === 'page'
-                            ? arrPosts.map((item, index) => {
-                                  return (
-                                      <Post
-                                          classname={classname}
-                                          type={type}
-                                          key={index}
-                                          postInfo={item}
-                                      />
-                                  );
-                              })
-                            : list.map((item, index) => {
-                                  return (
-                                      <Post
-                                          classname={classname}
-                                          type={type}
-                                          key={index}
-                                          postInfo={item}
-                                      />
-                                  );
-                              })}
-                    </div>
-                    {view !== 'page' && (
-                        <div
-                            className={
-                                bg === 'dark'
-                                    ? 'section__button section__button_dark'
-                                    : 'section__button'
-                            }
-                        >
-                            {type === 'anons' && arrPosts.length < 18 ? (
-                                <button></button>
-                            ) : showMore || hide ? (
-                                <button onClick={loadMore}>
-                                    Read more <IconRead />
-                                </button>
-                            ) : (
-                                <button></button>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </section>
-        )
+                )}
+            </div>
+        </section>
     );
 };
 

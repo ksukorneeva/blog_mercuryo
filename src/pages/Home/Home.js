@@ -16,7 +16,7 @@ const Desctop = () => {
     const [annonsPosts, setAnnonsPosts] = useState();
     const [roundPosts, setRoundPosts] = useState();
     const [mediaPosts, setMediaPosts] = useState();
-    // const [partnersPosts, setPartnersPosts] = useState();
+    const [partnersPosts, setPartnersPosts] = useState();
     const [users, setUsers] = useState();
     const gettingPosts = useCallback(async () => {
         const articles = await axios.get(
@@ -40,12 +40,21 @@ const Desctop = () => {
         const userdata = await axios.get(
             'https://zazhigay.com/wp-json/wp/v2/users?per_page=50'
         );
+        const partners = await axios.get(
+            'https://zazhigay.com/wp-json/wp/v2/posts?categories=148&per_page=50'
+        );
 
         const users = Array.from(userdata.data);
         const newArrUsers = users
             .filter((user) => user.id !== 10)
             .filter((user) => user.id !== 1);
-        setUsers(newArrUsers);
+        const usersSort = newArrUsers.sort(function (a, b) {
+            return (
+                Number(a.yoast_head_json.schema['@graph'][3].sameAs) -
+                Number(b.yoast_head_json.schema['@graph'][3].sameAs)
+            );
+        });
+        setUsers(usersSort);
 
         setArticlePosts(articles.data);
         setInsightsPosts(insights.data);
@@ -53,6 +62,7 @@ const Desctop = () => {
         setAnnonsPosts(annonsment.data);
         setRoundPosts(roundUp.data);
         setMediaPosts(media.data);
+        setPartnersPosts(partners.data);
         // setPartnersPosts(categoryFilter(posts, 'Part'));
     }, []);
 
@@ -109,6 +119,14 @@ const Desctop = () => {
                     size='small'
                     type='post'
                     arrPosts={mediaPosts}
+                />
+            )}
+            {partnersPosts && (
+                <Section
+                    title='Partners'
+                    size='small'
+                    type='post'
+                    arrPosts={partnersPosts}
                 />
             )}
             <Contacts />

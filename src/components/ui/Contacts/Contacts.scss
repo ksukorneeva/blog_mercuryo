@@ -1,12 +1,12 @@
 .contacts {
-    background: url(../../../img/contactsbg.png) no-repeat,
-        url(../../../img/contacts.png) no-repeat;
-    background-size: cover, auto 100%;
-    background-position: right;
+    background: url(../../../img/contacts.png) no-repeat;
+    background-size: cover;
+    overflow: hidden;
 
     &__text {
-        padding: 122px 0 79px;
+        padding: 131px 0 179px;
         max-width: 530px;
+        position: relative;
     }
 
     &__title {
@@ -14,15 +14,22 @@
         font-family: 'KarloffNeutralPro', sans-serif;
         font-size: 78px;
         line-height: 78px;
-        color: #ffffff;
+        color: #000;
     }
 
     &__subtitle {
         font-weight: 400;
         font-size: 28px;
         line-height: 38px;
-        color: #ffffff;
+        color: #000;
         margin: 60px 0;
+    }
+
+    img {
+        position: absolute;
+        right: -150%;
+        top: 0;
+        height: 100%;
     }
 }
 

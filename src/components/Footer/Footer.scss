@@ -4,6 +4,58 @@
     border-radius: 0 0 300px;
     padding-bottom: 94px;
 
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(#fff, 0.4);
+        padding-bottom: 40px;
+    }
+
+    &__mail {
+        font-family: 'Karloff Neutral Pro';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 70px;
+        line-height: 56px;
+    }
+    &__buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    &__button {
+        color: #fff;
+        border-radius: 8px;
+        background: rgba(#ffffff, 0.1);
+        padding: 9px 16px;
+        display: flex;
+        align-items: center;
+
+        &:first-child {
+            margin-right: 8px;
+        }
+
+        svg {
+            margin-right: 8px;
+            fill: #fff;
+        }
+    }
+    &__social {
+        text-align: center;
+    }
+    &__reviews {
+        color: #fff;
+        font-family: 'Brutal Type';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        svg {
+            margin: 0 2px;
+        }
+    }
+
     &__text {
         font-weight: 400;
         font-size: 12px;
@@ -55,6 +107,23 @@
         li {
             padding-bottom: 8px;
         }
+    }
+}
+@media (max-width: 920px) {
+    .footer__mail {
+        font-size: 38px;
+    }
+}
+@media (max-width: 640px) {
+    .footer__mail {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .footer__social {
+        display: none;
+    }
+    .list {
+        margin-bottom: 10px;
     }
 }
 

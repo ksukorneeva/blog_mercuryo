@@ -6,10 +6,14 @@ import './Post.scss';
 const Post = ({ classname, type, postInfo }) => {
     const navigate = useNavigate();
     const [post, setPost] = useState();
+
     const handelClick = () => {
         if (postInfo.categories.includes(10)) {
             // console.log(postInfo.link);
-            window.location = postInfo.link;
+            //  = postInfo.link;
+
+            window.location =
+                postInfo.x_metadata.td_post_theme_settings.td_source_url;
         } else {
             navigate(`/articles/id${postInfo.id}`);
         }
