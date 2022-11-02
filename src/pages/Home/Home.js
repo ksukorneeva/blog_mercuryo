@@ -75,7 +75,7 @@ const Desctop = () => {
             <Header />
             <NavBar />
 
-            {articlePosts && (
+            {articlePosts?.length && (
                 <Section
                     title='Articles'
                     size='small'
@@ -83,9 +83,9 @@ const Desctop = () => {
                     arrPosts={articlePosts}
                 />
             )}
-            {users && <Authors authors={users} />}
+            {users?.length && <Authors authors={users} />}
             <Subscribe />
-            {insightsPosts && (
+            {insightsPosts?.length && (
                 <Section
                     title='Insights'
                     size='large'
@@ -94,7 +94,7 @@ const Desctop = () => {
                 />
             )}
 
-            {successPosts && (
+            {successPosts?.length && (
                 <Section
                     title='Success stories'
                     size='medium'
@@ -103,7 +103,7 @@ const Desctop = () => {
                     arrPosts={successPosts}
                 />
             )}
-            {annonsPosts && (
+            {annonsPosts?.length && (
                 <Section
                     title='Announcements'
                     size='medium'
@@ -112,8 +112,8 @@ const Desctop = () => {
                     arrPosts={annonsPosts}
                 />
             )}
-            {roundPosts && <Slider arrPosts={roundPosts} />}
-            {mediaPosts && (
+            {roundPosts?.length && <Slider arrPosts={roundPosts} />}
+            {mediaPosts?.length && (
                 <Section
                     title='Media'
                     size='small'
@@ -121,7 +121,7 @@ const Desctop = () => {
                     arrPosts={mediaPosts}
                 />
             )}
-            {partnersPosts && (
+            {partnersPosts?.length && (
                 <Section
                     title='Partners'
                     size='small'

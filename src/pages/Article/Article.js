@@ -48,10 +48,6 @@ const Article = () => {
         return <div dangerouslySetInnerHTML={innerHtml}></div>;
     };
 
-    window.scrollTo({
-        top: 1000,
-        behavior: 'smooth',
-    });
     useEffect(() => {
         window.scrollTo({
             top: 0,
