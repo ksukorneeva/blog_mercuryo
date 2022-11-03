@@ -2,20 +2,49 @@ export const listFooter = [
     {
         title: 'Products',
         items: [
-            'On- and off-ramps',
-            'Banking-as-a-Service',
-            'Crypto Pay in & Pay out',
-            'Fiat Pay in & Pay out',
-            'Wallet',
+            {
+                title: 'On- and off-ramps',
+                href: 'https://mercuryo.io/on-off-ramps/',
+            },
+            {
+                title: 'Banking-as-a-Service',
+                href: 'https://mercuryo.io/baas/',
+            },
+            {
+                title: 'Crypto Pay in & Pay out',
+                href: 'https://mercuryo.io/crypto-in-out/',
+            },
+            {
+                title: 'Fiat Pay in & Pay out',
+                href: 'https://mercuryo.io/fiat-in-out/',
+            },
+            { title: 'Wallet', href: 'https://mercuryo.io/wallet/' },
         ],
     },
     {
         title: 'Company',
-        items: ['About', 'Blog', 'Help', 'Design'],
+        items: [
+            { title: 'About', href: 'https://mercuryo.io/about/' },
+            { title: 'Blog', href: 'https://blog.mercuryo.io/' },
+            {
+                title: 'Help',
+                href: 'https://help.mercuryo.io/en/collections/1549864-customer-support-help-center',
+            },
+        ],
     },
     {
         title: 'Follow us',
-        items: ['LinkedIn', 'Twitter', 'Facebook'],
+        items: [
+            {
+                title: 'LinkedIn',
+                href: 'https://www.linkedin.com/company/mercuryo-io',
+            },
+            { title: 'Twitter', href: 'https://twitter.com/Mercuryo_io' },
+            {
+                title: 'Facebook',
+                href: 'https://www.facebook.com/mercuryo.io',
+            },
+        ],
     },
 ];
 

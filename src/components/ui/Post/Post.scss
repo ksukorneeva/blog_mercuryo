@@ -29,7 +29,7 @@
         width: 100%;
         margin-bottom: 17px;
         img {
-            width: 100%;
+            max-width: 100%;
             height: 100%;
             object-fit: contain;
         }
@@ -59,9 +59,17 @@
     display: none;
 }
 
-// @media (max-width: 1170px) {
-//     .post__img {
-//         width: 340px;
-//         height: 170px;
-//     }
-// }
+@media (max-width: 540px) {
+    .post_small {
+        .post__img {
+            max-width: 100%;
+            height: 100%;
+        }
+    }
+    .post_large {
+        .post__img {
+            max-width: 100%;
+            height: max-content;
+        }
+    }
+}

@@ -5,7 +5,7 @@ import Post from '../ui/Post/Post';
 import axios from 'axios';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import twit from '../../img/icons/twit.png';
-import facebook from '../../img/icons/facebook.png';
+import facebook from '../../img/icons/linkedin.png';
 import Carousel from '../ui/Carousel/Carousel';
 import { slice, concat } from 'lodash';
 import { useNavigate } from 'react-router';
@@ -95,8 +95,29 @@ const Authors = ({ view, authors }) => {
                                         {user?.description}
                                     </div>
                                     <div className='info__icons'>
-                                        <img src={twit} alt='twit' />
-                                        <img src={facebook} alt='facebook' />
+                                        <a
+                                            href={
+                                                user.yoast_head_json.schema[
+                                                    '@graph'
+                                                ][3].sameAs[1]
+                                            }
+                                        >
+                                            {' '}
+                                            <img src={twit} alt='twit' />
+                                        </a>
+                                        <a
+                                            href={
+                                                user.yoast_head_json.schema[
+                                                    '@graph'
+                                                ][3].sameAs[0]
+                                            }
+                                        >
+                                            {' '}
+                                            <img
+                                                src={facebook}
+                                                alt='facebook'
+                                            />
+                                        </a>
                                     </div>
                                 </div>
                             </div>

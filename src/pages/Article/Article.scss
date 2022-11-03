@@ -100,7 +100,15 @@
         color: #000;
     }
 }
+@media (max-width: 1177px) {
+    .header-art__img {
+        max-width: 100%;
 
+        img {
+            max-width: 100%;
+        }
+    }
+}
 @media (max-width: 540px) {
     .header-art__description {
         padding-bottom: 50px;

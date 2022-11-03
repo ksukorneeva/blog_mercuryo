@@ -17,7 +17,7 @@ const Footer = () => {
                                 <ul>
                                     {item.items.map((li, index) => (
                                         <li key={10000 + index}>
-                                            <a href='/'>{li}</a>
+                                            <a href={li.href}>{li.title}</a>
                                         </li>
                                     ))}
                                 </ul>
@@ -55,16 +55,24 @@ const Footer = () => {
                     <div className='footer__menu'>
                         <ul>
                             <li>
-                                <a href='/'>Cookies policy</a>
+                                <a href='https://mercuryo.io/legal/cookies/'>
+                                    Cookies policy
+                                </a>
                             </li>
                             <li>
-                                <a href='/'>Terms of Service</a>
+                                <a href='https://mercuryo.io/legal/terms/'>
+                                    Terms of Service
+                                </a>
                             </li>
                             <li>
-                                <a href='/'>Privacy Policy</a>
+                                <a href='https://mercuryo.io/legal/privacy/'>
+                                    Privacy Policy
+                                </a>
                             </li>
                             <li>
-                                <a href='/'>Referral Program TOS</a>
+                                <a href='https://mercuryo.io/legal/referral/'>
+                                    Referral Program TOS
+                                </a>
                             </li>
                         </ul>
                     </div>
