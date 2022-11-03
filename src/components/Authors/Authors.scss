@@ -158,13 +158,17 @@
         }
     }
 
+    .info__img {
+        margin-right: 0;
+    }
+
     .info {
         position: relative;
     }
     .info__icons {
         position: absolute;
-        top: 70%;
-        left: 7%;
+        top: 60%;
+        left: 10%;
     }
 }
 
@@ -185,8 +189,16 @@
             height: 100px;
         }
         &__icons {
-            top: 40%;
-            left: 5%;
+            top: 35%;
+            left: 2%;
+        }
+    }
+}
+@media (max-width: 420px) {
+    .info {
+        &__icons {
+            top: 22%;
+            left: 2%;
         }
     }
 }
