@@ -49,7 +49,7 @@ const Carousel = ({ arrAuthors, onClick, active }) => {
                     <button
                         type='button'
                         disabled={!canScrollLeft}
-                        onClick={() => scrollContainerBy(-400)}
+                        onClick={() => scrollContainerBy(-200)}
                         className={cn('authors__button', 'buttonLeft', {
                             'button--hidden': !canScrollLeft,
                         })}
@@ -73,7 +73,7 @@ const Carousel = ({ arrAuthors, onClick, active }) => {
                     <button
                         type='button'
                         disabled={!canScrollRight}
-                        onClick={() => scrollContainerBy(400)}
+                        onClick={() => scrollContainerBy(200)}
                         className={cn('authors__button', 'buttonRight', {
                             'button--hidden': !canScrollRight,
                         })}

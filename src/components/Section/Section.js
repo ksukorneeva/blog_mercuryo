@@ -102,7 +102,11 @@ const Section = ({
                                 : 'section__button'
                         }
                     >
-                        {type === 'anons' && arrPosts.length < 18 ? (
+                        {arrPosts.length < LIMIT ? (
+                            <button></button>
+                        ) : arrPosts.length < LIMIT * 2 ? (
+                            <button></button>
+                        ) : type === 'anons' && arrPosts.length < 18 ? (
                             <button></button>
                         ) : showMore || hide ? (
                             <button onClick={loadMore}>
@@ -111,6 +115,15 @@ const Section = ({
                         ) : (
                             <button></button>
                         )}
+                        {/* {type === 'anons' && arrPosts.length < 18 ? (
+                            <button></button>
+                        ) : showMore || hide ? (
+                            <button onClick={loadMore}>
+                                Read more <IconRead />
+                            </button>
+                        ) : (
+                            <button></button>
+                        )} */}
                     </div>
                 )}
             </div>

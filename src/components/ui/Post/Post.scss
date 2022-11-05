@@ -58,6 +58,11 @@
 .close {
     display: none;
 }
+@media (max-width: 764px) {
+    .post__title {
+        font-size: 18px;
+    }
+}
 
 @media (max-width: 540px) {
     .post_small {

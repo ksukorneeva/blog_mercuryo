@@ -33,22 +33,43 @@
     }
 }
 
+@media (min-width: 1750px) {
+    .contacts {
+        background-size: cover, cover;
+    }
+}
+
 @media (max-width: 540px) {
     .contacts {
+        background: url(../../../img/contactsbg_mob.png) no-repeat;
+        background-size: cover;
+        background-position: top -50px;
+
+        img {
+            position: absolute;
+            left: -87px;
+            top: 360px;
+            height: 409px;
+            transform: rotate(167deg);
+        }
+
+        &__text {
+            padding-top: 30px;
+            padding-bottom: 374px;
+        }
+
         &__title {
             font-size: 40px;
         }
 
         &__subtitle {
             font-size: 22px;
-            margin-top: 24px;
-            margin-bottom: 40px;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
-    }
-}
 
-@media (min-width: 1750px) {
-    .contacts {
-        background-size: cover, cover;
+        .button {
+            width: 100%;
+        }
     }
 }

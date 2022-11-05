@@ -8,6 +8,7 @@ import Contacts from '../../components/ui/Contacts/Contacts';
 import Footer from '../../components/Footer/Footer';
 import Slider from '../../components/Slider/Slider';
 import Subscribe from '../../components/ui/Subscribe/Subscribe';
+import Loader from '../../components/ui/Loader/Loader';
 
 const Desctop = () => {
     const [articlePosts, setArticlePosts] = useState();
@@ -18,6 +19,8 @@ const Desctop = () => {
     const [mediaPosts, setMediaPosts] = useState();
     const [partnersPosts, setPartnersPosts] = useState();
     const [users, setUsers] = useState();
+    const [isLoading, setIsLoading] = useState('true');
+
     const gettingPosts = useCallback(async () => {
         const articles = await axios.get(
             'https://zazhigay.com/wp-json/wp/v2/posts?categories=5&per_page=8'
@@ -64,6 +67,7 @@ const Desctop = () => {
         setMediaPosts(media.data);
         setPartnersPosts(partners.data);
         // setPartnersPosts(categoryFilter(posts, 'Part'));
+        setIsLoading(false);
     }, []);
 
     useEffect(() => {
@@ -72,65 +76,71 @@ const Desctop = () => {
 
     return (
         <>
-            <Header />
-            <NavBar />
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <>
+                    <Header />
+                    <NavBar />
 
-            {articlePosts?.length && (
-                <Section
-                    title='Articles'
-                    size='small'
-                    type='post'
-                    arrPosts={articlePosts}
-                />
-            )}
-            {users?.length && <Authors authors={users} />}
-            <Subscribe />
-            {insightsPosts?.length && (
-                <Section
-                    title='Insights'
-                    size='large'
-                    type='post'
-                    arrPosts={insightsPosts}
-                />
-            )}
+                    {articlePosts?.length && (
+                        <Section
+                            title='Articles'
+                            size='small'
+                            type='post'
+                            arrPosts={articlePosts}
+                        />
+                    )}
+                    {users?.length && <Authors authors={users} />}
+                    <Subscribe />
+                    {insightsPosts?.length && (
+                        <Section
+                            title='Insights'
+                            size='large'
+                            type='post'
+                            arrPosts={insightsPosts}
+                        />
+                    )}
 
-            {successPosts?.length && (
-                <Section
-                    title='Success stories'
-                    size='medium'
-                    type='post'
-                    bg='light'
-                    arrPosts={successPosts}
-                />
+                    {successPosts?.length && (
+                        <Section
+                            title='Success stories'
+                            size='medium'
+                            type='post'
+                            bg='light'
+                            arrPosts={successPosts}
+                        />
+                    )}
+                    {annonsPosts?.length && (
+                        <Section
+                            title='Announcements'
+                            size='medium'
+                            type='anons'
+                            bg='dark'
+                            arrPosts={annonsPosts}
+                        />
+                    )}
+                    {roundPosts?.length && <Slider arrPosts={roundPosts} />}
+                    {mediaPosts?.length && (
+                        <Section
+                            title='Media'
+                            size='small'
+                            type='post'
+                            arrPosts={mediaPosts}
+                        />
+                    )}
+                    {partnersPosts?.length && (
+                        <Section
+                            title='Partners'
+                            size='small'
+                            type='post'
+                            arrPosts={partnersPosts}
+                        />
+                    )}
+                    <Contacts />
+                    <Footer />
+                </>
             )}
-            {annonsPosts?.length && (
-                <Section
-                    title='Announcements'
-                    size='medium'
-                    type='anons'
-                    bg='dark'
-                    arrPosts={annonsPosts}
-                />
-            )}
-            {roundPosts?.length && <Slider arrPosts={roundPosts} />}
-            {mediaPosts?.length && (
-                <Section
-                    title='Media'
-                    size='small'
-                    type='post'
-                    arrPosts={mediaPosts}
-                />
-            )}
-            {partnersPosts?.length && (
-                <Section
-                    title='Partners'
-                    size='small'
-                    type='post'
-                    arrPosts={partnersPosts}
-                />
-            )}
-            <Contacts />
-            <Footer />
         </>
     );
 };

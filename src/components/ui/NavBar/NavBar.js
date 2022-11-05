@@ -77,7 +77,9 @@ const NavBar = ({ classNB }) => {
                         >
                             {listNav.map((item, index) => (
                                 <li key={index}>
-                                    <Link to={item.href}>{item.title}</Link>
+                                    <Link to={item.href} target='_blank'>
+                                        {item.title}
+                                    </Link>
                                 </li>
                             ))}
                             <li>

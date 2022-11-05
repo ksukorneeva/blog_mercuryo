@@ -11,6 +11,7 @@ import Post from '../../components/ui/Post/Post';
 import { Link } from 'react-router-dom';
 import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
 import { useCallback } from 'react';
+import Loader from '../../components/ui/Loader/Loader';
 
 const Article = () => {
     const params = useParams();
@@ -18,6 +19,7 @@ const Article = () => {
     const [user, setUser] = useState();
     const [userPosts, setUserPosts] = useState();
     const [classNB, setClassNB] = useState('white');
+    const [isLoading, setIsLoading] = useState('true');
 
     const gettingPosts = useCallback(async () => {
         const data = await axios.get(
@@ -41,6 +43,7 @@ const Article = () => {
         setUser(user[0]);
 
         setUserPosts(dataPosts.filter((post) => post.author === user[0].id));
+        setIsLoading(false);
     }, [params]);
 
     const GreetingComponent = (props) => {
@@ -66,84 +69,97 @@ const Article = () => {
 
     return (
         <>
-            <NavBar classNB={classNB} />
-            {user && post && params && (
+            {isLoading ? (
+                <Loader />
+            ) : (
                 <>
-                    <header className='header-art'>
-                        <div className='wrap'>
-                            <div className='header-art__img'>
-                                <img
-                                    src={post.x_featured_media_large}
-                                    alt='posts_img'
-                                />
-                            </div>
-                            <div className='header-art__title'>
-                                {post.title.rendered}
-                            </div>
-                            <div className='header-art__description'>
-                                {GreetingComponent(post.excerpt.rendered)}
-                            </div>
-                        </div>
-                    </header>
-                    <div className='content-art'>
-                        <Paragraph content={post.content.rendered} />
-                        <div className='container'>
-                            <div className='author-info'>
-                                <div className='author-info__img'>
-                                    <img
-                                        src={user.avatar_urls[96]}
-                                        alt='user_avatar'
-                                    />
-                                </div>
-                                <div className='author-info__name'>
-                                    {user.name}
-                                </div>
-                                <div className='author-info__icons'>
-                                    <img src={twit} alt='twit' />
-                                    <img src={facebook} alt='facebook' />
-                                </div>
-                                <div className='author-info__description'>
-                                    {user.description}
-                                </div>
-
-                                <section className='section'>
-                                    <div className='container'>
-                                        <div className='section-title'>
-                                            <Link to='/authors'>{`More from ${user.name}`}</Link>
-                                        </div>
-                                        <div
-                                            className={`section__posts section__posts_small`}
-                                        >
-                                            {userPosts
-                                                .slice(0, 8)
-                                                .map((item, index) => {
-                                                    return (
-                                                        <Post
-                                                            type='post'
-                                                            key={index}
-                                                            postInfo={item}
-                                                        />
-                                                    );
-                                                })}
-                                        </div>
-
-                                        <div className='section__button section__button'>
-                                            <button>
-                                                <Link to={`/authors`}>
-                                                    Read more
-                                                </Link>
-                                            </button>
-
-                                            <IconRead />
-                                        </div>
+                    <NavBar classNB={classNB} />
+                    {user && post && params && (
+                        <>
+                            <header className='header-art'>
+                                <div className='wrap'>
+                                    <div className='header-art__img'>
+                                        <img
+                                            src={post.x_featured_media_large}
+                                            alt='posts_img'
+                                        />
                                     </div>
-                                </section>
+                                    <div className='header-art__title'>
+                                        {post.title.rendered}
+                                    </div>
+                                    <div className='header-art__description'>
+                                        {GreetingComponent(
+                                            post.excerpt.rendered
+                                        )}
+                                    </div>
+                                </div>
+                            </header>
+                            <div className='content-art'>
+                                <Paragraph content={post.content.rendered} />
+                                <div className='container'>
+                                    <div className='author-info'>
+                                        <div className='author-info__img'>
+                                            <img
+                                                src={user.avatar_urls[96]}
+                                                alt='user_avatar'
+                                            />
+                                        </div>
+                                        <div className='author-info__name'>
+                                            {user.name}
+                                        </div>
+                                        <div className='author-info__icons'>
+                                            <img src={twit} alt='twit' />
+                                            <img
+                                                src={facebook}
+                                                alt='facebook'
+                                            />
+                                        </div>
+                                        <div className='author-info__description'>
+                                            {user.description}
+                                        </div>
+
+                                        <section className='section'>
+                                            <div className='container'>
+                                                <div className='section-title'>
+                                                    <Link to='/authors'>{`More from ${user.name}`}</Link>
+                                                </div>
+                                                <div
+                                                    className={`section__posts section__posts_small`}
+                                                >
+                                                    {userPosts
+                                                        .slice(0, 8)
+                                                        .map((item, index) => {
+                                                            return (
+                                                                <Post
+                                                                    type='post'
+                                                                    key={index}
+                                                                    postInfo={
+                                                                        item
+                                                                    }
+                                                                />
+                                                            );
+                                                        })}
+                                                </div>
+
+                                                <div className='section__button section__button'>
+                                                    <button>
+                                                        <Link to={`/authors`}>
+                                                            Read more
+                                                        </Link>
+                                                    </button>
+
+                                                    <IconRead />
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </>
+                    )}
+                    <Footer />
                 </>
             )}
-            <Footer />
         </>
     );
 };

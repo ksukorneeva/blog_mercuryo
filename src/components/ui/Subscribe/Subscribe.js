@@ -53,7 +53,7 @@ const Subscribe = () => {
                     <div className='subscribe__form'>
                         <form onSubmit={submitFormHandler}>
                             <Input
-                                label='Email'
+                                label='E-mail'
                                 type='email'
                                 onChange={handleChange}
                             />

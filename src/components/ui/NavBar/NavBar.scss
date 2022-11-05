@@ -187,7 +187,7 @@
 
         &__wrap {
             margin-top: 8px;
-            background: #fff;
+            background: #dfe8ff;
             border-radius: 8px;
             margin-bottom: 4px;
             height: 50px;
@@ -218,6 +218,10 @@
 
             a {
                 color: #000;
+
+                svg {
+                    width: 126px;
+                }
                 &.black {
                     color: #fff;
                     z-index: 2;
