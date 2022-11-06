@@ -40,25 +40,28 @@ const Search = () => {
         arrSearch && (
             <>
                 <NavBar />
-                <section className='section'>
-                    <div className='container'>
-                        <div className='section__title title'>
-                            <Title>Search</Title> «{app.search.toLowerCase()}»
+                <div className='indent'>
+                    <section className='section'>
+                        <div className='container'>
+                            <div className='section__title title'>
+                                <Title>Search</Title> «
+                                {app.search.toLowerCase()}»
+                            </div>
+                            <div className='section__posts section__posts_small'>
+                                {arrSearch.map((item, index) => {
+                                    return (
+                                        <Post
+                                            key={index}
+                                            postInfo={item}
+                                            classname='post_small'
+                                            type='post'
+                                        />
+                                    );
+                                })}
+                            </div>
                         </div>
-                        <div className='section__posts section__posts_small'>
-                            {arrSearch.map((item, index) => {
-                                return (
-                                    <Post
-                                        key={index}
-                                        postInfo={item}
-                                        classname='post_small'
-                                        type='post'
-                                    />
-                                );
-                            })}
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
                 <Footer />
             </>
         )

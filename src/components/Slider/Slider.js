@@ -8,8 +8,8 @@ import 'aos/dist/aos.css';
 
 const Slider = ({ arrPosts }) => {
     const navigate = useNavigate();
-    arrPosts.length = Math.trunc(arrPosts.length / 4) * 4;
-    const dots = arrPosts.slice(0, Math.trunc(arrPosts.length / 4));
+    arrPosts.length = 8;
+    const dots = arrPosts.slice(0, 4);
 
     const [active, setActive] = useState(0);
     const [activePost, setActivePost] = useState(arrPosts.slice(0, 4));
@@ -20,7 +20,7 @@ const Slider = ({ arrPosts }) => {
     };
     const changeSlideClick = (index) => {
         setActiveSlide(index);
-        setActivePost(arrPosts.slice(index * 4, (index + 1) * 4));
+        setActivePost(arrPosts.slice(index, index + 4));
     };
     const handelClick = (slide) => {
         navigate(`/articles/id${slide.id}`);

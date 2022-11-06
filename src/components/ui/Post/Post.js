@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Post.scss';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Post = ({ classname, type, postInfo }) => {
     const navigate = useNavigate();
@@ -19,12 +21,20 @@ const Post = ({ classname, type, postInfo }) => {
         }
     };
     const data = new Date(post?.date).toDateString().slice(4, 10);
+    AOS.init();
     useEffect(() => {
         setPost(postInfo);
+        AOS.init();
     }, [postInfo]);
     return (
         post && (
-            <div className={classname} onClick={handelClick}>
+            <div
+                className={classname}
+                onClick={handelClick}
+                data-aos='fade-up'
+                data-aos-duration='10000'
+                data-aos-anchor-placement='top-bottom'
+            >
                 <div className={type === 'anons' ? 'post__data' : 'close'}>
                     {data}
                 </div>
