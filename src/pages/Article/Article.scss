@@ -45,6 +45,7 @@
 
 .author-info {
     margin: 0 auto;
+    margin-top: 81px;
 
     &__img {
         width: 187px;
@@ -60,11 +61,18 @@
     }
 
     &__name {
-        font-weight: 700;
-        font-size: 22px;
-        line-height: 27px;
+        margin: 0 auto;
+        padding-top: 30px;
+        font-family: 'Brutal Type';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
         color: #000000;
+        max-width: 344px;
         text-align: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        margin-bottom: 111px;
     }
 
     &__icons {

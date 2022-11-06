@@ -67,6 +67,8 @@ const Authors = ({ view, authors }) => {
         setShowMore(newShowMore);
     };
 
+    console.log(user);
+
     return (
         authorPosts &&
         user &&
@@ -74,7 +76,7 @@ const Authors = ({ view, authors }) => {
             <section
                 className={view === 'page' ? 'authors authors_view' : 'authors'}
                 data-aos='fade-up'
-                data-aos-duration='10000'
+                data-aos-duration='5000'
                 data-aos-anchor-placement='top-bottom'
             >
                 <div className='container'>
