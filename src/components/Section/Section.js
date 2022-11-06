@@ -63,7 +63,7 @@ const Section = ({
     AOS.init();
     useEffect(() => {
         AOS.init({
-            duration: 2000,
+            duration: 1000,
         });
     }, []);
 
@@ -71,7 +71,7 @@ const Section = ({
         <section
             className={bgc.join(' ')}
             data-aos='fade-up'
-            data-aos-duration='5000'
+            data-aos-duration='2500'
             data-aos-anchor-placement='top-bottom'
         >
             <div className='container'>

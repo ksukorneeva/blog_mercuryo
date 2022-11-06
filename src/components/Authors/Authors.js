@@ -52,7 +52,7 @@ const Authors = ({ view, authors }) => {
     AOS.init();
     useEffect(() => {
         AOS.init({
-            duration: 2000,
+            duration: 1000,
         });
 
         gettingUsers();
@@ -76,7 +76,7 @@ const Authors = ({ view, authors }) => {
             <section
                 className={view === 'page' ? 'authors authors_view' : 'authors'}
                 data-aos='fade-up'
-                data-aos-duration='5000'
+                data-aos-duration='2500'
                 data-aos-anchor-placement='top-bottom'
             >
                 <div className='container'>
