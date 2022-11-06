@@ -95,6 +95,7 @@ const NavBar = ({ classNB }) => {
                             }
                         >
                             <Input
+                                cl={classNB === 'white' ? 'black' : ''}
                                 label='search'
                                 handlerKey={handelKey}
                                 onBlur={handleBlur}

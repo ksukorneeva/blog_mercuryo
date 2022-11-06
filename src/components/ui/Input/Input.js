@@ -9,11 +9,12 @@ const Input = ({
     onBlur,
     refInput,
     onChange,
+    cl,
 }) => {
     return (
         <div className='input'>
             <input
-                className={type === 'email' ? 'black' : ''}
+                className={type === 'email' || cl === 'black' ? 'black' : ''}
                 type={type}
                 placeholder={label}
                 onKeyDown={handlerKey}
