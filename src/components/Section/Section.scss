@@ -1,4 +1,6 @@
 .section {
+    // animation: fadein 2s;
+    transition: 0.5s;
     color: #000;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -68,6 +70,14 @@
             fill: #fff;
             stroke: #fff;
         }
+    }
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 @media (max-width: 1024px) {

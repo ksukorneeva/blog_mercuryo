@@ -10,6 +10,8 @@ import Carousel from '../ui/Carousel/Carousel';
 import { slice, concat } from 'lodash';
 import { useNavigate } from 'react-router';
 import { useCallback } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Authors = ({ view, authors }) => {
     const [user, setUser] = useState();
@@ -47,7 +49,12 @@ const Authors = ({ view, authors }) => {
         setUsers(authors);
     }, [authors, view]);
 
+    AOS.init();
     useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        });
+
         gettingUsers();
     }, [gettingUsers]);
 
@@ -66,6 +73,9 @@ const Authors = ({ view, authors }) => {
         users && (
             <section
                 className={view === 'page' ? 'authors authors_view' : 'authors'}
+                data-aos='fade-up'
+                data-aos-duration='10000'
+                data-aos-anchor-placement='top-bottom'
             >
                 <div className='container'>
                     <div className='authors__header'>

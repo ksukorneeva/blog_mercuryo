@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import Button from '../Button/Button';
 import Input from '../Input/Input';
 import './Subscribe.scss';
@@ -12,6 +12,14 @@ import Sub_2 from '../../../img/sub_2.png';
 import Sub_3 from '../../../img/sub_3.png';
 import Sub_4 from '../../../img/sub_4.png';
 import Sub_5 from '../../../img/sub_5.png';
+import Sub_mob_1 from '../../../img/sub_mob_1.svg';
+import Sub_mob_2 from '../../../img/sub_mob_2.svg';
+import Sub_mob_3 from '../../../img/sub_mob_3.svg';
+import Sub_mob_4 from '../../../img/sub_mob_4.svg';
+import Sub_mob_5 from '../../../img/sub_mob_5.svg';
+import Sub_mob_6 from '../../../img/sub_mob_6.svg';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Subscribe = () => {
     const [email, setEmail] = useState('');
@@ -31,14 +39,32 @@ const Subscribe = () => {
             '9sEXn4I6vXMgNMMTp'
         );
     };
+    AOS.init();
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        });
+    }, []);
     return (
-        <div className='subscribe'>
+        <div
+            className='subscribe'
+            data-aos='fade-up'
+            data-aos-duration='10000'
+            data-aos-anchor-placement='top-bottom'
+        >
             <div className='container'>
-                <img className='sub_1' src={Sub_1} alt='' />
-                <img className='sub_2' src={Sub_2} alt='' />
-                <img className='sub_3' src={Sub_3} alt='' />
-                <img className='sub_4' src={Sub_4} alt='' />
-                <img className='sub_5' src={Sub_5} alt='' />
+                <img className='sub sub_1' src={Sub_1} alt='' />
+                <img className='sub sub_2' src={Sub_2} alt='' />
+                <img className='sub sub_3' src={Sub_3} alt='' />
+                <img className='sub sub_4' src={Sub_4} alt='' />
+                <img className='sub sub_5' src={Sub_5} alt='' />
+                <img className='sum_mob sub_mob_1' src={Sub_mob_1} alt='' />
+                <img className='sum_mob sub_mob_2' src={Sub_mob_2} alt='' />
+                <img className='sum_mob sub_mob_3' src={Sub_mob_3} alt='' />
+                <img className='sum_mob sub_mob_4' src={Sub_mob_4} alt='' />
+                <img className='sum_mob sub_mob_5' src={Sub_mob_5} alt='' />
+                <img className='sum_mob sub_mob_6' src={Sub_mob_6} alt='' />
+
                 <div className='subscribe__block'>
                     <div className='subscribe__content'>
                         <div className='subscribe__title'>

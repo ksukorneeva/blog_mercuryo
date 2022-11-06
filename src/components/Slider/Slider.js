@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Slider.scss';
 import Title from '../ui/Title/Title';
 import { ReactComponent as Dot } from '../../img/icons/dot.svg';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Slider = ({ arrPosts }) => {
     const navigate = useNavigate();
@@ -23,10 +25,21 @@ const Slider = ({ arrPosts }) => {
     const handelClick = (slide) => {
         navigate(`/articles/id${slide.id}`);
     };
+    AOS.init();
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        });
+    }, []);
 
     return (
         arrPosts && (
-            <div className='slider'>
+            <div
+                className='slider'
+                data-aos='fade-up'
+                data-aos-duration='10000'
+                data-aos-anchor-placement='top-bottom'
+            >
                 <div className='container'>
                     <div className='slider__block'>
                         <Title>Round-up</Title>

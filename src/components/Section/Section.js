@@ -5,6 +5,9 @@ import Title from '../ui/Title/Title';
 import Post from '../ui/Post/Post';
 import { slice, concat } from 'lodash';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import { useEffect } from 'react';
+import 'aos/dist/aos.css';
 
 const Section = ({
     title,
@@ -57,10 +60,20 @@ const Section = ({
             setShowMore(newShowMore);
         }
     };
-    // const gettingPosts = useCallback(async () => {
+    AOS.init();
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        });
+    }, []);
 
     return (
-        <section className={bgc.join(' ')}>
+        <section
+            className={bgc.join(' ')}
+            data-aos='fade-up'
+            data-aos-duration='10000'
+            data-aos-anchor-placement='top-bottom'
+        >
             <div className='container'>
                 <div
                     className={
