@@ -1,10 +1,10 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Authors from '../../components/Authors/Authors';
 import Footer from '../../components/Footer/Footer';
 import Section from '../../components/Section/Section';
-import NavBar from '../../components/ui/NavBar/NavBar';
 import Loader from '../../components/ui/Loader/Loader';
+import NavBar from '../../components/ui/NavBar/NavBar';
 import './Allposts.scss';
 
 const Allposts = ({ type, title, view, arrPosts }) => {
@@ -12,14 +12,20 @@ const Allposts = ({ type, title, view, arrPosts }) => {
         top: 0,
         behavior: 'smooth',
     });
-    const [isLoading, setIsLoading] = useState('true');
+    const [isLoading, setIsLoading] = useState(true);
+    // setTimeout(setIsLoading(false), 10000);
+    const gettingPosts = useCallback(async () => {
+        setTimeout(setIsLoading, 1000, false);
+    }, []);
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth',
         });
-        setIsLoading(false);
-    }, []);
+        gettingPosts();
+    }, [gettingPosts]);
+    console.log(isLoading);
     return (
         <>
             {isLoading ? (

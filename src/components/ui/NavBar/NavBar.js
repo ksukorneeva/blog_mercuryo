@@ -8,6 +8,7 @@ import { listNav } from '../../../data';
 import { AppContext } from '../../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../img/icons/logo_white.svg';
+import { ReactComponent as Cross } from '../../../img/cross.svg';
 
 const NavBar = ({ classNB }) => {
     const app = useContext(AppContext);
@@ -101,6 +102,19 @@ const NavBar = ({ classNB }) => {
                                 onBlur={handleBlur}
                                 refInput={inputElement}
                                 onChange={(e) => app.setSearch(e.target.value)}
+                            />
+                        </div>
+
+                        <div
+                            className={search ? 'navbar__cross' : 'none'}
+                            onClick={handleBlur}
+                        >
+                            <Cross
+                                style={
+                                    classNB === 'white'
+                                        ? { fill: '#000' }
+                                        : { fill: '#fff' }
+                                }
                             />
                         </div>
                     </div>

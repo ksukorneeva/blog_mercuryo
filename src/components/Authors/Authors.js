@@ -18,7 +18,6 @@ const Authors = ({ view, authors }) => {
     const [users, setUsers] = useState();
     const navigate = useNavigate();
     const [authorPosts, setAuthorPosts] = useState();
-    console.log(user?.yoast_head_json.schema['@graph'][3].sameAs);
     const LENGTH = 10;
     const LIMIT = 6;
 
@@ -66,8 +65,6 @@ const Authors = ({ view, authors }) => {
         setList(newList);
         setShowMore(newShowMore);
     };
-
-    console.log(user);
 
     return (
         authorPosts &&
