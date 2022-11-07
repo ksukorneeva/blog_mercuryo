@@ -48,16 +48,18 @@ const Search = () => {
                                 {app.search.toLowerCase()}»
                             </div>
                             <div className='section__posts section__posts_small'>
-                                {arrSearch.map((item, index) => {
-                                    return (
-                                        <Post
-                                            key={index}
-                                            postInfo={item}
-                                            classname='post_small'
-                                            type='post'
-                                        />
-                                    );
-                                })}
+                                {arrSearch.length
+                                    ? arrSearch.map((item, index) => {
+                                          return (
+                                              <Post
+                                                  key={index}
+                                                  postInfo={item}
+                                                  classname='post_small'
+                                                  type='post'
+                                              />
+                                          );
+                                      })
+                                    : 'Ничего не найдено'}
                             </div>
                         </div>
                     </section>

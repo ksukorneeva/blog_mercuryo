@@ -40,33 +40,35 @@ const Paragraph = ({ content }) => {
                         }
                     >
                         <div className='wrap'>
-                            {razdelenie(item).map((elem, index) =>
-                                elem.includes('<h1') ? (
-                                    <div
-                                        key={index}
-                                        className='paragraph__title'
-                                    >
-                                        <Blot />
-                                        {GreetingComponent(elem.trim())}
-                                        <Blot />
-                                    </div>
-                                ) : elem.includes('<h3') ||
-                                  elem.includes('<h2') ? (
-                                    <div
-                                        key={index}
-                                        className='paragraph__title'
-                                    >
-                                        {GreetingComponent(elem.trim())}
-                                    </div>
-                                ) : (
-                                    <div
-                                        key={index}
-                                        className='paragraph__content'
-                                    >
-                                        {GreetingComponent(elem.trim())}
-                                    </div>
-                                )
-                            )}
+                            {razdelenie(item)
+                                .slice(1)
+                                .map((elem, index) =>
+                                    elem.includes('<h1') ? (
+                                        <div
+                                            key={index}
+                                            className='paragraph__title'
+                                        >
+                                            <Blot />
+                                            {GreetingComponent(elem.trim())}
+                                            <Blot />
+                                        </div>
+                                    ) : elem.includes('<h3') ||
+                                      elem.includes('<h2') ? (
+                                        <div
+                                            key={index}
+                                            className='paragraph__title'
+                                        >
+                                            {GreetingComponent(elem.trim())}
+                                        </div>
+                                    ) : (
+                                        <div
+                                            key={index}
+                                            className='paragraph__content'
+                                        >
+                                            {GreetingComponent(elem.trim())}
+                                        </div>
+                                    )
+                                )}
                         </div>
                     </div>
                 ))}

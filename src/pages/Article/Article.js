@@ -102,7 +102,7 @@ const Article = () => {
                                             via {user.name}
                                         </div>
 
-                                        <section className='section'>
+                                        {/* <section className='section'>
                                             <div className='container'>
                                                 <div className='section-title'>
                                                     <Link to='/authors'>{`More from ${user.name}`}</Link>
@@ -135,7 +135,108 @@ const Article = () => {
                                                     <IconRead />
                                                 </div>
                                             </div>
-                                        </section>
+                                        </section> */}
+                                        <div className='authors__content'>
+                                            <div className='row'>
+                                                <div className='authors__info info'>
+                                                    <div className='info__img'>
+                                                        <Link to='/authors'>
+                                                            {' '}
+                                                            <img
+                                                                src={
+                                                                    user
+                                                                        ?.yoast_head_json
+                                                                        .schema[
+                                                                        '@graph'
+                                                                    ][3]
+                                                                        .sameAs[0]
+                                                                }
+                                                                alt='user_avatar'
+                                                            />
+                                                        </Link>
+                                                    </div>
+                                                    <div className='info__text'>
+                                                        <div className='info__title'>
+                                                            {user?.name}
+                                                        </div>
+                                                        <div className='info__subtitle'>
+                                                            {user?.description}
+                                                        </div>
+                                                        <div className='info__icons'>
+                                                            <a
+                                                                href={
+                                                                    user
+                                                                        .yoast_head_json
+                                                                        .schema[
+                                                                        '@graph'
+                                                                    ][3]
+                                                                        .sameAs[2]
+                                                                }
+                                                            >
+                                                                {' '}
+                                                                <img
+                                                                    src={twit}
+                                                                    alt='twit'
+                                                                />
+                                                            </a>
+                                                            <a
+                                                                href={
+                                                                    user
+                                                                        .yoast_head_json
+                                                                        .schema[
+                                                                        '@graph'
+                                                                    ][3]
+                                                                        .sameAs[1]
+                                                                }
+                                                            >
+                                                                {' '}
+                                                                <img
+                                                                    src={
+                                                                        facebook
+                                                                    }
+                                                                    alt='facebook'
+                                                                />
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='authors__posts'>
+                                                    {userPosts
+                                                        .slice(0, 6)
+                                                        .map((post, index) =>
+                                                            index === 1 ||
+                                                            index === 0 ? (
+                                                                <Post
+                                                                    key={index}
+                                                                    classname='post post_small'
+                                                                    type='post'
+                                                                    postInfo={
+                                                                        post
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                ''
+                                                            )
+                                                        )}
+                                                </div>
+                                            </div>
+                                            <div className='row_posts'>
+                                                {userPosts
+                                                    .slice(0, 6)
+                                                    .map((post, index) =>
+                                                        index > 1 ? (
+                                                            <Post
+                                                                key={index}
+                                                                classname='post post_small'
+                                                                type='post'
+                                                                postInfo={post}
+                                                            />
+                                                        ) : (
+                                                            ''
+                                                        )
+                                                    )}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
