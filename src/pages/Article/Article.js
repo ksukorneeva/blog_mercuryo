@@ -140,7 +140,9 @@ const Article = () => {
                                             <div className='row'>
                                                 <div className='authors__info info'>
                                                     <div className='info__img'>
-                                                        <Link to='/authors'>
+                                                        <Link
+                                                            to={`/authors/id${user?.id}`}
+                                                        >
                                                             {' '}
                                                             <img
                                                                 src={

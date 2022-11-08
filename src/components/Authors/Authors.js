@@ -85,338 +85,157 @@ const Authors = ({ view, authors }) => {
 
     return (
         <>
-            {Object.entries(params).length ? (
-                <>
-                    {' '}
-                    {authorPosts && user && users && (
-                        <section
-                            className={
-                                view === 'page'
-                                    ? 'authors authors_view'
-                                    : 'authors'
-                            }
-                            data-aos='fade-up'
-                            data-aos-duration='1000'
-                            data-aos-anchor-placement='top-bottom'
-                        >
-                            <div className='container'>
-                                <div className='authors__header'>
-                                    <Title>{user?.name}</Title>
-                                    <div
-                                        className={
-                                            view === 'page'
-                                                ? 'no'
-                                                : 'authors__list'
-                                        }
-                                    >
-                                        <Carousel
-                                            arrAuthors={users}
-                                            onClick={handleClick}
-                                            active={user.id}
+            {authorPosts && user && users && (
+                <section
+                    className={
+                        view === 'page' ? 'authors authors_view' : 'authors'
+                    }
+                    data-aos='fade-up'
+                    data-aos-duration='1000'
+                    data-aos-anchor-placement='top-bottom'
+                >
+                    <div className='container'>
+                        <div className='authors__header'>
+                            {Object.entries(params).length ? (
+                                <Title>{user?.name}</Title>
+                            ) : (
+                                <Title>Authors</Title>
+                            )}
+                            <div
+                                className={
+                                    view === 'page' ? 'no' : 'authors__list'
+                                }
+                            >
+                                <Carousel
+                                    arrAuthors={users}
+                                    onClick={handleClick}
+                                    active={user.id}
+                                />
+                            </div>
+                        </div>
+                        <div className='authors__content'>
+                            <div className='row'>
+                                <div className='authors__info info'>
+                                    <div className='info__img'>
+                                        <img
+                                            src={
+                                                user?.yoast_head_json.schema[
+                                                    '@graph'
+                                                ][3].sameAs[0]
+                                            }
+                                            alt='user_avatar'
                                         />
                                     </div>
-                                </div>
-                                <div className='authors__content'>
-                                    <div className='row'>
-                                        <div className='authors__info info'>
-                                            <div className='info__img'>
-                                                <img
-                                                    src={
-                                                        user?.yoast_head_json
-                                                            .schema['@graph'][3]
-                                                            .sameAs[0]
-                                                    }
-                                                    alt='user_avatar'
-                                                />
-                                            </div>
-                                            <div className='info__text'>
-                                                <div className='info__title'>
-                                                    {user?.name}
-                                                </div>
-                                                <div className='info__subtitle'>
-                                                    {user?.description}
-                                                </div>
-                                                <div className='info__icons'>
-                                                    <a
-                                                        href={
-                                                            user.yoast_head_json
-                                                                .schema[
-                                                                '@graph'
-                                                            ][3].sameAs[2]
-                                                        }
-                                                    >
-                                                        {' '}
-                                                        <img
-                                                            src={twit}
-                                                            alt='twit'
-                                                        />
-                                                    </a>
-                                                    <a
-                                                        href={
-                                                            user.yoast_head_json
-                                                                .schema[
-                                                                '@graph'
-                                                            ][3].sameAs[1]
-                                                        }
-                                                    >
-                                                        {' '}
-                                                        <img
-                                                            src={facebook}
-                                                            alt='facebook'
-                                                        />
-                                                    </a>
-                                                </div>
-                                            </div>
+                                    <div className='info__text'>
+                                        <div className='info__title'>
+                                            {user?.name}
                                         </div>
-                                        <div className='authors__posts'>
-                                            {view === 'page'
-                                                ? authorPosts?.map(
-                                                      (post, index) =>
-                                                          index === 1 ||
-                                                          index === 0 ? (
-                                                              <Post
-                                                                  key={index}
-                                                                  classname='post post_small'
-                                                                  type='post'
-                                                                  postInfo={
-                                                                      post
-                                                                  }
-                                                              />
-                                                          ) : (
-                                                              ''
-                                                          )
-                                                  )
-                                                : list?.map((post, index) =>
-                                                      index === 1 ||
-                                                      index === 0 ? (
-                                                          <Post
-                                                              key={index}
-                                                              classname='post post_small'
-                                                              type='post'
-                                                              postInfo={post}
-                                                          />
-                                                      ) : (
-                                                          ''
-                                                      )
-                                                  )}
+                                        <div className='info__subtitle'>
+                                            {user?.description}
                                         </div>
-                                    </div>
-                                    <div className='row_posts'>
-                                        {view === 'page'
-                                            ? authorPosts.map((post, index) =>
-                                                  index > 1 ? (
-                                                      <Post
-                                                          key={index}
-                                                          classname='post post_small'
-                                                          type='post'
-                                                          postInfo={post}
-                                                      />
-                                                  ) : (
-                                                      ''
-                                                  )
-                                              )
-                                            : list.map((post, index) =>
-                                                  index > 1 ? (
-                                                      <Post
-                                                          key={index}
-                                                          classname='post post_small'
-                                                          type='post'
-                                                          postInfo={post}
-                                                      />
-                                                  ) : (
-                                                      ''
-                                                  )
-                                              )}
-                                    </div>
-                                </div>
-                                {view !== 'page' && (
-                                    <div className='authors__bottom bottom'>
-                                        <div className='bottom__button'>
-                                            <button
-                                                onClick={
-                                                    showMore
-                                                        ? loadMore
-                                                        : navigate(
-                                                              `/authors/id${user.id}`
-                                                          )
+                                        <div className='info__icons'>
+                                            <a
+                                                href={
+                                                    user.yoast_head_json.schema[
+                                                        '@graph'
+                                                    ][3].sameAs[2]
                                                 }
                                             >
-                                                Read more
-                                            </button>
-                                            <IconRead />
+                                                {' '}
+                                                <img src={twit} alt='twit' />
+                                            </a>
+                                            <a
+                                                href={
+                                                    user.yoast_head_json.schema[
+                                                        '@graph'
+                                                    ][3].sameAs[1]
+                                                }
+                                            >
+                                                {' '}
+                                                <img
+                                                    src={facebook}
+                                                    alt='facebook'
+                                                />
+                                            </a>
                                         </div>
                                     </div>
-                                )}
+                                </div>
+                                <div className='authors__posts'>
+                                    {view === 'page'
+                                        ? authorPosts?.map((post, index) =>
+                                              index === 1 || index === 0 ? (
+                                                  <Post
+                                                      key={index}
+                                                      classname='post post_small'
+                                                      type='post'
+                                                      postInfo={post}
+                                                  />
+                                              ) : (
+                                                  ''
+                                              )
+                                          )
+                                        : list?.map((post, index) =>
+                                              index === 1 || index === 0 ? (
+                                                  <Post
+                                                      key={index}
+                                                      classname='post post_small'
+                                                      type='post'
+                                                      postInfo={post}
+                                                  />
+                                              ) : (
+                                                  ''
+                                              )
+                                          )}
+                                </div>
                             </div>
-                        </section>
-                    )}
-                </>
-            ) : (
-                <>
-                    {' '}
-                    {authorPosts && user && users && (
-                        <section
-                            className={
-                                view === 'page'
-                                    ? 'authors authors_view'
-                                    : 'authors'
-                            }
-                            data-aos='fade-up'
-                            data-aos-duration='1000'
-                            data-aos-anchor-placement='top-bottom'
-                        >
-                            <div className='container'>
-                                <div className='authors__header'>
-                                    <Title>Authors</Title>
-                                    <div
-                                        className={
-                                            view === 'page'
-                                                ? 'no'
-                                                : 'authors__list'
+                            <div className='row_posts'>
+                                {view === 'page'
+                                    ? authorPosts.map((post, index) =>
+                                          index > 1 ? (
+                                              <Post
+                                                  key={index}
+                                                  classname='post post_small'
+                                                  type='post'
+                                                  postInfo={post}
+                                              />
+                                          ) : (
+                                              ''
+                                          )
+                                      )
+                                    : list.map((post, index) =>
+                                          index > 1 ? (
+                                              <Post
+                                                  key={index}
+                                                  classname='post post_small'
+                                                  type='post'
+                                                  postInfo={post}
+                                              />
+                                          ) : (
+                                              ''
+                                          )
+                                      )}
+                            </div>
+                        </div>
+                        {view !== 'page' && (
+                            <div className='authors__bottom bottom'>
+                                <div className='bottom__button'>
+                                    <button
+                                        onClick={
+                                            showMore
+                                                ? loadMore
+                                                : navigate(
+                                                      `/authors/id${user.id}`
+                                                  )
                                         }
                                     >
-                                        <Carousel
-                                            arrAuthors={users}
-                                            onClick={handleClick}
-                                            active={user.id}
-                                        />
-                                    </div>
+                                        Read more
+                                    </button>
+                                    <IconRead />
                                 </div>
-                                <div className='authors__content'>
-                                    <div className='row'>
-                                        <div className='authors__info info'>
-                                            <div className='info__img'>
-                                                <img
-                                                    src={
-                                                        user?.yoast_head_json
-                                                            .schema['@graph'][3]
-                                                            .sameAs[0]
-                                                    }
-                                                    alt='user_avatar'
-                                                />
-                                            </div>
-                                            <div className='info__text'>
-                                                <div className='info__title'>
-                                                    {user?.name}
-                                                </div>
-                                                <div className='info__subtitle'>
-                                                    {user?.description}
-                                                </div>
-                                                <div className='info__icons'>
-                                                    <a
-                                                        href={
-                                                            user.yoast_head_json
-                                                                .schema[
-                                                                '@graph'
-                                                            ][3].sameAs[2]
-                                                        }
-                                                    >
-                                                        {' '}
-                                                        <img
-                                                            src={twit}
-                                                            alt='twit'
-                                                        />
-                                                    </a>
-                                                    <a
-                                                        href={
-                                                            user.yoast_head_json
-                                                                .schema[
-                                                                '@graph'
-                                                            ][3].sameAs[1]
-                                                        }
-                                                    >
-                                                        {' '}
-                                                        <img
-                                                            src={facebook}
-                                                            alt='facebook'
-                                                        />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className='authors__posts'>
-                                            {view === 'page'
-                                                ? authorPosts?.map(
-                                                      (post, index) =>
-                                                          index === 1 ||
-                                                          index === 0 ? (
-                                                              <Post
-                                                                  key={index}
-                                                                  classname='post post_small'
-                                                                  type='post'
-                                                                  postInfo={
-                                                                      post
-                                                                  }
-                                                              />
-                                                          ) : (
-                                                              ''
-                                                          )
-                                                  )
-                                                : list?.map((post, index) =>
-                                                      index === 1 ||
-                                                      index === 0 ? (
-                                                          <Post
-                                                              key={index}
-                                                              classname='post post_small'
-                                                              type='post'
-                                                              postInfo={post}
-                                                          />
-                                                      ) : (
-                                                          ''
-                                                      )
-                                                  )}
-                                        </div>
-                                    </div>
-                                    <div className='row_posts'>
-                                        {view === 'page'
-                                            ? authorPosts.map((post, index) =>
-                                                  index > 1 ? (
-                                                      <Post
-                                                          key={index}
-                                                          classname='post post_small'
-                                                          type='post'
-                                                          postInfo={post}
-                                                      />
-                                                  ) : (
-                                                      ''
-                                                  )
-                                              )
-                                            : list.map((post, index) =>
-                                                  index > 1 ? (
-                                                      <Post
-                                                          key={index}
-                                                          classname='post post_small'
-                                                          type='post'
-                                                          postInfo={post}
-                                                      />
-                                                  ) : (
-                                                      ''
-                                                  )
-                                              )}
-                                    </div>
-                                </div>
-                                {view !== 'page' && (
-                                    <div className='authors__bottom bottom'>
-                                        <div className='bottom__button'>
-                                            <button
-                                                onClick={
-                                                    showMore
-                                                        ? loadMore
-                                                        : navigate(
-                                                              `/authors/id${user.id}`
-                                                          )
-                                                }
-                                            >
-                                                Read more
-                                            </button>
-                                            <IconRead />
-                                        </div>
-                                    </div>
-                                )}
                             </div>
-                        </section>
-                    )}
-                </>
+                        )}
+                    </div>
+                </section>
             )}
         </>
     );
