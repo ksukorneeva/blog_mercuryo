@@ -13,11 +13,14 @@ const Post = ({ classname, type, postInfo }) => {
         if (postInfo.categories.includes(10)) {
             // console.log(postInfo.link);
             //  = postInfo.link;
-
             window.location =
                 postInfo.x_metadata.td_post_theme_settings.td_source_url;
         } else {
-            navigate(`/articles/id${postInfo.id}`);
+            navigate(`/articles/${postInfo.slug}`);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
         }
     };
     const data = new Date(post?.date).toDateString().slice(4, 10);
@@ -32,7 +35,7 @@ const Post = ({ classname, type, postInfo }) => {
                 className={classname}
                 onClick={handelClick}
                 data-aos='fade-up'
-                data-aos-duration='2500'
+                data-aos-duration='1000'
                 data-aos-anchor-placement='top-bottom'
             >
                 <div className={type === 'anons' ? 'post__data' : 'close'}>

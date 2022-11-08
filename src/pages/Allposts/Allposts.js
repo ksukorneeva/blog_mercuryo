@@ -25,7 +25,6 @@ const Allposts = ({ type, title, view, arrPosts }) => {
         });
         gettingPosts();
     }, [gettingPosts]);
-    console.log(isLoading);
     return (
         <>
             {isLoading ? (

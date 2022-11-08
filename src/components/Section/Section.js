@@ -63,7 +63,7 @@ const Section = ({
     AOS.init();
     useEffect(() => {
         AOS.init({
-            duration: 1000,
+            duration: 500,
         });
     }, []);
 
@@ -71,7 +71,7 @@ const Section = ({
         <section
             className={bgc.join(' ')}
             data-aos='fade-up'
-            data-aos-duration='2500'
+            data-aos-duration='1000'
             data-aos-anchor-placement='top-bottom'
         >
             <div className='container'>
@@ -122,7 +122,12 @@ const Section = ({
                         ) : type === 'anons' && arrPosts.length < 18 ? (
                             <button></button>
                         ) : showMore || hide ? (
-                            <button onClick={loadMore}>
+                            <button
+                                onClick={loadMore}
+                                data-aos='fade-up'
+                                data-aos-duration='1000'
+                                data-aos-anchor-placement='top-bottom'
+                            >
                                 Read more <IconRead />
                             </button>
                         ) : (

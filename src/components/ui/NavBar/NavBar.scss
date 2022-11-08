@@ -120,7 +120,7 @@
 }
 
 .none {
-    display: none;
+    display: block;
 }
 
 .dots {
@@ -139,6 +139,9 @@
         z-index: 5;
         fill: #000;
         cursor: pointer;
+    }
+    .none {
+        display: none;
     }
     .navbar {
         position: fixed;

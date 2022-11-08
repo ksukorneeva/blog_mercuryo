@@ -91,7 +91,7 @@ function App() {
                     />
                     <Route path='/search' element={<Search />} />
                     <Route
-                        path='/authors'
+                        path='/authors/:id'
                         element={
                             <Allposts
                                 type='authors'

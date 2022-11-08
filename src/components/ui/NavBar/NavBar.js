@@ -17,6 +17,7 @@ const NavBar = ({ classNB }) => {
     const inputElement = useRef(null);
     const [search, setSearch] = useState(false);
     const [open, setOpen] = useState(false);
+    // const [popup, setPopup] = useState(false);
 
     const handelSearch = () => {
         setSearch(!search);
@@ -28,6 +29,7 @@ const NavBar = ({ classNB }) => {
         e.key === 'Escape' && setSearch(!search);
         if (e.key === 'Enter') {
             navigate('/search');
+            // setPopup(true);
         }
     };
 
@@ -39,90 +41,98 @@ const NavBar = ({ classNB }) => {
     };
 
     return (
-        <nav
-            className={
-                classNB === 'white'
-                    ? 'navbar navbar_white'
-                    : !open
-                    ? 'navbar'
-                    : 'navbar navbar_black'
-            }
-        >
-            <div className='container'>
-                <div
-                    className={
-                        !open
-                            ? 'navbar__wrap'
-                            : 'navbar__wrap navbar__wrap_black'
-                    }
-                >
-                    <div className='navbar__logo'>
-                        <Link to='/' className={open ? 'black' : ' '}>
-                            <Logo />
-                        </Link>
-                    </div>
-
+        <>
+            <nav
+                className={
+                    classNB === 'white'
+                        ? 'navbar navbar_white'
+                        : !open
+                        ? 'navbar'
+                        : 'navbar navbar_black'
+                }
+            >
+                <div className='container'>
                     <div
                         className={
                             !open
-                                ? 'navbar__menu'
-                                : 'navbar__menu navbar__menu_show'
+                                ? 'navbar__wrap'
+                                : 'navbar__wrap navbar__wrap_black'
                         }
                     >
-                        <ul
-                            className={
-                                !search
-                                    ? 'navbar__list'
-                                    : 'navbar__list navbar__list_hide'
-                            }
-                        >
-                            {listNav.map((item, index) => (
-                                <li key={index}>
-                                    <Link to={item.href} target='_blank'>
-                                        {item.title}
-                                    </Link>
-                                </li>
-                            ))}
-                            <li>
-                                {!search && <Search onClick={handelSearch} />}
-                            </li>
-                        </ul>
-
-                        <div
-                            className={
-                                !search
-                                    ? 'navbar__search'
-                                    : 'navbar__search navbar__search_show'
-                            }
-                        >
-                            <Input
-                                cl={classNB === 'white' ? 'black' : ''}
-                                label='search'
-                                handlerKey={handelKey}
-                                onBlur={handleBlur}
-                                refInput={inputElement}
-                                onChange={(e) => app.setSearch(e.target.value)}
-                            />
+                        <div className='navbar__logo'>
+                            <Link to='/' className={open ? 'black' : ' '}>
+                                <Logo />
+                            </Link>
                         </div>
 
                         <div
-                            className={search ? 'navbar__cross' : 'none'}
-                            onClick={handleBlur}
+                            className={
+                                !open
+                                    ? 'navbar__menu'
+                                    : 'navbar__menu navbar__menu_show'
+                            }
                         >
-                            <Cross
-                                style={
-                                    classNB === 'white'
-                                        ? { fill: '#000' }
-                                        : { fill: '#fff' }
+                            <ul
+                                className={
+                                    !search
+                                        ? 'navbar__list'
+                                        : 'navbar__list navbar__list_hide'
                                 }
-                            />
-                        </div>
-                    </div>
+                            >
+                                {listNav.map((item, index) => (
+                                    <li key={index}>
+                                        <Link to={item.href} target='_blank'>
+                                            {item.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                                <li>
+                                    {!search && (
+                                        <Search onClick={handelSearch} />
+                                    )}
+                                </li>
+                            </ul>
 
-                    <Menu className='dots' onClick={openMenuHandler} />
+                            <div
+                                className={
+                                    !search
+                                        ? 'navbar__search'
+                                        : 'navbar__search navbar__search_show'
+                                }
+                            >
+                                <Input
+                                    cl={classNB === 'white' ? 'black' : ''}
+                                    label='search'
+                                    handlerKey={handelKey}
+                                    onBlur={handleBlur}
+                                    refInput={inputElement}
+                                    onChange={(e) =>
+                                        app.setSearch(e.target.value)
+                                    }
+                                />
+                            </div>
+
+                            <div
+                                className={search ? 'navbar__cross' : 'none'}
+                                onClick={handleBlur}
+                            >
+                                <Cross
+                                    className='none'
+                                    style={
+                                        classNB === 'white'
+                                            ? { fill: '#000' }
+                                            : { fill: '#fff' }
+                                    }
+                                />
+                            </div>
+                        </div>
+
+                        <Menu className='dots' onClick={openMenuHandler} />
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+            {/* {popup ? <Search /> : 'jh'} */}
+        </>
     );
 };
 

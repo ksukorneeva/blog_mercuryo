@@ -42,14 +42,14 @@ const Subscribe = () => {
     AOS.init();
     useEffect(() => {
         AOS.init({
-            duration: 2000,
+            duration: 500,
         });
     }, []);
     return (
         <div
             className='subscribe'
             data-aos='fade-up'
-            data-aos-duration='10000'
+            data-aos-duration='1000'
             data-aos-anchor-placement='top-bottom'
         >
             <div className='container'>

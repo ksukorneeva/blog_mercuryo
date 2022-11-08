@@ -9,7 +9,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import Post from '../../components/ui/Post/Post';
 import { Link } from 'react-router-dom';
-import { ReactComponent as IconRead } from '../../img/icons/iconread.svg';
+
 import { useCallback } from 'react';
 import Loader from '../../components/ui/Loader/Loader';
 
@@ -33,15 +33,13 @@ const Article = () => {
         );
         const dataPosts = [].concat(data.data, data2.data);
 
-        const post = dataPosts.filter(
-            (post) => post.id === +params.id.slice(2)
-        );
+        const post = dataPosts.filter((post) => post.slug === params.id);
+
         setPost(post[0]);
         const user = dataUsers.data.filter(
             (user) => user.id === post[0].author
         );
         setUser(user[0]);
-
         setUserPosts(dataPosts.filter((post) => post.author === user[0].id));
         setIsLoading(false);
     }, [params]);
@@ -52,10 +50,6 @@ const Article = () => {
     };
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 setClassNB('black');
@@ -66,6 +60,12 @@ const Article = () => {
         });
         gettingPosts();
     }, [gettingPosts]);
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
 
     return (
         <>
