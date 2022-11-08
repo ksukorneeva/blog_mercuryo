@@ -182,8 +182,14 @@
     }
     .info__icons {
         position: absolute;
-        top: 60%;
+        top: 65%;
         left: 10%;
+
+        img {
+            width: 20px;
+            height: 20px;
+            margin-right: 7px;
+        }
     }
 }
 
@@ -204,16 +210,24 @@
             height: 100px;
         }
         &__icons {
-            top: 35%;
-            left: 2%;
+            top: 45%;
+            left: 5%;
         }
     }
 }
-@media (max-width: 420px) {
+@media (max-width: 464px) {
     .info {
         &__icons {
-            top: 22%;
-            left: 2%;
+            top: 37%;
+            left: 5%;
+        }
+    }
+}
+@media (max-width: 400px) {
+    .info {
+        &__icons {
+            top: 27%;
+            left: 4%;
         }
     }
 }

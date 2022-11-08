@@ -116,6 +116,10 @@
     .box {
         width: 300px;
     }
+    .authors__list ul li {
+        margin-right: 0;
+        margin-left: 0;
+    }
 }
 @media (max-width: 540px) {
     .box {
