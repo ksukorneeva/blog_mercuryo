@@ -134,29 +134,44 @@ const Authors = ({ view, authors }) => {
                                             {user?.description}
                                         </div>
                                         <div className='info__icons'>
-                                            <a
-                                                href={
-                                                    user.yoast_head_json.schema[
-                                                        '@graph'
-                                                    ][3].sameAs[2]
-                                                }
-                                            >
-                                                {' '}
-                                                <img src={twit} alt='twit' />
-                                            </a>
-                                            <a
-                                                href={
-                                                    user.yoast_head_json.schema[
-                                                        '@graph'
-                                                    ][3].sameAs[1]
-                                                }
-                                            >
-                                                {' '}
-                                                <img
-                                                    src={facebook}
-                                                    alt='facebook'
-                                                />
-                                            </a>
+                                            {user.yoast_head_json.schema[
+                                                '@graph'
+                                            ][3].sameAs[2] ? (
+                                                <a
+                                                    href={
+                                                        user.yoast_head_json
+                                                            .schema['@graph'][3]
+                                                            .sameAs[2]
+                                                    }
+                                                >
+                                                    {' '}
+                                                    <img
+                                                        src={twit}
+                                                        alt='twit'
+                                                    />
+                                                </a>
+                                            ) : (
+                                                ''
+                                            )}
+                                            {user.yoast_head_json.schema[
+                                                '@graph'
+                                            ][3].sameAs[1] ? (
+                                                <a
+                                                    href={
+                                                        user.yoast_head_json
+                                                            .schema['@graph'][3]
+                                                            .sameAs[1]
+                                                    }
+                                                >
+                                                    {' '}
+                                                    <img
+                                                        src={facebook}
+                                                        alt='facebook'
+                                                    />
+                                                </a>
+                                            ) : (
+                                                ''
+                                            )}
                                         </div>
                                     </div>
                                 </div>
