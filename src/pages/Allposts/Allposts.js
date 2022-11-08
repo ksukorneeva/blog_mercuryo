@@ -19,12 +19,14 @@ const Allposts = ({ type, title, view, arrPosts }) => {
     }, []);
 
     useEffect(() => {
+        gettingPosts();
+    }, [gettingPosts]);
+    useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth',
         });
-        gettingPosts();
-    }, [gettingPosts]);
+    }, []);
     return (
         <>
             {isLoading ? (
