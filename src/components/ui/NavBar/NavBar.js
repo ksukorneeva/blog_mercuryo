@@ -117,7 +117,7 @@ const NavBar = ({ classNB }) => {
                                 onClick={handleBlur}
                             >
                                 <Cross
-                                    className='none'
+                                    className='none_mob'
                                     style={
                                         classNB === 'white'
                                             ? { fill: '#000' }

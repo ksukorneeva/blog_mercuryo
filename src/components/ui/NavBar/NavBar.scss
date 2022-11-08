@@ -119,8 +119,12 @@
     }
 }
 
-.none {
+.none_mob {
     display: block;
+}
+
+.none {
+    display: none;
 }
 
 .dots {
@@ -140,7 +144,7 @@
         fill: #000;
         cursor: pointer;
     }
-    .none {
+    .none_mob {
         display: none;
     }
     .navbar {
