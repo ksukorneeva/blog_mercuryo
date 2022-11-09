@@ -35,7 +35,7 @@ const Post = ({ classname, type, postInfo }) => {
                 className={classname}
                 onClick={handelClick}
                 data-aos='fade-up'
-                data-aos-duration='1000'
+                data-aos-duration='500'
                 data-aos-anchor-placement='top-bottom'
             >
                 <div className={type === 'anons' ? 'post__data' : 'close'}>

@@ -13,14 +13,13 @@ const Allposts = ({ type, title, view, arrPosts }) => {
         behavior: 'smooth',
     });
     const [isLoading, setIsLoading] = useState(true);
-    // setTimeout(setIsLoading(false), 10000);
     const gettingPosts = useCallback(async () => {
         setTimeout(setIsLoading, 1000, false);
     }, []);
 
     useEffect(() => {
         gettingPosts();
-    }, [gettingPosts]);
+    }, []);
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -33,7 +32,7 @@ const Allposts = ({ type, title, view, arrPosts }) => {
                 <Loader />
             ) : (
                 <>
-                    {arrPosts && (
+                    {arrPosts?.length && (
                         <>
                             {' '}
                             <NavBar />

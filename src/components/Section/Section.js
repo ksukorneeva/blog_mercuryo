@@ -62,9 +62,7 @@ const Section = ({
     };
     AOS.init();
     useEffect(() => {
-        AOS.init({
-            duration: 500,
-        });
+        AOS.init();
     }, []);
 
     return (
