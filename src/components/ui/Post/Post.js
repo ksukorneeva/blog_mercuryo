@@ -28,7 +28,6 @@ const Post = ({ classname, type, postInfo }) => {
             });
         }
     };
-    const handelOnClick = () => {};
     const data = new Date(post?.date).toDateString().slice(4, 10);
     AOS.init();
     useEffect(() => {

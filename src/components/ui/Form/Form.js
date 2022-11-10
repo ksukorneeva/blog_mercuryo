@@ -4,10 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../Input/Input';
 import './Form.scss';
 import emailjs from '@emailjs/browser';
-import Logo_1 from '../../../img/logop_1.png';
-import Logo_2 from '../../../img/logop_2.png';
-import Logo_3 from '../../../img/logop_3.png';
-import Logo_4 from '../../../img/logop_4.png';
 import Sub_1 from '../../../img/sub_1.png';
 import Sub_2 from '../../../img/sub_2.png';
 import Sub_3 from '../../../img/sub_3.png';
@@ -117,15 +113,6 @@ const Form = ({ path }) => {
                                 </button>
                             </div>
                         </form>
-                    </div>
-                    <div className='subscribe__partners'>
-                        <p>Read by people from:</p>
-                        <div className='subscribe__logo'>
-                            <img src={Logo_1} alt='' />
-                            <img src={Logo_2} alt='' />
-                            <img src={Logo_3} alt='' />
-                            <img src={Logo_4} alt='' />
-                        </div>
                     </div>
                 </div>
             </div>

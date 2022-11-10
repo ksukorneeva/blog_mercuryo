@@ -42,7 +42,7 @@ const Authors = ({ view, authors }) => {
             const autorsPosts = await axios.get(
                 `https://zazhigay.com/wp-json/wp/v2/posts?author=${params.id.slice(
                     2
-                )}&per_page=${view === 'page' ? 100 : 10}`
+                )}&per_page=${view === 'page' ? 50 : 10}`
             );
             setUser(
                 authors.find((author) => author.id === +params.id.slice(2))
