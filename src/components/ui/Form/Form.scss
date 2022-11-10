@@ -1,0 +1,239 @@
+.sum_mob {
+    display: none;
+}
+.subscribe {
+    background: #ffffff;
+    padding: 129px 0;
+    position: relative;
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__title {
+        font-family: 'Karloff Neutral Pro';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 72px;
+        line-height: 86px;
+        max-width: 698px;
+        padding-bottom: 34px;
+        text-align: center;
+    }
+
+    &__subtitle {
+        text-align: center;
+        font-family: 'Brutal Type';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 38px;
+        max-width: 667px;
+        margin-bottom: 70px;
+    }
+    &__form {
+        width: 574px;
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            button {
+                cursor: pointer;
+                border: none;
+                outline: none;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 18px;
+                color: #fff;
+                padding: 17px 25px 18px 26px;
+                background: #ff592c;
+                border-radius: 8px;
+                width: 200px;
+                text-align: center;
+                margin-top: 30px;
+                margin-bottom: 70px;
+            }
+        }
+    }
+    &__button {
+        align-self: center;
+    }
+    &__partners {
+        p {
+            font-family: 'Brutal Type';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 38px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+    }
+    &__logo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 698px;
+        gap: 55px;
+        img {
+            max-height: 48px;
+            max-width: 170px;
+        }
+    }
+}
+
+.sub {
+    &_1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &_2 {
+        position: absolute;
+        top: 284px;
+        left: 57px;
+    }
+    &_3 {
+        position: absolute;
+        top: 328px;
+        left: 57px;
+    }
+    &_4 {
+        position: absolute;
+        top: 72px;
+        right: 0;
+        z-index: 0;
+    }
+    &_5 {
+        position: absolute;
+        top: 60px;
+        right: 0;
+    }
+}
+@media (max-width: 1173px) {
+    .subscribe {
+        img {
+            max-width: 150px;
+        }
+    }
+
+    .sub_3 {
+        position: absolute;
+        top: 400px;
+        left: 40px;
+    }
+}
+@media (max-width: 870px) {
+    .sub {
+        display: none;
+    }
+    .sum_mob {
+        display: block;
+    }
+    .sub_mob {
+        &_1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        &_2 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        &_3 {
+            position: absolute;
+            top: 0;
+            right: 20px;
+        }
+
+        &_4 {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translatex(-50%);
+
+            img {
+                max-width: 100%;
+            }
+        }
+        &_5 {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+        }
+        &_6 {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+        }
+    }
+    .subscribe {
+        padding-bottom: 194px;
+
+        img {
+            max-width: 100%;
+        }
+
+        &__block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            // gap: 60px;
+        }
+
+        &__form {
+            width: 100%;
+            form {
+                button {
+                    width: 100%;
+                }
+            }
+        }
+
+        &__button {
+            margin-top: 10px;
+            width: 100%;
+            margin-bottom: 0;
+            button {
+                margin-bottom: 70px;
+            }
+        }
+        &__title {
+            width: 100%;
+        }
+
+        &__subtitle {
+            width: 100%;
+            margin-bottom: 38px;
+        }
+
+        &__logo {
+            gap: 30px;
+            img {
+                max-width: 65px;
+            }
+        }
+
+        &__partners {
+            margin: 0 auto;
+        }
+    }
+
+    .sub {
+        &_4 {
+            top: 0;
+        }
+        &_5 {
+            top: 0;
+        }
+        &_2 {
+            z-index: -1;
+        }
+    }
+}

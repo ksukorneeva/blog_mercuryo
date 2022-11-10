@@ -19,7 +19,7 @@ const Desctop = () => {
     const [mediaPosts, setMediaPosts] = useState();
     const [partnersPosts, setPartnersPosts] = useState();
     const [users, setUsers] = useState();
-    const [isLoading, setIsLoading] = useState('true');
+    const [isLoading, setIsLoading] = useState(true);
 
     const gettingPosts = useCallback(async () => {
         const articles = await axios.get(
@@ -77,7 +77,9 @@ const Desctop = () => {
     return (
         <>
             {isLoading ? (
-                <Loader />
+                <>
+                    <Loader />
+                </>
             ) : (
                 <>
                     <Header />

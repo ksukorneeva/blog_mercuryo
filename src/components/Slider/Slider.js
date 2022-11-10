@@ -8,11 +8,12 @@ import 'aos/dist/aos.css';
 
 const Slider = ({ arrPosts }) => {
     const navigate = useNavigate();
-    arrPosts.length = 8;
+    arrPosts.length = 7;
     const dots = arrPosts.slice(0, 4);
 
     const [active, setActive] = useState(0);
-    const [activePost, setActivePost] = useState(arrPosts.slice(0, 4));
+    // const [activePost, setActivePost] = useState(arrPosts.slice(0, 4));
+    const [activePost, setActivePost] = useState(arrPosts);
     const [activeSlide, setActiveSlide] = useState(0);
 
     const changeSlideHandler = (index) => {
@@ -20,7 +21,7 @@ const Slider = ({ arrPosts }) => {
     };
     const changeSlideClick = (index) => {
         setActiveSlide(index);
-        setActivePost(arrPosts.slice(index, index + 4));
+        // setActivePost(arrPosts.slice(index, index + 4));
     };
     const handelClick = (slide) => {
         navigate(`/articles/id${slide.id}`);
@@ -53,7 +54,9 @@ const Slider = ({ arrPosts }) => {
                                 />
                             </div>
                             <div className='slider__list'>
-                                <ul className='slider__text'>
+                                <ul
+                                    className={`slider__text slider__text_${activeSlide}`}
+                                >
                                     {activePost.map((slide, index) => (
                                         <li
                                             key={index}

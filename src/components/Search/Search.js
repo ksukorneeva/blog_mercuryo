@@ -34,7 +34,6 @@ const Search = () => {
         });
         setIsLoading(false);
         setArrSearch(arsearch);
-        console.log(arsearch);
     }, [app]);
     useEffect(() => {
         gettingPosts();
