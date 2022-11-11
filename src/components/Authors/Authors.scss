@@ -210,7 +210,7 @@
             height: 100px;
         }
         &__icons {
-            top: 45%;
+            top: 120px;
             left: 5%;
         }
     }
@@ -218,7 +218,7 @@
 @media (max-width: 464px) {
     .info {
         &__icons {
-            top: 37%;
+            top: 100px;
             left: 5%;
         }
     }
@@ -234,7 +234,7 @@
 @media (max-width: 410px) {
     .info {
         &__icons {
-            top: 20%;
+            top: 80px;
             left: 3%;
         }
     }
