@@ -215,7 +215,7 @@
             z-index: 2;
 
             svg {
-                fill: #000;
+                fill: #fff;
             }
 
             &_black {
@@ -241,6 +241,7 @@
 
                 svg {
                     width: 126px;
+                    fill: #000;
                 }
                 &.black {
                     color: #fff;
