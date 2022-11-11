@@ -58,17 +58,16 @@
 .close {
     display: none;
 }
+
 .modal {
-    // position: fixed;
-    // top: 1000;
-    // left: 500;
-    // transform: translate(-50%, -50%);
-    background: rgba(#000, 0.9);
     position: fixed;
-    left: 0%;
-    top: 0%;
+    background: red;
+    top: 0;
+    left: 0;
     width: 100vw;
-    z-index: 1;
+    height: 100vh;
+    z-index: 1000;
+    overflow-y: hidden;
 }
 @media (max-width: 764px) {
     .post__title {

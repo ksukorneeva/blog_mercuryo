@@ -4,13 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import './Post.scss';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Form from '../Form/Form';
 
 const Post = ({ classname, type, postInfo }) => {
     const navigate = useNavigate();
     const [post, setPost] = useState();
     // console.log(postInfo?.x_metadata?.td_post_theme_settings?.td_source_url);
-    const [popup, setPopup] = useState(false);
+    // const [popup, setPopup] = useState(false);
 
     const handelClick = () => {
         if (postInfo.x_metadata?.td_post_theme_settings?.td_source_url) {
@@ -19,7 +18,7 @@ const Post = ({ classname, type, postInfo }) => {
         } else if (post.x_tags === 'block') {
             return;
         } else if (post.x_tags === 'info') {
-            setPopup(!popup);
+            navigate(`/article/${postInfo.slug}`);
         } else {
             navigate(`/articles/${postInfo.slug}`);
             window.scrollTo({
@@ -37,39 +36,25 @@ const Post = ({ classname, type, postInfo }) => {
     return (
         post && (
             <>
-                {!popup ? (
-                    <div
-                        className={classname}
-                        onClick={handelClick}
-                        data-aos='fade-up'
-                        data-aos-duration='500'
-                        data-aos-anchor-placement='top-bottom'
-                    >
-                        <div
-                            className={
-                                type === 'anons' ? 'post__data' : 'close'
-                            }
-                        >
-                            {data}
-                        </div>
+                <div
+                    className={classname}
+                    onClick={handelClick}
+                    data-aos='fade-up'
+                    data-aos-duration='500'
+                    data-aos-anchor-placement='top-bottom'
+                >
+                    <div className={type === 'anons' ? 'post__data' : 'close'}>
+                        {data}
+                    </div>
 
-                        <div
-                            className={type === 'post' ? 'post__img' : 'close'}
-                        >
-                            <img
-                                src={post.x_featured_media_large}
-                                alt='postImage'
-                            />
-                        </div>
-                        <div className='post__title'>
-                            {post.title?.rendered}
-                        </div>
+                    <div className={type === 'post' ? 'post__img' : 'close'}>
+                        <img
+                            src={post.x_featured_media_large}
+                            alt='postImage'
+                        />
                     </div>
-                ) : (
-                    <div className='modal'>
-                        <Form path={postInfo.slug} />
-                    </div>
-                )}
+                    <div className='post__title'>{post.title?.rendered}</div>
+                </div>
             </>
         )
     );

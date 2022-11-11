@@ -8,6 +8,7 @@ import { AppContext } from './context/AppContext';
 import { useApp } from './hooks/app.hook';
 import axios from 'axios';
 import Search from './components/Search/Search';
+import Modal from './components/Modal/Modal';
 
 function App() {
     const { search, setSearch } = useApp();
@@ -160,6 +161,7 @@ function App() {
                             />
                         }
                     />
+                    <Route path='/article/:id' element={<Modal />} />
                     <Route path='/articles/:id' element={<Article />} />
                     <Route path='/authors/:id' element={<Article />} />
                     <Route path='/insights/:id' element={<Article />} />

@@ -29,7 +29,6 @@ const NavBar = ({ classNB }) => {
         e.key === 'Escape' && setSearch(!search);
         if (e.key === 'Enter') {
             navigate('/search');
-            // setPopup(true);
         }
     };
 

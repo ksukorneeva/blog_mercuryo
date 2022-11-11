@@ -91,9 +91,9 @@ const Header = () => {
                                     and payments and join Mercuryo on a ride to
                                     cryptopower the future
                                 </div>
-                                <button className='header-content__button'>
+                                {/* <button className='header-content__button'>
                                     Contact Sales
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     )}

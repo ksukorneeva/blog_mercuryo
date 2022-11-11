@@ -8,6 +8,13 @@
     padding: 129px 0;
     position: relative;
 
+    &__icon {
+        position: absolute;
+        cursor: pointer;
+        top: 100px;
+        right: 100px;
+    }
+
     &__block {
         display: flex;
         flex-direction: column;
@@ -130,6 +137,10 @@
     }
 }
 @media (max-width: 870px) {
+    .subscribe__icon {
+        top: 20px;
+        right: 20px;
+    }
     .sub {
         display: none;
     }

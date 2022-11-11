@@ -15,6 +15,7 @@ import Sub_mob_3 from '../../../img/sub_mob_3.svg';
 import Sub_mob_4 from '../../../img/sub_mob_4.svg';
 import Sub_mob_5 from '../../../img/sub_mob_5.svg';
 import Sub_mob_6 from '../../../img/sub_mob_6.svg';
+import { ReactComponent as Cross } from '../../../img/cross.svg';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -34,6 +35,9 @@ const Form = ({ path }) => {
         if (e.target.placeholder === 'E-mail') {
             setEmail(e.target.value);
         }
+    };
+    const handelClick = () => {
+        navigate(`/`);
     };
 
     const submitFormHandler = async (e) => {
@@ -79,6 +83,9 @@ const Form = ({ path }) => {
                     <img className='sum_mob sub_mob_6' src={Sub_mob_6} alt='' />
 
                     <div className='subscribe__block'>
+                        <div className='subscribe__icon'>
+                            <Cross onClick={handelClick} />
+                        </div>
                         <div className='subscribe__content'>
                             <div className='subscribe__title'>
                                 Explained by Mercuryo
