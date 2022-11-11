@@ -63,7 +63,7 @@
         line-height: 52px;
         padding-top: 20px;
         padding-bottom: 20px;
-        font-family: 'KarloffNeutralPro', sans-serif;
+        font-family: "KarloffNeutralPro", sans-serif;
         svg {
             fill: white;
         }
@@ -215,7 +215,7 @@
             z-index: 2;
 
             svg {
-                fill: #fff;
+                fill: #000;
             }
 
             &_black {
@@ -241,7 +241,6 @@
 
                 svg {
                     width: 126px;
-                    fill: #000;
                 }
                 &.black {
                     color: #fff;
