@@ -42,7 +42,14 @@ const Header = () => {
                             <Logo />
                         </div>
                         <div className='header-top__menu'>
-                            <div className='header-top__button'>Sign In</div>
+                            <div className='header-top__button'>
+                                <a
+                                    href='https://my.mercuryo.io/login/email'
+                                    target='_blank'
+                                >
+                                    Sign In
+                                </a>
+                            </div>
                             <button
                                 className='header-top__button-menu'
                                 onClick={handelClick}

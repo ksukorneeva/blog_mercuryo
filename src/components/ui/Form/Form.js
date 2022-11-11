@@ -31,12 +31,9 @@ const Form = ({ path }) => {
         if (e.target.placeholder === 'Company') {
             setCompany(e.target.value);
         }
-        if (e.target.placeholder === 'Email') {
+        if (e.target.placeholder === 'E-mail') {
             setEmail(e.target.value);
         }
-    };
-    const onClick = () => {
-        navigate(`/articles/${path}`);
     };
 
     const submitFormHandler = async (e) => {
@@ -45,10 +42,14 @@ const Form = ({ path }) => {
             'service_b3x2qji',
             'template_x1gbcms',
             {
+                name: name,
+                company: company,
                 email: email,
+                id: path,
             },
             '9sEXn4I6vXMgNMMTp'
         );
+        navigate(`/articles/${path}`);
     };
     AOS.init();
     useEffect(() => {
@@ -57,62 +58,67 @@ const Form = ({ path }) => {
         });
     }, []);
     return (
-        <div
-            className='subscribe'
-            data-aos='fade-up'
-            data-aos-duration='1000'
-            data-aos-anchor-placement='top-bottom'
-        >
-            <div className='container'>
-                <img className='sub sub_1' src={Sub_1} alt='' />
-                <img className='sub sub_2' src={Sub_2} alt='' />
-                <img className='sub sub_3' src={Sub_3} alt='' />
-                <img className='sub sub_4' src={Sub_4} alt='' />
-                <img className='sub sub_5' src={Sub_5} alt='' />
-                <img className='sum_mob sub_mob_1' src={Sub_mob_1} alt='' />
-                <img className='sum_mob sub_mob_2' src={Sub_mob_2} alt='' />
-                <img className='sum_mob sub_mob_3' src={Sub_mob_3} alt='' />
-                <img className='sum_mob sub_mob_4' src={Sub_mob_4} alt='' />
-                <img className='sum_mob sub_mob_5' src={Sub_mob_5} alt='' />
-                <img className='sum_mob sub_mob_6' src={Sub_mob_6} alt='' />
+        <div className='form'>
+            <div
+                className='subscribe'
+                data-aos='fade-up'
+                data-aos-duration='1000'
+                data-aos-anchor-placement='top-bottom'
+            >
+                <div className='container'>
+                    <img className='sub sub_1' src={Sub_1} alt='' />
+                    <img className='sub sub_2' src={Sub_2} alt='' />
+                    <img className='sub sub_3' src={Sub_3} alt='' />
+                    <img className='sub sub_4' src={Sub_4} alt='' />
+                    <img className='sub sub_5' src={Sub_5} alt='' />
+                    <img className='sum_mob sub_mob_1' src={Sub_mob_1} alt='' />
+                    <img className='sum_mob sub_mob_2' src={Sub_mob_2} alt='' />
+                    <img className='sum_mob sub_mob_3' src={Sub_mob_3} alt='' />
+                    <img className='sum_mob sub_mob_4' src={Sub_mob_4} alt='' />
+                    <img className='sum_mob sub_mob_5' src={Sub_mob_5} alt='' />
+                    <img className='sum_mob sub_mob_6' src={Sub_mob_6} alt='' />
 
-                <div className='subscribe__block'>
-                    <div className='subscribe__content'>
-                        <div className='subscribe__title'>
-                            Explained by Mercuryo
-                        </div>
-                        <div className='subscribe__subtitle'>
-                            Analytics, reports and insights on fintech,
-                            blockchain and cryptocurrencies. Delivered weekly to
-                            your inbox
-                        </div>
-                    </div>
-                    <div className='subscribe__form'>
-                        <form onSubmit={submitFormHandler}>
-                            <Input
-                                label='Name'
-                                type='email'
-                                onChange={handleChange}
-                            />
-                            <Input
-                                label='Company'
-                                type='email'
-                                onChange={handleChange}
-                            />
-                            <Input
-                                label='E-mail'
-                                type='email'
-                                onChange={handleChange}
-                            />
-                            <div className='subscribe__button'>
-                                <button
-                                    className='subscribe__button'
-                                    onClick={onClick}
-                                >
-                                    Subscribe
-                                </button>
+                    <div className='subscribe__block'>
+                        <div className='subscribe__content'>
+                            <div className='subscribe__title'>
+                                Explained by Mercuryo
                             </div>
-                        </form>
+                            <div className='subscribe__subtitle'>
+                                Analytics, reports and insights on fintech,
+                                blockchain and cryptocurrencies. Delivered
+                                weekly to your inbox
+                            </div>
+                        </div>
+                        <div className='subscribe__form'>
+                            <form onSubmit={submitFormHandler}>
+                                <Input
+                                    label='Name'
+                                    type='text'
+                                    onChange={handleChange}
+                                    cl='black'
+                                    required
+                                />
+                                <Input
+                                    label='Company'
+                                    type='text'
+                                    onChange={handleChange}
+                                    cl='black'
+                                    required
+                                />
+                                <Input
+                                    label='E-mail'
+                                    type='email'
+                                    onChange={handleChange}
+                                    cl='black'
+                                    required
+                                />
+                                <div className='subscribe__button'>
+                                    <button className='subscribe__button'>
+                                        Subscribe
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
