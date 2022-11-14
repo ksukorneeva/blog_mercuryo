@@ -63,7 +63,7 @@
         line-height: 52px;
         padding-top: 20px;
         padding-bottom: 20px;
-        font-family: "KarloffNeutralPro", sans-serif;
+        font-family: 'KarloffNeutralPro', sans-serif;
         svg {
             fill: white;
         }
@@ -151,16 +151,24 @@
         position: fixed;
         top: 0;
         left: 0;
-        right: 0;
         background: transparent;
         color: #000;
         // transition: 0.3s;
+        width: 100%;
         z-index: 2;
 
         &_black {
             background: #000;
             color: #fff;
-            height: 100vh;
+            height: calc(100vh + 98px);
+        }
+        &_white {
+            .navbar__menu ul li a {
+                color: #fff;
+            }
+            .navbar__menu ul li svg {
+                fill: #fff;
+            }
         }
 
         &__menu {
@@ -181,10 +189,10 @@
                 display: flex;
                 flex-direction: column;
                 left: 0;
-                top: 50px;
+                top: 45px;
                 width: 100%;
                 background-color: #000;
-                height: calc(100vh - 40px);
+                height: calc(100vh + 40px);
                 padding-left: 15px;
                 padding-top: 42px;
                 z-index: 3;
