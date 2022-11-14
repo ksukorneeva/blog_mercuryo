@@ -128,12 +128,17 @@
     }
 }
 @media (max-width: 870px) {
+    .subscribe__block {
+        position: relative;
+        z-index: 3;
+    }
     .sub {
         display: none;
     }
     .sum_mob {
         display: block;
     }
+
     .sub_mob {
         &_1 {
             position: absolute;
@@ -150,6 +155,7 @@
             position: absolute;
             top: 0;
             right: 20px;
+            z-index: 0;
         }
 
         &_4 {
