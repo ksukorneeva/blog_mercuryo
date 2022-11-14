@@ -113,6 +113,20 @@
     }
 }
 @media (max-width: 780px) {
+    ::-webkit-scrollbar-thumb {
+        /* Укажи цвет скроллбара */
+        background: #dfe8ff;
+        /* Укажи радиус скругления скроллбара */
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar {
+        /* Укажи ширину вертикального скроллбара */
+        width: 3px;
+        /* Укажи высоту горизонтального скроллбара */
+        height: 3px;
+        /* Укажи цвет фона под скроллбаром */
+        background: #dfe8ff;
+    }
     .carousel_list {
         overflow-x: auto;
     }
