@@ -42,3 +42,8 @@ body {
 .App {
     overflow: hidden;
 }
+@media (max-width: 768px) {
+    .App {
+        width: 100vw;
+    }
+}
