@@ -166,11 +166,18 @@
             top: -190px;
         }
     }
+    .slider__icon {
+        z-index: 3;
+        position: relative;
+    }
     .slider__content {
         padding-top: 30px;
     }
     .slider__img {
         height: max-content;
+    }
+    .slider__list {
+        width: 100%;
     }
 }
 
