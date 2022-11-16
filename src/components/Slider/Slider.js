@@ -21,6 +21,7 @@ const Slider = ({ arrPosts }) => {
     };
     const changeSlideClick = (index) => {
         setActiveSlide(index);
+        setActive(index);
         // setActivePost(arrPosts.slice(index, index + 4));
     };
     const handelClick = (slide) => {

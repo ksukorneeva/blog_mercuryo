@@ -169,6 +169,9 @@
     .slider__icon {
         z-index: 3;
         position: relative;
+        li {
+            padding-bottom: 10px;
+        }
     }
     .slider__content {
         padding-top: 30px;
